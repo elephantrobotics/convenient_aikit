@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AiKit_UI(object):
     def setupUi(self, AiKit_UI):
         AiKit_UI.setObjectName("AiKit_UI")
-        AiKit_UI.resize(1105, 1025)
+        AiKit_UI.resize(1060, 1025)
         self.centralwidget = QtWidgets.QWidget(AiKit_UI)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
@@ -68,10 +68,10 @@ class Ui_AiKit_UI(object):
         self.open_camera_btn.setFont(font)
         self.open_camera_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.open_camera_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                           "color: rgb(255, 255, 255);\n"
-                                           "border-radius: 10px;\n"
-                                           "border: 2px groove gray;\n"
-                                           "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.open_camera_btn.setObjectName("open_camera_btn")
         self.connect_lab = QtWidgets.QLabel(self.frame)
         self.connect_lab.setGeometry(QtCore.QRect(10, 75, 151, 31))
@@ -92,7 +92,7 @@ class Ui_AiKit_UI(object):
         font.setWeight(75)
         self.title.setFont(font)
         self.title.setStyleSheet("background-color: rgb(255, 255, 255，200);\n"
-                                 "color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);")
         self.title.setObjectName("title")
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setGeometry(QtCore.QRect(-10, 60, 341, 951))
@@ -110,10 +110,10 @@ class Ui_AiKit_UI(object):
         self.connect_btn.setFont(font)
         self.connect_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.connect_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                       "color: rgb(255, 255, 255);\n"
-                                       "border-radius: 7px;\n"
-                                       "border: 2px groove gray;\n"
-                                       "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 7px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.connect_btn.setAutoDefault(False)
         self.connect_btn.setDefault(False)
         self.connect_btn.setFlat(False)
@@ -199,10 +199,10 @@ class Ui_AiKit_UI(object):
         self.auto_btn.setFont(font)
         self.auto_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.auto_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                    "color: rgb(255, 255, 255);\n"
-                                    "border-radius: 10px;\n"
-                                    "border: 2px groove gray;\n"
-                                    "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.auto_btn.setObjectName("auto_btn")
         self.frame_5 = QtWidgets.QFrame(self.frame_2)
         self.frame_5.setGeometry(QtCore.QRect(20, 260, 311, 41))
@@ -219,10 +219,10 @@ class Ui_AiKit_UI(object):
         self.to_origin_btn.setFont(font)
         self.to_origin_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.to_origin_btn.setStyleSheet("background-color:rgb(41, 128, 185);\n"
-                                         "color: rgb(255, 255, 255);\n"
-                                         "border-radius: 10px;\n"
-                                         "border: 2px groove gray;\n"
-                                         "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.to_origin_btn.setObjectName("to_origin_btn")
         self.func_lab_2 = QtWidgets.QLabel(self.frame_5)
         self.func_lab_2.setGeometry(QtCore.QRect(10, 5, 171, 31))
@@ -257,10 +257,10 @@ class Ui_AiKit_UI(object):
         self.discern_btn.setFont(font)
         self.discern_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.discern_btn.setStyleSheet("background-color:rgb(41, 128, 185);\n"
-                                       "color: rgb(255, 255, 255);\n"
-                                       "border-radius: 10px;\n"
-                                       "border: 2px groove gray;\n"
-                                       "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.discern_btn.setObjectName("discern_btn")
         self.func_lab_5 = QtWidgets.QLabel(self.frame_6)
         self.func_lab_5.setGeometry(QtCore.QRect(10, 36, 71, 18))
@@ -281,7 +281,7 @@ class Ui_AiKit_UI(object):
         font.setWeight(75)
         self.algorithm_lab.setFont(font)
         self.algorithm_lab.setStyleSheet("color: rgb(136, 136, 136);\n"
-                                         "background-color: rgb(243, 243, 243,200);")
+"background-color: rgb(243, 243, 243,200);")
         self.algorithm_lab.setObjectName("algorithm_lab")
         self.algorithm_lab.raise_()
         self.func_lab_4.raise_()
@@ -302,10 +302,10 @@ class Ui_AiKit_UI(object):
         self.crawl_btn.setFont(font)
         self.crawl_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.crawl_btn.setStyleSheet("background-color:rgb(41, 128, 185);\n"
-                                     "color: rgb(255, 255, 255);\n"
-                                     "border-radius: 10px;\n"
-                                     "border: 2px groove gray;\n"
-                                     "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.crawl_btn.setObjectName("crawl_btn")
         self.func_lab_7 = QtWidgets.QLabel(self.frame_7)
         self.func_lab_7.setGeometry(QtCore.QRect(10, 5, 121, 31))
@@ -340,10 +340,10 @@ class Ui_AiKit_UI(object):
         self.place_btn.setFont(font)
         self.place_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.place_btn.setStyleSheet("background-color:rgb(41, 128, 185);\n"
-                                     "color: rgb(255, 255, 255);\n"
-                                     "border-radius: 10px;\n"
-                                     "border: 2px groove gray;\n"
-                                     "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.place_btn.setObjectName("place_btn")
         self.radioButton_A = QtWidgets.QRadioButton(self.frame_8)
         self.radioButton_A.setGeometry(QtCore.QRect(10, 40, 61, 19))
@@ -378,10 +378,10 @@ class Ui_AiKit_UI(object):
         self.open_file_btn.setFont(font)
         self.open_file_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.open_file_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                         "color: rgb(255, 255, 255);\n"
-                                         "border-radius: 10px;\n"
-                                         "border: 2px groove gray;\n"
-                                         "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.open_file_btn.setObjectName("open_file_btn")
         self.func_lab_9 = QtWidgets.QLabel(self.frame_2)
         self.func_lab_9.setGeometry(QtCore.QRect(20, 650, 131, 31))
@@ -441,9 +441,9 @@ class Ui_AiKit_UI(object):
         self.add_img_btn.setFont(font)
         self.add_img_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.add_img_btn.setStyleSheet("background-color: rgb(56, 139, 223);\n"
-                                       "color: rgb(255, 255, 255);\n"
-                                       "border-radius: 10px;\n"
-                                       "border: 2px groove gray;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;")
         self.add_img_btn.setObjectName("add_img_btn")
         self.exit_add_btn = QtWidgets.QPushButton(self.frame_10)
         self.exit_add_btn.setGeometry(QtCore.QRect(230, 150, 71, 28))
@@ -453,12 +453,12 @@ class Ui_AiKit_UI(object):
         self.exit_add_btn.setFont(font)
         self.exit_add_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.exit_add_btn.setStyleSheet("background-color: rgb(255, 0, 0);\n"
-                                        "color: rgb(255, 255, 255);\n"
-                                        "border-radius: 10px;\n"
-                                        "border: 2px groove gray;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;")
         self.exit_add_btn.setObjectName("exit_add_btn")
         self.show_cutimg_lab = QtWidgets.QLabel(self.frame_10)
-        self.show_cutimg_lab.setGeometry(QtCore.QRect(0, -10, 8, 151))
+        self.show_cutimg_lab.setGeometry(QtCore.QRect(7, 10, 291, 131))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -497,10 +497,10 @@ class Ui_AiKit_UI(object):
         self.offset_save_btn.setFont(font)
         self.offset_save_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.offset_save_btn.setStyleSheet("background-color:rgb(41, 128, 185);\n"
-                                           "color: rgb(255, 255, 255);\n"
-                                           "border-radius: 10px;\n"
-                                           "border: 2px groove gray;\n"
-                                           "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.offset_save_btn.setObjectName("offset_save_btn")
         self.func_lab_12 = QtWidgets.QLabel(self.frame_11)
         self.func_lab_12.setGeometry(QtCore.QRect(10, 48, 81, 18))
@@ -567,10 +567,10 @@ class Ui_AiKit_UI(object):
         self.current_coord_btn.setFont(font)
         self.current_coord_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.current_coord_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                             "color: rgb(255, 255, 255);\n"
-                                             "border-radius: 10px;\n"
-                                             "border: 2px groove gray;\n"
-                                             "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.current_coord_btn.setObjectName("current_coord_btn")
         self.image_coord_btn = QtWidgets.QPushButton(self.frame_3)
         self.image_coord_btn.setGeometry(QtCore.QRect(10, 110, 201, 28))
@@ -581,10 +581,10 @@ class Ui_AiKit_UI(object):
         self.image_coord_btn.setFont(font)
         self.image_coord_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.image_coord_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                           "color: rgb(255, 255, 255);\n"
-                                           "border-radius: 10px;\n"
-                                           "border: 2px groove gray;\n"
-                                           "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.image_coord_btn.setObjectName("image_coord_btn")
         self.cuttent_coord_lab = QtWidgets.QLabel(self.frame_3)
         self.cuttent_coord_lab.setGeometry(QtCore.QRect(230, 50, 451, 31))
@@ -608,7 +608,7 @@ class Ui_AiKit_UI(object):
         self.min_btn.setText("")
         self.min_btn.setObjectName("min_btn")
         self.logo_lab = QtWidgets.QLabel(self.widget)
-        self.logo_lab.setGeometry(QtCore.QRect(20, 9, 22, 22))
+        self.logo_lab.setGeometry(QtCore.QRect(13, 9, 22, 22))
         self.logo_lab.setText("")
         self.logo_lab.setObjectName("logo_lab")
         self.close_btn = QtWidgets.QPushButton(self.widget)
@@ -644,10 +644,10 @@ class Ui_AiKit_UI(object):
         self.language_btn.setFont(font)
         self.language_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.language_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                        "color: rgb(255, 255, 255);\n"
-                                        "border-radius: 10px;\n"
-                                        "border: 2px groove gray;\n"
-                                        "border-style: outset;")
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
         self.language_btn.setObjectName("language_btn")
         self.frame_12 = QtWidgets.QFrame(self.frame)
         self.frame_12.setGeometry(QtCore.QRect(1042, 60, 8, 951))

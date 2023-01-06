@@ -37,10 +37,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._initDrag()  # Set the mouse tracking judgment trigger default value
         self.setMouseTracking(True)  # Set widget mouse tracking
         self.widget.installEventFilter(self)  # Initialize event filter
-        self.move(450, 50)
+        self.move(450, 10)
         self.radioButton_A.setChecked(True)
         self._init_variable()
         self._init_status()
+
         self._init_language()
 
         self.cap = cv2.VideoCapture()  # video stream
@@ -76,7 +77,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.pump_y = 0
         self.pump_x = 0
         # device
-        self.M5 = ['myPalletizer 260 for M5']  # M5 robot
+        self.M5 = ['myPalletizer 260 for M5', 'myCobot 280 for M5']  # M5 robot
         self.Pi = ['myCobot 280 for Pi', 'mechArm 270 for Pi']  # Pi robot
 
         # angles to move
@@ -178,7 +179,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     # Close, minimize button display text
     def _close_max_min_icon(self):
-        # 设置按钮图标使用webdings特殊字体
         # self.close_btn.setFont(QFont("Webdings"))
         # self.max_btn.setFont(QFont("Webdings"))
         # self.min_btn.setFont(QFont("Webdings"))
@@ -285,7 +285,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Switch the baud rate according to the device and initialize the corresponding variable"""
         # self.btn_status(True)
         value = self.comboBox_device.currentText()
-        if value != 'myPalletizer 260 for M5':
+        if value in self.Pi:
             # self.comboBox_buad.clear()
             # self.comboBox_buad.addItem('1000000')
             self.comboBox_buad.setCurrentIndex(0)
@@ -300,7 +300,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def device_coord(self):
         """Get points according to the device"""
         value = self.comboBox_device.currentText()
-        if value == 'myCobot 280 for Pi':
+        if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5':
             # y-axis offset
             self.pump_y = -55
             # x-axis offset
@@ -526,9 +526,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.show_camera()
         else:
             if self.language == 1:
-                txt = '剪切'
-            else:
                 txt = 'Cut'
+            else:
+                txt = '剪切'
             if self.add_img_btn.text() == txt:
                 if self.language == 1:
                     self.add_img_btn.setText('Add')
@@ -1357,7 +1357,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 elif device == 'mechArm 270 for Pi':
                     _moved = threading.Thread(target=self.moved(x + 38, y + 138))
                     _moved.start()
-                elif device == 'myCobot 280 for Pi':
+                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                     _moved = threading.Thread(target=self.moved(x - 5, y + 145))
                     _moved.start()
 
@@ -1379,7 +1379,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 if self.is_crawl:
                     if self.crawl_status:
                         self.is_crawl = False
-                        self.myCobot.send_angles(self.move_angles[0], 20)
+                        self.myCobot.send_angles(self.move_angles[1], 20)
                         self.stop_wait(3)
                         func = self.comboBox_function.currentText()
                         # send coordinates to move mycobot
@@ -1402,7 +1402,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 65, 172.36, 5.36, 125.58], 30, 0)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 108, 178.99, -3.78, -62.9], 25,
                                     0)
@@ -1423,7 +1423,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 70, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
@@ -1441,7 +1441,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 108, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
@@ -1466,7 +1466,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             if device == 'mechArm 270 for Pi':
                                 self.myCobot.send_angles([tmp[0], 17.22, -32.51, tmp[3], 97, tmp[5]], 30)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                 self.myCobot.send_angles([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 25)
                                 self.stop_wait(3)
 
@@ -1780,7 +1780,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Open the folder where the file is located"""
         try:
             value = self.comboBox_device.currentText()
-            if value == 'myPalletizer 260 for M5':
+            if value in self.M5:
                 os.startfile(self.path[0])
             else:
                 os.system('xdg-open ' + self.path[0])

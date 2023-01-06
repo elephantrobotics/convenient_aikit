@@ -35,5 +35,5 @@ class MyLogging:
         fh.setFormatter(formatter)  # 设置handler的格式对象
 
         # 将handler增加到logger中
-        # self.logger.addHandler(sh)
+        self.logger.addHandler(sh)
         self.logger.addHandler(fh)

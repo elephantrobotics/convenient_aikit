@@ -526,9 +526,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.show_camera()
         else:
             if self.language == 1:
-                txt = '剪切'
-            else:
                 txt = 'Cut'
+            else:
+                txt = '剪切'
             if self.add_img_btn.text() == txt:
                 if self.language == 1:
                     self.add_img_btn.setText('Add')

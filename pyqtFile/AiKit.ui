@@ -1108,10 +1108,10 @@ border: 2px groove gray;</string>
       <widget class="QLabel" name="show_cutimg_lab">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>-10</y>
-         <width>8</width>
-         <height>151</height>
+         <x>7</x>
+         <y>10</y>
+         <width>291</width>
+         <height>131</height>
         </rect>
        </property>
        <property name="font">
@@ -1467,7 +1467,7 @@ border-style: outset;</string>
      <widget class="QLabel" name="logo_lab">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>13</x>
         <y>9</y>
         <width>22</width>
         <height>22</height>

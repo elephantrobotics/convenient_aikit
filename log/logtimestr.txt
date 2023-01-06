@@ -10,3 +10,95 @@
 2023-01-06 15:33:57,002 main.py[line:403]INFO - Disconnected successfully !
 2023-01-06 15:34:50,137 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
 2023-01-06 15:34:50,137 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 16:17:54,404 main.py[line:367]INFO - connection succeeded !
+2023-01-06 16:17:54,404 main.py[line:367]INFO - connection succeeded !
+2023-01-06 16:56:38,223 main.py[line:367]INFO - connection succeeded !
+2023-01-06 16:56:38,223 main.py[line:367]INFO - connection succeeded !
+2023-01-06 17:07:49,373 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:49,373 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:51,046 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:51,046 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:55,785 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:55,785 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:56,573 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:07:56,573 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:01,021 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:01,021 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,201 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,201 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,409 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,409 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,585 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,585 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,750 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,750 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,960 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:03,960 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:10,913 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:10,913 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,136 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,136 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,312 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,312 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,522 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,522 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,731 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,731 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,891 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:11,891 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:26,895 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:26,895 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,165 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,165 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,608 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,608 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,766 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,766 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,944 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:08:32,944 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:09:32,343 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:09:32,343 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:10:50,505 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:10:50,505 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:12:35,140 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:12:35,140 main.py[line:1777]INFO - [Errno 13] Permission denied: 'D:\\heyuxuan\\File\\AiKit\\AiKit_UI/offset/myCobot 280 for Pi.txt'
+2023-01-06 17:29:27,938 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:29:27,938 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:36:30,857 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:36:30,857 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:36:49,237 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:36:49,237 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:37:10,448 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:37:10,448 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:37:45,992 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:37:45,992 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:39:26,634 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:39:26,634 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:39:35,161 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:39:35,161 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:45:56,030 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:45:56,030 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 17:59:42,382 main.py[line:367]INFO - connection succeeded !
+2023-01-06 17:59:42,382 main.py[line:367]INFO - connection succeeded !
+2023-01-06 17:59:52,037 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 17:59:52,037 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 17:59:56,030 main.py[line:367]INFO - connection succeeded !
+2023-01-06 17:59:56,030 main.py[line:367]INFO - connection succeeded !
+2023-01-06 18:04:27,100 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 18:04:27,100 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 18:04:29,021 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 18:04:29,021 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 18:04:29,181 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 18:04:29,181 main.py[line:249]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-06 18:39:14,210 main.py[line:367]INFO - connection succeeded !
+2023-01-06 18:39:14,210 main.py[line:367]INFO - connection succeeded !
+2023-01-06 18:42:11,333 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:42:11,333 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:42:23,775 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:42:23,775 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:42:36,222 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:42:36,222 main.py[line:1510]INFO - No module named 'RPi'
+2023-01-06 18:49:25,921 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 18:49:25,921 main.py[line:403]INFO - Disconnected successfully !
+2023-01-06 18:49:29,978 main.py[line:367]INFO - connection succeeded !
+2023-01-06 18:49:29,978 main.py[line:367]INFO - connection succeeded !
