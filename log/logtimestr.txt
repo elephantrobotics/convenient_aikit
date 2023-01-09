@@ -102,3 +102,11 @@
 2023-01-06 18:49:25,921 main.py[line:403]INFO - Disconnected successfully !
 2023-01-06 18:49:29,978 main.py[line:367]INFO - connection succeeded !
 2023-01-06 18:49:29,978 main.py[line:367]INFO - connection succeeded !
+2023-01-07 08:44:50,697 main.py[line:1093]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-07 08:44:50,697 main.py[line:1093]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-07 08:44:51,201 main.py[line:944]ERROR - OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-01-07 08:44:51,201 main.py[line:944]ERROR - OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
