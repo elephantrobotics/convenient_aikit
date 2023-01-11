@@ -354,21 +354,21 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             ]
             self.home_coords = [81.8, -52.3, 186.7, 174.48, 4.08, 92.41]
         elif value == 'ultraArm P340':
-            self.pump_y = -45
+            self.pump_y = -30
             # x-axis offset
-            self.pump_x = -30
+            self.pump_x = -45
             # 移动角度
             self.move_angles = [
-                [25.55, 0.0, 15.24],
-                [0.0, 14.32, 0.0],  # point to grab
+                [25.55, 0.0, 15.24,0],
+                [0.0, 14.32, 0.0,0],  # point to grab
             ]
 
             # 移动坐标
             self.move_coords = [
-                [141.53, 148.67, 43.73],  # D Sorting area
-                [248.52, 152.35, 53.45],  # C Sorting area
-                [269.02, -161.65, 51.42],  # A Sorting area
-                [146.8, -159.53, 50.44],  # B Sorting area
+                [141.53, 148.67, 43.73,0],  # D Sorting area
+                [248.52, 152.35, 53.45,0],  # C Sorting area
+                [269.02, -161.65, 51.42,0],  # A Sorting area
+                [146.8, -159.53, 50.44,0],  # B Sorting area
             ]
             self.home_coords = [267.15, 0.0, 125.96]
 
@@ -390,12 +390,18 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.stop_wait(0.1)
                 zero = threading.Thread(target=self.go_zero)
                 zero.start()
-                QMessageBox.about(self, '提示', '正在进行回零校正，请耐心等待......')
+                if self.language == 1:
+                    self.prompts('Zero calibration is in progress, please wait patiently......')
+                else:
+                    self.prompts('正在进行回零校正，请耐心等待......')
+                self.btn_status(False)
+                self.connect_btn.setEnabled(False)
             else:
                 self.myCobot = MyCobot(port, baud, timeout=0.2)
             self.stop_wait(0.5)
             self.loger.info("connection succeeded !")
-            self.btn_status(True)
+            if device != 'ultraArm P340':
+                self.btn_status(True)
             if self.language == 1:
                 self.connect_btn.setText('DISCONNECT')
             else:
@@ -500,14 +506,23 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def open_camera(self):
         """Turn on the camera"""
         try:
+            if self.language == 1:
+                self.prompts('Opening camera, please wait....')
+            else:
+                self.prompts('正在打开相机，请稍后....')
+            QApplication.processEvents()
             self.camera_status = True
             self.camera_edit.setEnabled(False)
             flag = self.cap.open(int(self.camera_edit.text()))  # Get the serial number of the camera to open
-            # print(int(self.camera_edit.text()))
             if not flag:  # Flag indicates whether the camera is successfully opened
+                if self.language == 1:
+                    self.prompts('The camera failed to open, please check whether the serial number is correct or the camera is connected.')
+                else:
+                    self.prompts('相机打开失败，请检查序号是否正确或摄像头已连接.')
                 self.loger.error('Failed to open camera')
                 self.close_camera()
                 return
+            self.prompts_lab.clear()
             if self.language == 1:
                 self.add_img_btn.setText('Cut')
                 self.open_camera_btn.setText('Close')
@@ -542,6 +557,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.btn_color(self.open_camera_btn, 'green')
             self._init_variable()
             self.buad_choose()
+            self.prompts_lab.clear()
         except Exception as e:
             self.loger.error('camera off exception' + str(e))
 
@@ -574,11 +590,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if not self.camera_status:
                 return
             # Define Keypoints image storage/reading path
-            res_queue = [[], [], [], []]
-            res_queue[0] = self.parse_folder('res/D')
-            res_queue[1] = self.parse_folder('res/C')
-            res_queue[2] = self.parse_folder('res/A')
-            res_queue[3] = self.parse_folder('res/B')
             num = sum_x = sum_y = 0
             while self.camera_status:
                 func = self.comboBox_function.currentText()
@@ -662,7 +673,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             abs(self.sum_x1 - self.sum_x2) / 10.0 +
                             abs(self.sum_y1 - self.sum_y2) / 10.0
                         )
-                        self.loger.info("ok")
+                        self.loger.info("Color recognition ok")
                         continue
 
                     # get detect result
@@ -678,7 +689,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
                         continue
                     else:
-                        # print(self.num)
                         x, y = detect_result
                         # calculate real coord between cube and mycobot
                         self.real_x, self.real_y = self.get_position(x, y)
@@ -698,6 +708,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
                 elif func == 'Keypoints' or func == '特征点识别':
                     try:
+                        res_queue = [[], [], [], []]
+                        res_queue[0] = self.parse_folder('res/D')
+                        res_queue[1] = self.parse_folder('res/C')
+                        res_queue[2] = self.parse_folder('res/A')
+                        res_queue[3] = self.parse_folder('res/B')
                         QApplication.processEvents()
                         # read camera
                         _, frame = self.cap.read()
@@ -733,7 +748,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.sum_x1 = self.sum_x2 = self.sum_y1 = self.sum_y2 = 0
                             self.init_num += 1
                             continue
-                        # print(1)
                         # calculate params of the coords between cube and mycobot
                         if self.nparams < 10:
                             if self.get_calculate_params(frame) is None:
@@ -753,7 +767,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.sum_y1 += y1
                                 self.sum_y2 += y2
                                 self.nparams += 1
-                                self.loger.info("ok")
+                                self.loger.info("Keypoints ok")
                                 continue
                         elif self.nparams == 10:
                             self.nparams += 1
@@ -762,10 +776,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                             (self.sum_y1 + self.sum_y2) / 20.0,
                                             abs(self.sum_x1 - self.sum_x2) / 10.0 +
                                             abs(self.sum_y1 - self.sum_y2) / 10.0)
-                            # print("ok")
+                            self.loger.info("ok")
                             continue
                         # get detect result
-                        # print(2)
                         detect_result = None
                         for i, v in enumerate(res_queue):
                             if self.discern_status:
@@ -794,7 +807,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.num += 1
                                     self.real_sy += self.real_y
                                     self.real_sx += self.real_x
-                        # print(3)
                         if self.camera_status:
                             show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                             showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
@@ -805,30 +817,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                 elif func == 'QR code recognition' or func == '二维码识别':
                     try:
-                        # self.to_origin_func()
                         QApplication.processEvents()
-                        # success, img = self.cap.read()
-                        # if not success:
-                        #     print("It seems that the image cannot be acquired correctly.")
-                        #     break
                         success, img = self.cap.read()
                         if not success:
-                            # print("It seems that the image cannot be acquired correctly.")
                             break
-                        # img = cv2.resize(img, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
-                        # img = img[140:630, 240:730]
-                        # transfrom the img to model of gray
                         if self.discern_status:
                             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                            # transfrom the img to model of gray
-                            # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                            # Detect ArUco marker.
                             corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
                                 gray, self.aruco_dict, parameters=self.aruco_params
                             )
                             if len(corners) > 0:
                                 if ids is not None:
-                                    # get informations of aruco
                                     ret = cv2.aruco.estimatePoseSingleMarkers(
                                         corners, 0.03, self.camera_matrix, self.dist_coeffs
                                     )
@@ -1023,7 +1022,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.is_pick = False
             self.pump_off()
             if self.comboBox_device.currentText() == 'ultraArm P340':
-                print(self.move_angles[0])
                 self.myCobot.set_angles(self.move_angles[0], 30)
             else:
                 self.myCobot.send_angles(self.move_angles[0], 30)
@@ -1135,13 +1133,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # set the arrangement of color'HSV
         x = y = 0
         for mycolor, item in self.HSV.items():
-            # print("mycolor:",mycolor)
             redLower = np.array(item[0])
             redUpper = np.array(item[1])
 
             # transfrom the img to model of gray
             hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-            # print("hsv",hsv)
 
             # wipe off all color expect color in range
             mask = cv2.inRange(hsv, item[0], item[1])
@@ -1377,7 +1373,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             return None
 
     def decide_move(self, x, y, color):
-        # print('decide-->', x, y, self.cache_x, self.cache_y)
         # detect the cube status move or run
         if (abs(x - self.cache_x) + abs(y - self.cache_y)) / 2 > 5:  # mm
             self.cache_x, self.cache_y = x, y
@@ -1407,12 +1402,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     # Grasping motion
     def moved(self, x, y):
         try:
-            print(x)
-            print(y)
-            # print(self.move_angles)
-            # print(self.move_coords)
             self.is_crawl = True
-            print(self.is_pick)
             while self.is_pick:
                 QApplication.processEvents()
                 # send Angle to move mycobot
@@ -1455,11 +1445,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 70, 178.99, -3.78, -62.9], 25, 0)
                                 self.stop_wait(3.5)
                             elif device == 'ultraArm P340':
-                                print(111)
-                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, 65.51], 50)
+                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, 65.51,0], 50)
                                 time.sleep(2)
-                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, -70], 50)
-                                time.sleep(2)
+                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, -55,0], 50)
+                                time.sleep(3)
 
                         else:
                             if func == 'shape recognition' or func == 'Keypoints' or func == '形状识别' or func == '特征点识别':
@@ -1481,10 +1470,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.myCobot.send_coords([x, y, 65.5, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
-                                    print(111)
-                                    self.myCobot.set_coords([x, -y, 65.51], 50)
+                                    self.myCobot.set_coords([x, -y, 65.51,0], 50)
                                     time.sleep(1.5)
-                                    self.myCobot.set_coords([x, -y, -70], 50)
+                                    self.myCobot.set_coords([x, -y, -55,0], 50)
                                     time.sleep(2)
                             else:
                                 if device == 'myPalletizer 260 for M5':
@@ -1505,10 +1493,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.myCobot.send_coords([x, y, 103, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
-                                    print(111)
-                                    self.myCobot.set_coords([x, -y, 65.51], 50)
+                                    self.myCobot.set_coords([x, -y, 65.51,0], 50)
                                     time.sleep(1.5)
-                                    self.myCobot.set_coords([x, -y, -32], 50)
+                                    self.myCobot.set_coords([x, -y, -18,0], 50)
                                     time.sleep(2)
 
                         # open pump
@@ -1520,8 +1507,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.myCobot.send_angle(3, -20, 20)
                             self.stop_wait(2)
                         elif device == 'ultraArm P340':
-                            print(222)
-                            self.myCobot.set_angles([0,0,0], 50)
+                            self.myCobot.set_angles([0,0,0,0], 50)
                         else:
                             tmp = []
                             while True:
@@ -1552,10 +1538,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     else:
                         color = 0
                     if device == 'ultraArm P340':
-                        print(333)
-                        self.myCobot.set_coords(self.move_coords[color], 20)
+                        self.myCobot.set_coords(self.move_coords[color], 40)
                     else:
-                        self.myCobot.send_coords(self.move_coords[color], 20, 0)
+                        self.myCobot.send_coords(self.move_coords[color], 40, 0)
                     # self.pub_marker(self.move_coords[color][0]/1000.0, self.move_coords[color]
                     #                 [1]/1000.0, self.move_coords[color][2]/1000.0)
                     self.stop_wait(4)
@@ -1566,7 +1551,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                     self.stop_wait(4)
                     if device == 'ultraArm P340':
-                        print(444)
                         self.myCobot.set_angles(self.move_angles[0], 25)
                     else:
                         self.myCobot.send_angles(self.move_angles[0], 25)
@@ -1728,7 +1712,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.show_cutimg_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
                     except Exception as e:
                         self.loger.info(e)
-                        print(str(e))
 
                     x, y, w, h = roi
                     items = ["A", "B", "C", "D"]
@@ -1796,6 +1779,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def combox_func_checked(self):
         self.algorithm_lab.setText(self.comboBox_function.currentText())
+        self.prompts_lab.clear()
         device = self.comboBox_device.currentText()
         if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
             if self.comboBox_function.currentText() == 'yolov5':
@@ -1803,7 +1787,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 if IS_CV_4:
                     self.net = cv2.dnn.readNet(self.modelWeights)
                 else:
-                    QMessageBox.about(self,'prompt','Load yolov5 model need the version of opencv is 4.')
+                    self.prompts('Load yolov5 model need the version of opencv is 4.')
                     self.comboBox_function.setCurrentIndex(0)
 
 
@@ -2076,6 +2060,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def go_zero(self):
         self.myCobot.go_zero()
+        if self.language == 1:
+            self.prompts('Zero calibration completed')
+        else:
+            self.prompts('回零校正已完成')
+        self.btn_status(True)
+        self.connect_btn.setEnabled(True)
 
 # File loading window displayed
 # class fileWindow(file_window,QMainWindow,QWidget):
@@ -2090,7 +2080,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 #             with open(self.path[0] + f'/main.py', "r", encoding="utf-8") as f:
 #                 offset = f.read()
 #             self.change_file_lineEdit.setPlainText(offset)
-#             print(111)
 #         except Exception as e:
 #             print(str(e))
 #

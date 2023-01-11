@@ -412,3 +412,47 @@
 
 2023-01-11 14:27:37,485 main.py[line:804]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
 
+2023-01-11 15:30:40,082 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:30:40,082 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:31:11,051 main.py[line:665]INFO - ok
+2023-01-11 15:31:11,051 main.py[line:665]INFO - ok
+2023-01-11 15:35:39,076 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:35:39,076 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:36:04,376 main.py[line:665]INFO - ok
+2023-01-11 15:36:04,376 main.py[line:665]INFO - ok
+2023-01-11 15:41:07,963 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:41:07,963 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:41:18,836 main.py[line:664]INFO - Color recognition ok
+2023-01-11 15:41:18,836 main.py[line:664]INFO - Color recognition ok
+2023-01-11 15:44:23,854 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:44:23,854 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:45:47,774 main.py[line:664]INFO - Color recognition ok
+2023-01-11 15:45:47,774 main.py[line:664]INFO - Color recognition ok
+2023-01-11 15:47:47,932 main.py[line:397]INFO - connection succeeded !
+2023-01-11 15:47:47,932 main.py[line:397]INFO - connection succeeded !
+2023-01-11 16:03:39,777 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:03:39,777 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:06:03,026 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:06:03,026 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:07:04,567 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:07:04,567 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:07:05,324 main.py[line:436]INFO - Disconnected successfully !
+2023-01-11 16:07:05,324 main.py[line:436]INFO - Disconnected successfully !
+2023-01-11 16:07:10,493 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:07:10,493 main.py[line:400]INFO - connection succeeded !
+2023-01-11 16:07:13,896 main.py[line:436]INFO - Disconnected successfully !
+2023-01-11 16:07:13,896 main.py[line:436]INFO - Disconnected successfully !
+2023-01-11 16:07:15,098 main.py[line:427]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'COM39': PermissionError(13, '¾Ü¾ø·ÃÎÊ¡£', None, 5)
+                =================================================
+            
+2023-01-11 16:07:15,098 main.py[line:427]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'COM39': PermissionError(13, '¾Ü¾ø·ÃÎÊ¡£', None, 5)
+                =================================================
+            
+2023-01-11 16:10:25,135 main.py[line:402]INFO - connection succeeded !
+2023-01-11 16:10:25,135 main.py[line:402]INFO - connection succeeded !
+2023-01-11 16:11:58,328 main.py[line:402]INFO - connection succeeded !
+2023-01-11 16:11:58,328 main.py[line:402]INFO - connection succeeded !
