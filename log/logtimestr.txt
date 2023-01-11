@@ -110,3 +110,271 @@
 
 2023-01-07 08:44:51,201 main.py[line:944]ERROR - OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
 
+2023-01-10 16:08:57,232 main.py[line:1781]ERROR - [Errno 2] No such file or directory: 'D:\\heyuxuan\\File\\AiKit_UI/offset/ultraArm P340.txt'
+2023-01-10 16:08:57,232 main.py[line:1781]ERROR - [Errno 2] No such file or directory: 'D:\\heyuxuan\\File\\AiKit_UI/offset/ultraArm P340.txt'
+2023-01-10 16:09:48,244 main.py[line:250]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-10 16:09:48,244 main.py[line:250]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-10 16:19:10,807 main.py[line:250]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-10 16:19:10,807 main.py[line:250]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-01-10 17:40:36,180 main.py[line:393]INFO - connection succeeded !
+2023-01-10 17:40:36,180 main.py[line:393]INFO - connection succeeded !
+2023-01-10 17:44:26,244 main.py[line:394]INFO - connection succeeded !
+2023-01-10 17:44:26,244 main.py[line:394]INFO - connection succeeded !
+2023-01-10 17:53:21,519 main.py[line:394]INFO - connection succeeded !
+2023-01-10 17:53:21,519 main.py[line:394]INFO - connection succeeded !
+2023-01-10 17:53:32,303 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 17:53:32,303 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 17:53:43,184 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 17:53:43,184 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 18:06:02,743 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:06:02,743 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:08:18,011 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 18:08:18,011 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 18:13:37,041 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:13:37,041 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:13:39,438 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 18:13:39,438 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'set_basic_output'
+2023-01-10 18:15:14,180 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:15:14,180 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:15:25,837 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:15:25,837 main.py[line:1025]ERROR - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:17:36,908 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:17:36,908 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:20:09,477 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:20:09,477 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:21:21,361 main.py[line:505]ERROR - Failed to open camera
+2023-01-10 18:21:21,361 main.py[line:505]ERROR - Failed to open camera
+2023-01-10 18:21:27,124 main.py[line:505]ERROR - Failed to open camera
+2023-01-10 18:21:27,124 main.py[line:505]ERROR - Failed to open camera
+2023-01-10 18:24:46,193 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:24:46,193 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:26:15,796 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:26:15,796 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:26:32,540 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:32,540 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:33,997 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:33,997 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:36,795 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:36,795 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:38,221 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:38,221 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:39,597 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:39,597 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:40,990 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:40,990 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:42,398 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:42,398 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:43,788 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:43,788 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:45,212 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:45,212 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:46,586 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:46,586 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:48,012 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:48,012 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:49,403 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:49,403 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:50,813 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:50,813 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:52,202 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:52,202 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:53,596 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:53,596 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:55,003 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:55,003 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:56,395 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:56,395 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:57,787 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:57,787 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:59,195 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:26:59,195 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:00,587 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:00,587 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:02,011 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:02,011 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:03,387 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:03,387 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:04,818 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:04,818 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:06,202 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:06,202 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:07,612 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:07,612 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:09,002 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:09,002 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:10,428 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:10,428 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:11,814 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:11,814 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:14,174 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:14,174 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:17,656 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:17,656 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:19,070 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:19,070 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:20,848 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:20,848 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:22,267 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:22,267 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:25,067 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:25,067 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:26,461 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:26,461 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:27,854 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:27,854 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:30,460 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:30,460 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:31,867 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:31,867 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:33,923 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:33,923 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:35,660 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:35,660 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:37,051 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:37,051 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:38,443 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:38,443 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:39,850 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:39,850 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:41,243 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:41,243 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:42,667 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:42,667 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:44,044 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:44,044 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:47,054 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:47,054 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:48,442 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:48,442 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:49,851 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:49,851 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:51,245 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:51,245 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:52,666 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:52,666 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:54,043 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:54,043 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:55,466 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:55,466 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:56,858 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:56,858 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:58,271 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:58,271 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:59,659 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:27:59,659 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:01,085 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:01,085 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:02,462 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:02,462 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:03,852 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:03,852 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:05,281 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:05,281 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:06,651 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:06,651 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:08,044 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:08,044 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:09,451 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:09,451 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:10,847 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:10,847 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:12,267 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:12,267 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:13,643 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:13,643 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:15,792 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:15,792 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:17,549 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:17,549 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:18,955 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:18,955 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:20,945 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:20,945 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:22,462 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:22,462 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:23,854 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:23,854 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:25,258 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:25,258 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:26,652 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:26,652 main.py[line:1570]INFO - 'ultraArm' object has no attribute 'send_angles'
+2023-01-10 18:28:57,895 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:28:57,895 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:29:27,908 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:29:27,908 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:29:39,682 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:29:39,682 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:29:51,504 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:29:51,504 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:03,294 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:03,294 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:15,106 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:15,106 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:26,910 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:26,910 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:38,706 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:38,706 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:50,508 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:30:50,508 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:02,281 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:02,281 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:14,218 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:14,218 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:26,094 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:26,094 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:37,973 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:31:37,973 main.py[line:1573]INFO - set_coords() takes from 2 to 3 positional arguments but 4 were given
+2023-01-10 18:32:18,956 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:32:18,956 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:42:27,113 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:42:27,113 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:45:34,760 main.py[line:394]INFO - connection succeeded !
+2023-01-10 18:45:34,760 main.py[line:394]INFO - connection succeeded !
+2023-01-11 09:37:40,684 main.py[line:394]INFO - connection succeeded !
+2023-01-11 09:37:40,684 main.py[line:394]INFO - connection succeeded !
+2023-01-11 09:39:34,053 main.py[line:394]INFO - connection succeeded !
+2023-01-11 09:39:34,053 main.py[line:394]INFO - connection succeeded !
+2023-01-11 10:18:11,291 main.py[line:396]INFO - connection succeeded !
+2023-01-11 10:18:11,291 main.py[line:396]INFO - connection succeeded !
+2023-01-11 10:18:14,834 main.py[line:432]INFO - Disconnected successfully !
+2023-01-11 10:18:14,834 main.py[line:432]INFO - Disconnected successfully !
+2023-01-11 10:18:18,164 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                type object 'QMessageBox' has no attribute 'About'
+                =================================================
+            
+2023-01-11 10:18:18,164 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                type object 'QMessageBox' has no attribute 'About'
+                =================================================
+            
+2023-01-11 10:18:29,026 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                type object 'QMessageBox' has no attribute 'About'
+                =================================================
+            
+2023-01-11 10:18:29,026 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                type object 'QMessageBox' has no attribute 'About'
+                =================================================
+            
+2023-01-11 10:21:20,035 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                arguments did not match any overloaded call:
+  QMessageBox(parent: QWidget = None): argument 1 has unexpected type 'StandardButton'
+  QMessageBox(QMessageBox.Icon, str, str, buttons: Union[QMessageBox.StandardButtons, QMessageBox.StandardButton] = QMessageBox.NoButton, parent: QWidget = None, flags: Union[Qt.WindowFlags, Qt.WindowType] = Qt.Dialog|Qt.MSWindowsFixedSizeDialogHint): argument 1 has unexpected type 'StandardButton'
+                =================================================
+            
+2023-01-11 10:21:20,035 main.py[line:423]ERROR -                 Connection failed !!!
+                =================================================
+                arguments did not match any overloaded call:
+  QMessageBox(parent: QWidget = None): argument 1 has unexpected type 'StandardButton'
+  QMessageBox(QMessageBox.Icon, str, str, buttons: Union[QMessageBox.StandardButtons, QMessageBox.StandardButton] = QMessageBox.NoButton, parent: QWidget = None, flags: Union[Qt.WindowFlags, Qt.WindowType] = Qt.Dialog|Qt.MSWindowsFixedSizeDialogHint): argument 1 has unexpected type 'StandardButton'
+                =================================================
+            
+2023-01-11 10:24:51,265 main.py[line:395]INFO - connection succeeded !
+2023-01-11 10:24:51,265 main.py[line:395]INFO - connection succeeded !
+2023-01-11 10:26:22,213 main.py[line:431]INFO - Disconnected successfully !
+2023-01-11 10:26:22,213 main.py[line:431]INFO - Disconnected successfully !
+2023-01-11 10:28:47,817 main.py[line:395]INFO - connection succeeded !
+2023-01-11 10:28:47,817 main.py[line:395]INFO - connection succeeded !

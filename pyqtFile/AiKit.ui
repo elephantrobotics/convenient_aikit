@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1060</width>
-    <height>1025</height>
+    <width>1056</width>
+    <height>1016</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -377,6 +377,11 @@ border-style: outset;</string>
        <item>
         <property name="text">
          <string>mechArm 270 for Pi</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ultraArm P340</string>
         </property>
        </item>
       </widget>
@@ -1006,6 +1011,11 @@ border-style: outset;</string>
        <item>
         <property name="text">
          <string>Keypoints</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>yolov5</string>
         </property>
        </item>
       </widget>
