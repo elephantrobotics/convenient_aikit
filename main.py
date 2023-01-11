@@ -662,7 +662,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             abs(self.sum_x1 - self.sum_x2) / 10.0 +
                             abs(self.sum_y1 - self.sum_y2) / 10.0
                         )
-                        # print("ok")
+                        self.loger.info("ok")
                         continue
 
                     # get detect result
@@ -753,7 +753,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.sum_y1 += y1
                                 self.sum_y2 += y2
                                 self.nparams += 1
-                                # print("ok")
+                                self.loger.info("ok")
                                 continue
                         elif self.nparams == 10:
                             self.nparams += 1
@@ -1624,7 +1624,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Retrieve Folder Pictures"""
         try:
             restore = []
-            path = rf'{self.path[0]}\{folder}'
+            path = rf'{self.path[0]}/{folder}'
 
             for i, j, k in os.walk(path):
                 for l in k:

@@ -378,3 +378,37 @@
 2023-01-11 10:26:22,213 main.py[line:431]INFO - Disconnected successfully !
 2023-01-11 10:28:47,817 main.py[line:395]INFO - connection succeeded !
 2023-01-11 10:28:47,817 main.py[line:395]INFO - connection succeeded !
+2023-01-11 13:47:24,194 main.py[line:397]INFO - connection succeeded !
+2023-01-11 13:47:24,194 main.py[line:397]INFO - connection succeeded !
+2023-01-11 13:49:31,468 main.py[line:1130]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-11 13:49:31,468 main.py[line:1130]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-11 13:49:31,468 main.py[line:804]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-01-11 13:49:31,468 main.py[line:804]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-01-11 13:49:56,113 main.py[line:1584]INFO - list index out of range
+2023-01-11 13:49:56,113 main.py[line:1584]INFO - list index out of range
+2023-01-11 13:50:07,730 main.py[line:433]INFO - Disconnected successfully !
+2023-01-11 13:50:07,730 main.py[line:433]INFO - Disconnected successfully !
+2023-01-11 13:50:08,600 main.py[line:1584]INFO - 'NoneType' object has no attribute 'set_basic_output'
+2023-01-11 13:50:08,600 main.py[line:1584]INFO - 'NoneType' object has no attribute 'set_basic_output'
+2023-01-11 14:04:40,337 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:04:40,337 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:25:54,405 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:25:54,405 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:25:56,412 main.py[line:433]INFO - Disconnected successfully !
+2023-01-11 14:25:56,412 main.py[line:433]INFO - Disconnected successfully !
+2023-01-11 14:25:59,268 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:25:59,268 main.py[line:397]INFO - connection succeeded !
+2023-01-11 14:26:04,600 main.py[line:665]INFO - ok
+2023-01-11 14:26:04,600 main.py[line:665]INFO - ok
+2023-01-11 14:27:37,484 main.py[line:1130]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-11 14:27:37,484 main.py[line:1130]ERROR - Interception failedOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\resize.cpp:4052: error: (-215:Assertion failed) !ssize.empty() in function 'cv::resize'
+
+2023-01-11 14:27:37,485 main.py[line:804]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-01-11 14:27:37,485 main.py[line:804]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
