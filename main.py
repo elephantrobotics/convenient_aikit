@@ -1612,7 +1612,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
             for i, j, k in os.walk(path):
                 for l in k:
-                    restore.append(cv2.imread(folder + '/{}'.format(l)))
+                    restore.append(cv2.imread(path + '/{}'.format(l)))
             return restore
         except Exception as e:
             self.loger.error(str(e))
