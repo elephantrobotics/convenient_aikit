@@ -1618,6 +1618,36 @@ border-style: outset;</string>
       <enum>QFrame::Raised</enum>
      </property>
     </widget>
+    <widget class="QPushButton" name="yolov5_cut_btn">
+     <property name="geometry">
+      <rect>
+       <x>620</x>
+       <y>78</y>
+       <width>101</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(39, 174, 96);
+color: rgb(255, 255, 255);
+border-radius: 10px;
+border: 2px groove gray;
+border-style: outset;</string>
+     </property>
+     <property name="text">
+      <string>Cut</string>
+     </property>
+    </widget>
     <zorder>frame_12</zorder>
     <zorder>frame_2</zorder>
     <zorder>widget</zorder>
@@ -1632,6 +1662,7 @@ border-style: outset;</string>
     <zorder>camera_edit</zorder>
     <zorder>language_btn</zorder>
     <zorder>frame_13</zorder>
+    <zorder>yolov5_cut_btn</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

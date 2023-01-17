@@ -663,6 +663,20 @@ class Ui_AiKit_UI(object):
         self.frame_13.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_13.setObjectName("frame_13")
+        self.yolov5_cut_btn = QtWidgets.QPushButton(self.frame)
+        self.yolov5_cut_btn.setGeometry(QtCore.QRect(620, 78, 101, 28))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setBold(True)
+        font.setWeight(75)
+        self.yolov5_cut_btn.setFont(font)
+        self.yolov5_cut_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.yolov5_cut_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border: 2px groove gray;\n"
+"border-style: outset;")
+        self.yolov5_cut_btn.setObjectName("yolov5_cut_btn")
         self.frame_12.raise_()
         self.frame_2.raise_()
         self.widget.raise_()
@@ -677,6 +691,7 @@ class Ui_AiKit_UI(object):
         self.camera_edit.raise_()
         self.language_btn.raise_()
         self.frame_13.raise_()
+        self.yolov5_cut_btn.raise_()
         AiKit_UI.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(AiKit_UI)
         self.statusbar.setObjectName("statusbar")
@@ -739,3 +754,4 @@ class Ui_AiKit_UI(object):
         self.image_coord_btn.setText(_translate("AiKit_UI", "  image coordinates"))
         self.camera_edit.setText(_translate("AiKit_UI", "0"))
         self.language_btn.setText(_translate("AiKit_UI", "English"))
+        self.yolov5_cut_btn.setText(_translate("AiKit_UI", "Cut"))
