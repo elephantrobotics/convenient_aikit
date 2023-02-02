@@ -74,6 +74,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.btn_status()
         self.device_coord()
         self.cut_yolov5_img_status()
+        self._init_tooltip()
 
     # Initialize variables
     def _init_variable(self):
@@ -211,6 +212,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # self.max_btn.setText('1')
         self.min_btn.setText('-')
 
+    def _init_tooltip(self):
+        if self.language == 1:
+            self.func_lab_6.setToolTip(
+                'Adjust the suction position of the end, add X forward,'
+                ' subtract X backward, add Y to the left, and subtract Y to the right.')
+        else:
+            self.func_lab_6.setToolTip(
+                '调整末端吸取位置，向前X加，向后X减，向左Y加，向右Y减。')
+
     @pyqtSlot()
     def min_clicked(self):
         # minimize
@@ -287,10 +297,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.comboBox_port.addItem('NO Port')
             self.connect_btn.setEnabled(False)
             self.connect_btn.setStyleSheet("background-color: rgb(185, 195, 199);\n"
-                            "color: rgb(255, 255, 255);\n"
-                            "border-radius: 10px;\n"
-                            "border: 2px groove gray;\n"
-                            "border-style: outset;")
+                                           "color: rgb(255, 255, 255);\n"
+                                           "border-radius: 10px;\n"
+                                           "border: 2px groove gray;\n"
+                                           "border-style: outset;")
             self.port_list = []
             return
         else:
@@ -299,10 +309,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.comboBox_port.clear()
                 self.connect_btn.setEnabled(True)
                 self.connect_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
-                                "color: rgb(255, 255, 255);\n"
-                                "border-radius: 10px;\n"
-                                "border: 2px groove gray;\n"
-                                "border-style: outset;")
+                                               "color: rgb(255, 255, 255);\n"
+                                               "border-radius: 10px;\n"
+                                               "border: 2px groove gray;\n"
+                                               "border-style: outset;")
                 for p in plist:
                     self.comboBox_port.addItem(p)
 
@@ -383,16 +393,16 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.pump_x = -45
             # 移动角度
             self.move_angles = [
-                [25.55, 0.0, 15.24,0],
-                [0.0, 14.32, 0.0,0],  # point to grab
+                [25.55, 0.0, 15.24, 0],
+                [0.0, 14.32, 0.0, 0],  # point to grab
             ]
 
             # 移动坐标
             self.move_coords = [
-                [141.53, 148.67, 43.73,0],  # D Sorting area
-                [248.52, 152.35, 53.45,0],  # C Sorting area
-                [269.02, -161.65, 51.42,0],  # A Sorting area
-                [146.8, -159.53, 50.44,0],  # B Sorting area
+                [141.53, 148.67, 43.73, 0],  # D Sorting area
+                [248.52, 152.35, 53.45, 0],  # C Sorting area
+                [269.02, -161.65, 51.42, 0],  # A Sorting area
+                [146.8, -159.53, 50.44, 0],  # B Sorting area
             ]
             self.home_coords = [267.15, 0.0, 125.96]
 
@@ -410,7 +420,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if device == 'myPalletizer 260 for M5':
                 self.myCobot = MyPalletizer(port, baud, timeout=0.2)
             elif device == 'ultraArm P340':
-                self.myCobot = ultraArm(port,baud, timeout=0.2)
+                self.myCobot = ultraArm(port, baud, timeout=0.2)
                 self.stop_wait(0.1)
                 zero = threading.Thread(target=self.go_zero)
                 zero.start()
@@ -540,7 +550,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             flag = self.cap.open(int(self.camera_edit.text()))  # Get the serial number of the camera to open
             if not flag:  # Flag indicates whether the camera is successfully opened
                 if self.language == 1:
-                    self.prompts('The camera failed to open, please check whether the serial number is correct or the camera is connected.')
+                    self.prompts(
+                        'The camera failed to open, please check whether the serial number is correct or the camera is connected.')
                 else:
                     self.prompts('相机打开失败，请检查序号是否正确或摄像头已连接.')
                 self.loger.error('Failed to open camera')
@@ -615,6 +626,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 return
             # Define Keypoints image storage/reading path
             num = sum_x = sum_y = 0
+            is_release = False
             while self.camera_status:
                 func = self.comboBox_function.currentText()
                 if func == 'Color recognition' or func == '颜色识别':
@@ -859,7 +871,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     (rvec - tvec).any()
                                     xyz = tvec[0, 0, :]
                                     # calculate the coordinates of the aruco relative to the pump
-                                    xyz = [round(xyz[0] * 1000 + self.pump_y, 2), round(xyz[1] * 1000 + self.pump_x, 2),
+                                    xyz = [round(xyz[0] * 1000 + self.pump_y+int(self.yoffset_edit.text()), 2), round(xyz[1] * 1000 + self.pump_x+int(self.xoffset_edit.text()), 2),
                                            round(xyz[2] * 1000, 2)]
 
                                     # cv.putText(img, 'coords' + str(xyz), (0, 64), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
@@ -883,8 +895,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.loger.error('abnormal' + str(e))
                 elif func == 'yolov5':
                     try:
-                        if self.yolov5_count != 0:
+                        if self.yolov5_count != 0 and is_release:
                             self.open_camera()
+                            self.comboBox_function.setEnabled(True)
+                            self.open_camera_btn.setEnabled(True)
+                            self.connect_btn.setEnabled(True)
+                            is_release = False
                         # yolov5 img path
                         path_img = self.path[0] + r'\res\yolov5_detect.png'
                         # print(path_img)
@@ -892,13 +908,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         # read camera
                         ret, frame = self.cap.read()
                         # deal img
-                        frame = self.transform_frame(frame)
+                        # frame = self.transform_frame(frame)
 
                         show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
                                                  QtGui.QImage.Format_RGB888)
                         self.show_camera_lab.setPixmap(
                             QtGui.QPixmap.fromImage(showImage))
+                        if self.language == 1:
+                            self.prompts('Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
+                        else:
+                            self.prompts('请点击Cut按钮截取二维码白板部分的图片，按Enter确认。')
                         if self.is_yolov5_cut_btn_clicked:
                             roi = cv2.selectROI(windowName="Cut Image",
                                                 img=frame,
@@ -911,8 +931,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 crop = frame[y:y + h, x:x + w]
                                 cv2.imwrite(path_img, crop)
                                 self.cap.release()
+                                is_release = True
+                                self.comboBox_function.setEnabled(False)
+                                self.open_camera_btn.setEnabled(False)
+                                self.connect_btn.setEnabled(False)
                                 cv2.destroyAllWindows()
-
 
                             frame = frame[int(roi[1]):int(roi[1] + roi[3]), int(roi[0]):int(roi[0] + roi[2])]
                             show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -928,111 +951,119 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             new_height = height / ratio
                             showImage = showImage.scaled(int(new_width), int(new_height), Qt.KeepAspectRatio)
                             self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
-
+                            if self.language == 1:
+                                self.prompts(
+                                    'Recognition, grabbing and placing are now possible.')
+                            else:
+                                self.prompts('现在可以进行识别、抓取和放置了。')
                             while self.yolov5_is_not_pick:
-                                QApplication.processEvents()
-                                print('imgpath:', path_img)
-                                frame = cv2.imread(path_img)
-                                # print('imgpath:', path_img)
-                                # frame = self.transform_frame(frame)
-                                if self._init_ > 0:
-                                    self._init_ -= 1
-                                    continue
-                                if self.init_num < 20:
-                                    if self.get_calculate_params(frame) is None:
-                                        if self.camera_status:
-                                            show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                                            showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
-                                                                     show.shape[1] * 3,
-                                                                     QtGui.QImage.Format_RGB888)
-                                            self.show_camera_lab.setPixmap(
-                                                QtGui.QPixmap.fromImage(showImage))
+                                try:
+                                    QApplication.processEvents()
+                                    # print('imgpath:', path_img)
+                                    frame = cv2.imread(path_img)
+                                    # print('imgpath:', path_img)
+                                    # frame = self.transform_frame(frame)
+                                    if self._init_ > 0:
+                                        self._init_ -= 1
                                         continue
-                                    else:
-                                        x1, x2, y1, y2 = self.get_calculate_params(frame)
-                                        self.draw_marker(frame, x1, y1)
-                                        self.draw_marker(frame, x2, y2)
-                                        self.sum_x1 += x1
-                                        self.sum_x2 += x2
-                                        self.sum_y1 += y1
-                                        self.sum_y2 += y2
+                                    if self.init_num < 20:
+                                        if self.get_calculate_params(frame) is None:
+                                            if self.camera_status:
+                                                show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                                                         show.shape[1] * 3,
+                                                                         QtGui.QImage.Format_RGB888)
+                                                self.show_camera_lab.setPixmap(
+                                                    QtGui.QPixmap.fromImage(showImage))
+                                            continue
+                                        else:
+                                            x1, x2, y1, y2 = self.get_calculate_params(frame)
+                                            self.draw_marker(frame, x1, y1)
+                                            self.draw_marker(frame, x2, y2)
+                                            self.sum_x1 += x1
+                                            self.sum_x2 += x2
+                                            self.sum_y1 += y1
+                                            self.sum_y2 += y2
+                                            self.init_num += 1
+                                            continue
+                                    elif self.init_num == 20:
+                                        self.set_cut_params(
+                                            (self.sum_x1) / 20.0,
+                                            (self.sum_y1) / 20.0,
+                                            (self.sum_x2) / 20.0,
+                                            (self.sum_y2) / 20.0,
+                                        )
+                                        self.sum_x1 = self.sum_x2 = self.sum_y1 = self.sum_y2 = 0
                                         self.init_num += 1
                                         continue
-                                elif self.init_num == 20:
-                                    self.set_cut_params(
-                                        (self.sum_x1) / 20.0,
-                                        (self.sum_y1) / 20.0,
-                                        (self.sum_x2) / 20.0,
-                                        (self.sum_y2) / 20.0,
-                                    )
-                                    self.sum_x1 = self.sum_x2 = self.sum_y1 = self.sum_y2 = 0
-                                    self.init_num += 1
-                                    continue
-                                # calculate params of the coords between cube and mycobot
-                                if self.nparams < 10:
-                                    if self.get_calculate_params(frame) is None:
-                                        if self.camera_status:
-                                            show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                                            showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
-                                                                     show.shape[1] * 3,
-                                                                     QtGui.QImage.Format_RGB888)
-                                            self.show_camera_lab.setPixmap(
-                                                QtGui.QPixmap.fromImage(showImage))
-                                        continue
-                                    else:
-                                        x1, x2, y1, y2 = self.get_calculate_params(frame)
-                                        self.draw_marker(frame, x1, y1)
-                                        self.draw_marker(frame, x2, y2)
-                                        self.sum_x1 += x1
-                                        self.sum_x2 += x2
-                                        self.sum_y1 += y1
-                                        self.sum_y2 += y2
+                                    # calculate params of the coords between cube and mycobot
+                                    if self.nparams < 10:
+                                        if self.get_calculate_params(frame) is None:
+                                            if self.camera_status:
+                                                show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                                                         show.shape[1] * 3,
+                                                                         QtGui.QImage.Format_RGB888)
+                                                self.show_camera_lab.setPixmap(
+                                                    QtGui.QPixmap.fromImage(showImage))
+                                            continue
+                                        else:
+                                            x1, x2, y1, y2 = self.get_calculate_params(frame)
+                                            self.draw_marker(frame, x1, y1)
+                                            self.draw_marker(frame, x2, y2)
+                                            self.sum_x1 += x1
+                                            self.sum_x2 += x2
+                                            self.sum_y1 += y1
+                                            self.sum_y2 += y2
+                                            self.nparams += 1
+                                            self.loger.info("yolov5 ok")
+                                            continue
+                                    elif self.nparams == 10:
                                         self.nparams += 1
-                                        self.loger.info("Keypoints ok")
+                                        # calculate and set params of calculating real coord between cube and mycobot
+                                        self.set_params((self.sum_x1 + self.sum_x2) / 20.0,
+                                                        (self.sum_y1 + self.sum_y2) / 20.0,
+                                                        abs(self.sum_x1 - self.sum_x2) / 10.0 +
+                                                        abs(self.sum_y1 - self.sum_y2) / 10.0)
+                                        self.loger.info("ok")
                                         continue
-                                elif self.nparams == 10:
-                                    self.nparams += 1
-                                    # calculate and set params of calculating real coord between cube and mycobot
-                                    self.set_params((self.sum_x1 + self.sum_x2) / 20.0,
-                                                    (self.sum_y1 + self.sum_y2) / 20.0,
-                                                    abs(self.sum_x1 - self.sum_x2) / 10.0 +
-                                                    abs(self.sum_y1 - self.sum_y2) / 10.0)
-                                    self.loger.info("ok")
-                                    continue
-                                # get detect result
-                                detect_result = None
-                                if self.discern_status:
-                                    detect_result = self.post_process(frame)
-                                if detect_result is None:
-                                    if self.camera_status:
-                                        show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                                        showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
-                                                                 show.shape[1] * 3,
-                                                                 QtGui.QImage.Format_RGB888)
-                                        self.show_camera_lab.setPixmap(
-                                            QtGui.QPixmap.fromImage(showImage))
-                                    continue
-                                else:
-                                    x, y,input_img = detect_result
-                                    # calculate real coord between cube and mycobot
-                                    self.real_x, self.real_y = self.get_position(x, y)
-                                    if self.crawl_status:
-                                        self.decide_move(self.real_x, self.self.real_y,
-                                                         self.color)
+                                    # get detect result
+                                    detect_result = None
+                                    if self.discern_status:
+                                        detect_result = self.post_process(frame)
+                                    if detect_result:
+                                    #     if self.camera_status:
+                                    #         show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                    #         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                    #                                  show.shape[1] * 3,
+                                    #                                  QtGui.QImage.Format_RGB888)
+                                    #         self.show_camera_lab.setPixmap(
+                                    #             QtGui.QPixmap.fromImage(showImage))
+                                    #     continue
+                                    # else:
+                                        x, y, input_img = detect_result
+                                        # calculate real coord between cube and mycobot
+                                        self.real_x, self.real_y = self.get_position(x, y)
+                                        # print('real_x_y', self.real_x,self.real_y)
                                         show = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
                                         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
                                                                  show.shape[1] * 3,
                                                                  QtGui.QImage.Format_RGB888)
                                         self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
                                         QApplication.processEvents()
+                                        if self.crawl_status:
+                                            self.decide_move(self.real_x, self.real_y,
+                                                             self.color)
+                                            show = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
+                                            showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                                                     show.shape[1] * 3,
+                                                                     QtGui.QImage.Format_RGB888)
+                                            self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
+                                            QApplication.processEvents()
 
-                                        self.num = self.real_sx = self.real_sy = 0
-                                if self.camera_status:
-                                    show = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
-                                    showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
-                                                             QtGui.QImage.Format_RGB888)
-                                    self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
-
+                                            self.num = self.real_sx = self.real_sy = 0
+                                except Exception as e:
+                                    self.loger.error('yolov5 Exception:' + str(e))
                     except Exception as e:
                         self.loger.error('yolov5 Exception:' + str(e))
                 else:
@@ -1551,7 +1582,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             return None
 
     def decide_move(self, x, y, color):
-        if self.comboBox_function.currentText() == 'yolov5':
+        device = self.comboBox_device.currentText()
+        if device == 'yolov5':
+            print(x,y)
+            self.cache_x = self.cache_y = 0
             _moved = threading.Thread(target=self.moved(x, y))
             _moved.start()
             return
@@ -1563,7 +1597,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.cache_x = self.cache_y = 0
             # Adjust the suction position of the suction pump, increase y, move to the left;
             # decrease y, move to the right; increase x, move forward; decrease x, move backward
-            device = self.comboBox_device.currentText()
             if self.comboBox_function.currentText() == 'QR code recognition' or self.comboBox_function.currentText() == '二维码识别':
                 if device == 'myPalletizer 260 for M5':
                     _moved = threading.Thread(target=self.moved(x + 28, y + 98))
@@ -1584,6 +1617,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     # Grasping motion
     def moved(self, x, y):
         try:
+            print('x',x)
+            print('y',y)
             self.is_crawl = True
             while self.is_pick:
                 QApplication.processEvents()
@@ -1627,13 +1662,14 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 70, 178.99, -3.78, -62.9], 25, 0)
                                 self.stop_wait(3.5)
                             elif device == 'ultraArm P340':
-                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, 65.51,0], 50)
+                                self.myCobot.set_coords([self.home_coords[0] + x, self.home_coords[1] - y, 65.51, 0],
+                                                        50)
                                 time.sleep(2)
-                                self.myCobot.set_coords([self.home_coords[0]+x, self.home_coords[1]-y, -55,0], 50)
+                                self.myCobot.set_coords([self.home_coords[0] + x, self.home_coords[1] - y, -55, 0], 50)
                                 time.sleep(3)
 
                         else:
-                            if func == 'shape recognition' or func == 'Keypoints' or func == '形状识别' or func == '特征点识别':
+                            if func == 'shape recognition' or func == 'Keypoints' or func == '形状识别' or func == '特征点识别' or func == 'yolov5':
                                 if device == 'myPalletizer 260 for M5':
                                     self.myCobot.send_coords([x, y, 103, 0], 20, 0)
                                     self.stop_wait(2.5)
@@ -1652,9 +1688,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.myCobot.send_coords([x, y, 65.5, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
-                                    self.myCobot.set_coords([x, -y, 65.51,0], 50)
+                                    self.myCobot.set_coords([x, -y, 65.51, 0], 50)
                                     time.sleep(1.5)
-                                    self.myCobot.set_coords([x, -y, -55,0], 50)
+                                    self.myCobot.set_coords([x, -y, -55, 0], 50)
                                     time.sleep(2)
                             else:
                                 if device == 'myPalletizer 260 for M5':
@@ -1675,9 +1711,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.myCobot.send_coords([x, y, 103, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
-                                    self.myCobot.set_coords([x, -y, 65.51,0], 50)
+                                    self.myCobot.set_coords([x, -y, 65.51, 0], 50)
                                     time.sleep(1.5)
-                                    self.myCobot.set_coords([x, -y, -18,0], 50)
+                                    self.myCobot.set_coords([x, -y, -18, 0], 50)
                                     time.sleep(2)
 
                         # open pump
@@ -1689,7 +1725,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.myCobot.send_angle(3, -20, 20)
                             self.stop_wait(2)
                         elif device == 'ultraArm P340':
-                            self.myCobot.set_angles([0,0,0,0], 50)
+                            self.myCobot.set_angles([0, 0, 0, 0], 50)
                         else:
                             tmp = []
                             while True:
@@ -1901,7 +1937,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     x, y, w, h = roi
                     items = ["A", "B", "C", "D"]
                     if self.language == 1:
-                        value, ok = QInputDialog.getItem(self, "Prompt", f"Please select a storage area:", items, 0, True)
+                        value, ok = QInputDialog.getItem(self, "Prompt", f"Please select a storage area:", items, 0,
+                                                         True)
                     else:
                         value, ok = QInputDialog.getItem(self, "提示", f"请选择存储区域:", items, 0, True)
 
@@ -1954,17 +1991,19 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.prompts_lab.clear()
         self.cut_status = False
 
-    def prompts(self, msg):
+    def prompts(self, msg=None):
         """show prompts"""
         self.prompts_lab.clear()
-        if self.language == 1:
-            self.prompts_lab.setText('Prmpt:\n' + msg)
-        else:
-            self.prompts_lab.setText('提示:\n' + msg)
+        if msg is not None:
+            if self.language == 1:
+                self.prompts_lab.setText('Prmpt:\n' + msg)
+            else:
+                self.prompts_lab.setText('提示:\n' + msg)
 
     def combox_func_checked(self):
         self.algorithm_lab.setText(self.comboBox_function.currentText())
         self.prompts_lab.clear()
+        self.offset_change()
         device = self.comboBox_device.currentText()
         if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
             if self.comboBox_function.currentText() == 'yolov5':
@@ -1985,7 +2024,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.cut_yolov5_img_status()
 
         self.yolov5_count = 0
-
 
     def auto_mode(self):
         """automated operation"""
@@ -2012,34 +2050,48 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def offset_change(self):
         try:
             """Get the offset according to the device"""
-            with open(self.path[0] + f'/offset/{self.comboBox_device.currentText()}.txt', "r", encoding="utf-8") as f:
-                offset = f.read().splitlines()
+
+            func = self.comboBox_function.currentText()
+            if func == 'QR code recognition' or func == '二维码识别':
+                with open(self.path[0] + f'/offset/{self.comboBox_device.currentText()}_encode.txt', "r",
+                          encoding="utf-8") as f:
+                    offset = f.read().splitlines()
+            else:
+                with open(self.path[0] + f'/offset/{self.comboBox_device.currentText()}.txt', "r",
+                          encoding="utf-8") as f:
+                    offset = f.read().splitlines()
+                self.camera_x, self.camera_y = int(eval(offset[0])[0]), int(eval(offset[0])[1])
             self.xoffset_edit.clear()
             self.yoffset_edit.clear()
             self.xoffset_edit.insert(f'{eval(offset[0])[0]}')
             self.yoffset_edit.insert(f'{eval(offset[0])[1]}')
-            self.camera_x, self.camera_y = int(eval(offset[0])[0]), int(eval(offset[0])[1])
         except Exception as e:
             self.loger.error(str(e))
 
     def insert_offsets(self):
         """write offset"""
         try:
+            func = self.comboBox_function.currentText()
             x = self.xoffset_edit.text()
             y = self.yoffset_edit.text()
             if x is not None and (x.startswith('-') and x[1:] or x).isdigit() and y is not None and (
                     y.startswith('-') and y[1:] or y).isdigit():
                 offset = [x, y]
-                with open(rf'{self.path[0]}/offset/{self.comboBox_device.currentText()}.txt', "w",
-                          encoding="utf-8") as file:
-                    file.write(str(offset))
+                if func == 'QR code recognition' or func == '二维码识别':
+                    with open(rf'{self.path[0]}/offset/{self.comboBox_device.currentText()}_encode.txt', "w",
+                              encoding="utf-8") as file:
+                        file.write(str(offset))
+                else:
+                    with open(rf'{self.path[0]}/offset/{self.comboBox_device.currentText()}.txt', "w",
+                              encoding="utf-8") as file:
+                        file.write(str(offset))
+                    self.camera_x = int(x)
+                    self.camera_y = int(y)
                 if self.language == 1:
                     msg_box = QMessageBox(QMessageBox.Information, 'prompt', 'Successfully saved！')
                 else:
                     msg_box = QMessageBox(QMessageBox.Information, '提示', '保存成功！')
                 msg_box.exec_()
-                self.camera_x = int(x)
-                self.camera_y = int(y)
             else:
                 if self.language == 1:
                     msg_box = QMessageBox(QMessageBox.Warning, 'Warning', 'The offset setting can only enter numbers！')
@@ -2143,6 +2195,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         with open(rf'{self.path[0]}/offset/language.txt', "w",
                   encoding="utf-8") as file:
             file.write(str(self.language))
+        self._init_tooltip()
 
     def _init_language(self):
         _translate = QtCore.QCoreApplication.translate
@@ -2197,7 +2250,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.connect_lab_3.setText(_translate("AiKit_UI", "Display"))
             self.current_coord_btn.setText(_translate("AiKit_UI", "  current coordinates"))
             self.image_coord_btn.setText(_translate("AiKit_UI", "  image coordinates"))
-            self.language_btn.setText(_translate("AiKit_UI", "English"))
+            self.language_btn.setText(_translate("AiKit_UI", "简体中文"))
             self.yolov5_cut_btn.setText(_translate("AiKit_UI", "Cut"))
         else:
             self.camara_show.setText(_translate("AiKit_UI", "相机"))
@@ -2253,7 +2306,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.connect_lab_3.setText(_translate("AiKit_UI", "坐标显示"))
             self.current_coord_btn.setText(_translate("AiKit_UI", "  实时坐标"))
             self.image_coord_btn.setText(_translate("AiKit_UI", "  定位坐标"))
-            self.language_btn.setText(_translate("AiKit_UI", "简体中文"))
+            self.language_btn.setText(_translate("AiKit_UI", "English"))
             self.yolov5_cut_btn.setText(_translate("AiKit_UI", "剪切"))
 
     def go_zero(self):
@@ -2265,13 +2318,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.btn_status(True)
         self.connect_btn.setEnabled(True)
 
-
         '''绘制类别'''
-    def draw_label(self,img,label,x,y):
-        text_size = cv2.getTextSize(label,self.FONT_FACE,self.FONT_SCALE,self.THICKNESS)
-        dim,baseline = text_size[0],text_size[1]
-        cv2.rectangle(img,(x,y),(x+dim[0],y+dim[1]+baseline),(0,0,0),cv2.FILLED)
-        cv2.putText(img,label,(x,y+dim[1]),self.FONT_FACE,self.FONT_SCALE,self.YELLOW,self.THICKNESS)
+
+    def draw_label(self, img, label, x, y):
+        text_size = cv2.getTextSize(label, self.FONT_FACE, self.FONT_SCALE, self.THICKNESS)
+        dim, baseline = text_size[0], text_size[1]
+        cv2.rectangle(img, (x, y), (x + dim[0], y + dim[1] + baseline), (0, 0, 0), cv2.FILLED)
+        cv2.putText(img, label, (x, y + dim[1]), self.FONT_FACE, self.FONT_SCALE, self.YELLOW, self.THICKNESS)
 
     # detect object
     def post_process(self, input_image):
@@ -2361,12 +2414,18 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             op.setOpacity(1)
             self.yolov5_cut_btn.setGraphicsEffect(op)
             self.yolov5_cut_btn.setEnabled(True)
+            self.add_img_btn.setEnabled(False)
+            self.exit_add_btn.setEnabled(False)
         else:
             # 设置透明度的值，0.0到1.0，最小值0是透明，1是不透明
             op = QtWidgets.QGraphicsOpacityEffect()
             op.setOpacity(0)
             self.yolov5_cut_btn.setGraphicsEffect(op)
             self.yolov5_cut_btn.setEnabled(False)
+            self.add_img_btn.setEnabled(True)
+            self.exit_add_btn.setEnabled(True)
+
+
 # File loading window displayed
 # class fileWindow(file_window,QMainWindow,QWidget):
 #     def __init__(self):

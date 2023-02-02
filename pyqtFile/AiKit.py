@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AiKit_UI(object):
     def setupUi(self, AiKit_UI):
         AiKit_UI.setObjectName("AiKit_UI")
-        AiKit_UI.resize(1056, 1016)
+        AiKit_UI.resize(1059, 1021)
         self.centralwidget = QtWidgets.QWidget(AiKit_UI)
         self.centralwidget.setObjectName("centralwidget")
         self.frame = QtWidgets.QFrame(self.centralwidget)
@@ -753,5 +753,5 @@ class Ui_AiKit_UI(object):
         self.current_coord_btn.setText(_translate("AiKit_UI", "  current coordinates"))
         self.image_coord_btn.setText(_translate("AiKit_UI", "  image coordinates"))
         self.camera_edit.setText(_translate("AiKit_UI", "0"))
-        self.language_btn.setText(_translate("AiKit_UI", "English"))
+        self.language_btn.setText(_translate("AiKit_UI", "简体中文"))
         self.yolov5_cut_btn.setText(_translate("AiKit_UI", "Cut"))

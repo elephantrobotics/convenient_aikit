@@ -70,6 +70,15 @@ Click the button in the upper right corner of the window to switch between langu
 6. Algorithm selection includes color recognition, shape recognition, two-dimensional code recognition, and Keypoints recognition. Selecting the corresponding algorithm will perform corresponding recognition.<br>
    ![img](./AiKit_UI_img/18.png)
 
+6. How to use yolov5.
+    After successfully connecting the robotic arm, the algorithm selects 'yolov5'<br>
+   ![image-20230202145832134](AiKit_UI_img/28.png)
+   then turn on the camera<br>
+   ![image-20230202150049121](AiKit_UI_img/29.png)
+   Put in the picture that needs to be recognized, and then click the Cut button<br>![image-20230202150221140](AiKit_UI_img/30.png)
+   Intercept the whiteboard part of the QR code, press Enter to confirm (repeatable interception)<br>![image-20230202150752804](AiKit_UI_img/31.png)
+   Then identify and grab.
+   
 7. Add a picture for 'Keypoints' <br>
    ![img](./AiKit_UI_img/19.png)
    Click the 'Add' button, the camera will open and a prompt will appear. <br>
