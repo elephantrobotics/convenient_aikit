@@ -10,16 +10,17 @@ import cv2
 import numpy as np
 import serial
 import serial.tools.list_ports
+from PyQt5.QtCore import pyqtSlot, Qt, QPoint
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication
-from PyQt5.QtGui import QEnterEvent, QPixmap
+from PyQt5.QtGui import QEnterEvent, QPixmap, QFont
 from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QWidget, QMessageBox
 from pymycobot.mycobot import MyCobot
 from pymycobot.mypalletizer import MyPalletizer
 from pymycobot.ultraArm import ultraArm
 
 from log import logfile
-from pyqtFile.AiKit import Ui_AiKit_UI as AiKit_window
+from pyqtFile.AiKit_auto import Ui_AiKit_UI as AiKit_window
 
 
 class AiKit_APP(AiKit_window, QMainWindow, QWidget):
@@ -38,7 +39,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._initDrag()  # Set the mouse tracking judgment trigger default value
         self.setMouseTracking(True)  # Set widget mouse tracking
         self.widget.installEventFilter(self)  # Initialize event filter
-        self.move(450, 10)
+        self.move(350, 10)
         self.radioButton_A.setChecked(True)
         self._init_variable()
         self._init_status()
@@ -47,7 +48,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
         self.cap = cv2.VideoCapture()  # video stream
         self.min_btn.clicked.connect(self.min_clicked)  # minimize
-        # self.max_btn.clicked.connect(self.max_clicked)
+        self.max_btn.clicked.connect(self.max_clicked)
         self.close_btn.clicked.connect(self.close_clicked)  # close
         self.comboBox_function.activated.connect(self.combox_func_checked)  # switch algorithm
         self.comboBox_port.highlighted.connect(self.get_serial_port_list)  # get serial port
@@ -206,10 +207,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     # Close, minimize button display text
     def _close_max_min_icon(self):
         # self.close_btn.setFont(QFont("Webdings"))
-        # self.max_btn.setFont(QFont("Webdings"))
+        self.max_btn.setFont(QFont("Webdings"))
         # self.min_btn.setFont(QFont("Webdings"))
         self.close_btn.setText('x')
-        # self.max_btn.setText('1')
+        self.max_btn.setText('1')
         self.min_btn.setText('-')
 
     def _init_tooltip(self):
@@ -249,6 +250,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def _initDrag(self):
         # Set the mouse tracking judgment trigger default value
         self._move_drag = False
+        self._corner_drag = False
+        self._bottom_drag = False
+        self._right_drag = False
 
     def eventFilter(self, obj, event):
         # Event filter, used to solve the problem of reverting to the standard mouse style after the mouse enters other controls
@@ -257,26 +261,92 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         return super(AiKit_APP, self).eventFilter(obj, event)  # Note that MyWindow is the name of the class
         # return QWidget.eventFilter(self, obj, event)  # You can also use this, but pay attention to modifying the window type
 
+    # def mousePressEvent(self, event):
+    #     # Rewrite mouse click event
+    #     if (event.button() == Qt.LeftButton) and (event.y() < self.widget.height()):
+    #         # Click the left mouse button on the title bar area
+    #         self._move_drag = True
+    #         self.move_DragPosition = event.globalPos() - self.pos()
+    #         event.accept()
+    #
+    # def mouseMoveEvent(self, QMouseEvent):
+    #     try:
+    #         if Qt.LeftButton and self._move_drag:
+    #             # title bar drag and drop window position
+    #             self.move(QMouseEvent.globalPos() - self.move_DragPosition)
+    #             QMouseEvent.accept()
+    #     except Exception as e:
+    #         self.loger.info(e)
+    #
+    # def mouseReleaseEvent(self, QMouseEvent):
+    #     # After the mouse is released, each trigger resets
+    #     self._move_drag = False
+
+    def resizeEvent(self, QResizeEvent):
+        # 自定义窗口调整大小事件
+        # 改变窗口大小的三个坐标范围
+        self._right_rect = [QPoint(x, y) for x in range(self.width() - 5, self.width() + 5)
+                            for y in range(self.widget.height() + 20, self.height() - 5)]
+        self._bottom_rect = [QPoint(x, y) for x in range(1, self.width() - 5)
+                             for y in range(self.height() - 5, self.height() + 1)]
+        self._corner_rect = [QPoint(x, y) for x in range(self.width() - 5, self.width() + 1)
+                             for y in range(self.height() - 5, self.height() + 1)]
+
     def mousePressEvent(self, event):
-        # Rewrite mouse click event
-        if (event.button() == Qt.LeftButton) and (event.y() < self.widget.height()):
-            # Click the left mouse button on the title bar area
+        # 重写鼠标点击的事件
+        if (event.button() == Qt.LeftButton) and (event.pos() in self._corner_rect):
+            # 鼠标左键点击右下角边界区域
+            self._corner_drag = True
+            event.accept()
+        elif (event.button() == Qt.LeftButton) and (event.pos() in self._right_rect):
+            # 鼠标左键点击右侧边界区域
+            self._right_drag = True
+            event.accept()
+        elif (event.button() == Qt.LeftButton) and (event.pos() in self._bottom_rect):
+            # 鼠标左键点击下侧边界区域
+            self._bottom_drag = True
+            event.accept()
+        elif (event.button() == Qt.LeftButton) and (event.y() < self.widget.height()):
+            # 鼠标左键点击标题栏区域
             self._move_drag = True
             self.move_DragPosition = event.globalPos() - self.pos()
             event.accept()
 
     def mouseMoveEvent(self, QMouseEvent):
-        try:
-            if Qt.LeftButton and self._move_drag:
-                # title bar drag and drop window position
-                self.move(QMouseEvent.globalPos() - self.move_DragPosition)
-                QMouseEvent.accept()
-        except Exception as e:
-            self.loger.info(e)
+        # 判断鼠标位置切换鼠标手势
+        if QMouseEvent.pos() in self._corner_rect:  # QMouseEvent.pos()获取相对位置
+            self.setCursor(Qt.SizeFDiagCursor)
+        elif QMouseEvent.pos() in self._bottom_rect:
+            self.setCursor(Qt.SizeVerCursor)
+        elif QMouseEvent.pos() in self._right_rect:
+            self.setCursor(Qt.SizeHorCursor)
+
+        # 当鼠标左键点击不放及满足点击区域的要求后，分别实现不同的窗口调整
+        # 没有定义左方和上方相关的5个方向，主要是因为实现起来不难，但是效果很差，拖放的时候窗口闪烁，再研究研究是否有更好的实现
+        if Qt.LeftButton and self._right_drag:
+            # 右侧调整窗口宽度
+            self.resize(QMouseEvent.pos().x(), self.height())
+            QMouseEvent.accept()
+        elif Qt.LeftButton and self._bottom_drag:
+            # 下侧调整窗口高度
+            self.resize(self.width(), QMouseEvent.pos().y())
+            QMouseEvent.accept()
+        elif Qt.LeftButton and self._corner_drag:
+            #  由于我窗口设置了圆角,这个调整大小相当于没有用了
+            # 右下角同时调整高度和宽度
+            self.resize(QMouseEvent.pos().x(), QMouseEvent.pos().y())
+            QMouseEvent.accept()
+        elif Qt.LeftButton and self._move_drag:
+            # 标题栏拖放窗口位置
+            self.move(QMouseEvent.globalPos() - self.move_DragPosition)
+            QMouseEvent.accept()
 
     def mouseReleaseEvent(self, QMouseEvent):
-        # After the mouse is released, each trigger resets
+        # 鼠标释放后，各扳机复位
         self._move_drag = False
+        self._corner_drag = False
+        self._bottom_drag = False
+        self._right_drag = False
 
     def has_mycobot(self):
         """Check whether it is connected on mycobot"""
@@ -1927,10 +1997,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                                  QtGui.QImage.Format_RGB888)
                         width = showImage.width()
                         height = showImage.height()
-                        if width / 311 >= height / 151:
-                            ratio = width / 311
+                        lab_width = int(self.show_cutimg_lab.width())
+                        lab_height = int(self.show_cutimg_lab.height())
+                        if width / lab_width >= height / lab_height:
+                            ratio = width / lab_width
                         else:
-                            ratio = height / 151
+                            ratio = height / lab_height
                         new_width = width / ratio
                         new_height = height / ratio
                         showImage = showImage.scaled(new_width, new_height, Qt.KeepAspectRatio)
