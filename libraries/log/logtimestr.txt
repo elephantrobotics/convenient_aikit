@@ -1,0 +1,8 @@
+2023-02-06 17:49:16,460 main.py[line:782]INFO - Color recognition ok
+2023-02-06 17:49:16,460 main.py[line:782]INFO - Color recognition ok
+2023-02-06 17:49:57,393 main.py[line:354]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-06 17:49:57,393 main.py[line:354]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-07 16:53:23,413 main.py[line:779]INFO - Color recognition ok
+2023-02-07 16:53:23,413 main.py[line:779]INFO - Color recognition ok
+2023-02-07 16:53:26,310 main.py[line:351]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-07 16:53:26,310 main.py[line:351]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !

@@ -141,7 +141,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # Initialize the background subtractor
         self.mog = cv2.bgsegm.createBackgroundSubtractorMOG()
         # yolov5 model file path
-        self.modelWeights = self.path[0] + '/yolov5File/yolov5s.onnx'
+        self.modelWeights = libraries_path + '/yolov5File/yolov5s.onnx'
 
         self._init_ = 20
         self.init_num = 0
@@ -181,7 +181,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.is_yolov5_cut_btn_clicked = False
         self.yolov5_count = 0
         self.open_camera_func = 1  # Opening mode of the camera, 1 is the open button, 2 is the add button
-        with open(self.path[0] + f'/offset/language.txt', "r", encoding="utf-8") as f:
+        with open(libraries_path + f'/offset/language.txt', "r", encoding="utf-8") as f:
             lange = f.read()
         self.language = int(lange)  # Control language, 1 is English, 2 is Chinese
         if self.language == 1:
@@ -200,18 +200,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # Set software icon
         w = self.logo_lab.width()
         h = self.logo_lab.height()
-        self.pix = QPixmap(self.path[0] + '/res/logo.png')  # the path to the icon
+        self.pix = QPixmap(libraries_path + '/res/logo.png')  # the path to the icon
         self.logo_lab.setPixmap(self.pix)
         self.logo_lab.setScaledContents(True)
 
     # Close, minimize button display text
     def _close_max_min_icon(self):
-        # self.close_btn.setFont(QFont("Webdings"))
-        self.max_btn.setFont(QFont("Webdings"))
-        # self.min_btn.setFont(QFont("Webdings"))
-        self.close_btn.setText('x')
-        self.max_btn.setText('1')
-        self.min_btn.setText('-')
+        self.min_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/min.png);".format(libraries_path))
+        self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
+        self.close_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/close.png);".format(libraries_path))
 
     def _init_tooltip(self):
         if self.language == 1:
@@ -232,11 +229,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # Maximize and restore (not used)
         if self.isMaximized():
             self.showNormal()
-            self.max_btn.setText('1')  # toggle magnify button icon
+            self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
             self.max_btn.setToolTip("<html><head/><body><p>maximize</p></body></html>")
         else:
             self.showMaximized()
-            self.max_btn.setText('2')
+            self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/nomel.png);".format(libraries_path))
             self.max_btn.setToolTip("<html><head/><body><p>recover</p></body></html>")
 
     @pyqtSlot()
@@ -289,7 +286,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             for y in range(self.widget.height() + 20, self.height() - 5)]
         self._bottom_rect = [QPoint(x, y) for x in range(1, self.width() - 5)
                              for y in range(self.height() - 5, self.height() + 1)]
-        self._corner_rect = [QPoint(x, y) for x in range(self.width() - 5, self.width() + 1)
+        self._corner_rect = [QPoint(x, y) for x in range(self.width() - 5, self.width() + 100)
                              for y in range(self.height() - 5, self.height() + 1)]
 
     def mousePressEvent(self, event):
@@ -410,7 +407,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         value = self.comboBox_device.currentText()
         if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5':
             # yolov5 model file path
-            self.modelWeights = self.path[0] + "/yolov5File/yolov5s.onnx"
+            self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
             # y-axis offset
             self.pump_y = -55
             # x-axis offset
@@ -941,7 +938,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     (rvec - tvec).any()
                                     xyz = tvec[0, 0, :]
                                     # calculate the coordinates of the aruco relative to the pump
-                                    xyz = [round(xyz[0] * 1000 + self.pump_y+int(self.yoffset_edit.text()), 2), round(xyz[1] * 1000 + self.pump_x+int(self.xoffset_edit.text()), 2),
+                                    xyz = [round(xyz[0] * 1000 + self.pump_y + int(self.yoffset_edit.text()), 2),
+                                           round(xyz[1] * 1000 + self.pump_x + int(self.xoffset_edit.text()), 2),
                                            round(xyz[2] * 1000, 2)]
 
                                     # cv.putText(img, 'coords' + str(xyz), (0, 64), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
@@ -972,8 +970,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.connect_btn.setEnabled(True)
                             is_release = False
                         # yolov5 img path
-                        path_img = self.path[0] + r'\res\yolov5_detect.png'
-                        # print(path_img)
+                        path_img = libraries_path + r'\res\yolov5_detect.png'
                         QApplication.processEvents()
                         # read camera
                         ret, frame = self.cap.read()
@@ -986,7 +983,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.show_camera_lab.setPixmap(
                             QtGui.QPixmap.fromImage(showImage))
                         if self.language == 1:
-                            self.prompts('Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
+                            self.prompts(
+                                'Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
                         else:
                             self.prompts('请点击Cut按钮截取二维码白板部分的图片，按Enter确认。')
                         if self.is_yolov5_cut_btn_clicked:
@@ -996,7 +994,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                                 fromCenter=False)
                             cv2.moveWindow("Cut Image", 798, 220)
                             x, y, w, h = roi
-                            # print('1111111111111111111111111111111111111111111111', roi)
                             if roi != (0, 0, 0, 0):
                                 crop = frame[y:y + h, x:x + w]
                                 cv2.imwrite(path_img, crop)
@@ -1029,9 +1026,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             while self.yolov5_is_not_pick:
                                 try:
                                     QApplication.processEvents()
-                                    # print('imgpath:', path_img)
                                     frame = cv2.imread(path_img)
-                                    # print('imgpath:', path_img)
                                     # frame = self.transform_frame(frame)
                                     if self._init_ > 0:
                                         self._init_ -= 1
@@ -1102,19 +1097,18 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     if self.discern_status:
                                         detect_result = self.post_process(frame)
                                     if detect_result:
-                                    #     if self.camera_status:
-                                    #         show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                                    #         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
-                                    #                                  show.shape[1] * 3,
-                                    #                                  QtGui.QImage.Format_RGB888)
-                                    #         self.show_camera_lab.setPixmap(
-                                    #             QtGui.QPixmap.fromImage(showImage))
-                                    #     continue
-                                    # else:
+                                        #     if self.camera_status:
+                                        #         show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                        #         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
+                                        #                                  show.shape[1] * 3,
+                                        #                                  QtGui.QImage.Format_RGB888)
+                                        #         self.show_camera_lab.setPixmap(
+                                        #             QtGui.QPixmap.fromImage(showImage))
+                                        #     continue
+                                        # else:
                                         x, y, input_img = detect_result
                                         # calculate real coord between cube and mycobot
                                         self.real_x, self.real_y = self.get_position(x, y)
-                                        # print('real_x_y', self.real_x,self.real_y)
                                         show = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
                                         showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0],
                                                                  show.shape[1] * 3,
@@ -1658,7 +1652,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def decide_move(self, x, y, color):
         device = self.comboBox_device.currentText()
         if device == 'yolov5':
-            print(x,y)
             self.cache_x = self.cache_y = 0
             _moved = threading.Thread(target=self.moved(x, y))
             _moved.start()
@@ -1903,7 +1896,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Retrieve Folder Pictures"""
         try:
             restore = []
-            path = rf'{self.path[0]}/{folder}'
+            path = rf'{libraries_path}/{folder}'
 
             for i, j, k in os.walk(path):
                 for l in k:
@@ -1956,7 +1949,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             cv2.resize(frame, (600, 480), interpolation=cv2.INTER_AREA))
                         break
                 if self.cut_status:
-                    path = self.path[0]
+                    path = libraries_path
                     path_red = path + '/res/D'
                     for i, j, k in os.walk(path_red):
                         file_len_red = len(k)
@@ -2087,7 +2080,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if IS_CV_4:
                 self.net = cv2.dnn.readNet(self.modelWeights)
                 '''加载类别名'''
-                classesFile = self.path[0] + "/yolov5File/coco.names"
+                classesFile = libraries_path + "/yolov5File/coco.names"
                 self.classes = None
                 with open(classesFile, 'rt') as f:
                     self.classes = f.read().rstrip('\n').split('\n')
@@ -2129,11 +2122,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
             func = self.comboBox_function.currentText()
             if func == 'QR code recognition' or func == '二维码识别':
-                with open(self.path[0] + f'/offset/{self.comboBox_device.currentText()}_encode.txt', "r",
+                with open(libraries_path + f'/offset/{self.comboBox_device.currentText()}_encode.txt', "r",
                           encoding="utf-8") as f:
                     offset = f.read().splitlines()
             else:
-                with open(self.path[0] + f'/offset/{self.comboBox_device.currentText()}.txt', "r",
+                with open(libraries_path + f'/offset/{self.comboBox_device.currentText()}.txt', "r",
                           encoding="utf-8") as f:
                     offset = f.read().splitlines()
                 self.camera_x, self.camera_y = int(eval(offset[0])[0]), int(eval(offset[0])[1])
@@ -2154,11 +2147,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     y.startswith('-') and y[1:] or y).isdigit():
                 offset = [x, y]
                 if func == 'QR code recognition' or func == '二维码识别':
-                    with open(rf'{self.path[0]}/offset/{self.comboBox_device.currentText()}_encode.txt', "w",
+                    with open(rf'{libraries_path}/offset/{self.comboBox_device.currentText()}_encode.txt', "w",
                               encoding="utf-8") as file:
                         file.write(str(offset))
                 else:
-                    with open(rf'{self.path[0]}/offset/{self.comboBox_device.currentText()}.txt', "w",
+                    with open(rf'{libraries_path}/offset/{self.comboBox_device.currentText()}.txt', "w",
                               encoding="utf-8") as file:
                         file.write(str(offset))
                     self.camera_x = int(x)
@@ -2182,9 +2175,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         try:
             value = self.comboBox_device.currentText()
             if value in self.M5:
-                os.startfile(self.path[0])
+                os.startfile(libraries_path)
             else:
-                os.system('xdg-open ' + self.path[0])
+                os.system('xdg-open ' + libraries_path)
             # self.file_window = fileWindow()
             # self.file_window.show()
         except Exception as e:
@@ -2268,7 +2261,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._init_language()
         self.combox_func_checked()
         self.is_language_btn_click = False
-        with open(rf'{self.path[0]}/offset/language.txt', "w",
+        with open(rf'{libraries_path}/offset/language.txt', "w",
                   encoding="utf-8") as file:
             file.write(str(self.language))
         self._init_tooltip()
@@ -2470,8 +2463,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 # cv2.imshow("nput_frame",input_image)
         # return input_image
         except Exception as e:
-            print(e)
-            exit(0)
+            self.loger.error(e)
 
         if cx + cy > 0:
             return cx, cy, input_image
@@ -2502,6 +2494,16 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.exit_add_btn.setEnabled(True)
 
 
+# visit resource lib
+def resource_path(relative_path):
+    # check if Bundle Resource
+    if getattr(sys, 'frozen', False):
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 # File loading window displayed
 # class fileWindow(file_window,QMainWindow,QWidget):
 #     def __init__(self):
@@ -2512,7 +2514,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 #             self.save_file_btn.clicked.connect(self.save)
 #             self.cancel_btn.clicked.connect(self.cancel)
 #             self.path = os.path.split(os.path.abspath(__file__))
-#             with open(self.path[0] + f'/main.py', "r", encoding="utf-8") as f:
+#             with open(libraries_path + f'/main.py', "r", encoding="utf-8") as f:
 #                 offset = f.read()
 #             self.change_file_lineEdit.setPlainText(offset)
 #         except Exception as e:
@@ -2520,7 +2522,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 #
 #     def save(self):
 #         try:
-#             with open(rf'{self.path[0]}/main.py', "w", encoding="utf-8") as file:
+#             with open(rf'{libraries_path}/main.py', "w", encoding="utf-8") as file:
 #                 file.write(self.change_file_lineEdit.toPlainText())
 #             msg_box = QMessageBox(QMessageBox.Information, 'prompt', 'Successfully saved！')
 #             msg_box.exec_()
@@ -2543,7 +2545,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    AiKit_window = AiKit_APP()
-    AiKit_window.show()
+    try:
+        libraries_path = resource_path('libraries')
+        libraries_path = libraries_path.replace("\\", "/")
+        app = QApplication(sys.argv)
+        AiKit_window = AiKit_APP()
+        AiKit_window.show()
+    except Exception as e:
+        with open("error.txt", "w") as f:
+            f.write(str(e))
     sys.exit(app.exec_())
