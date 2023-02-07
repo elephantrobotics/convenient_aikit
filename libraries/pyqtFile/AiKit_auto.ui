@@ -91,7 +91,7 @@ color: rgb(255, 255, 255);</string>
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(231, 235, 236);</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
@@ -156,7 +156,7 @@ color: rgb(255, 255, 255);</string>
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(231, 235, 236);</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
@@ -190,7 +190,7 @@ color: rgb(255, 255, 255);</string>
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(231, 235, 236);</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
