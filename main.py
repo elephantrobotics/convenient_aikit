@@ -35,7 +35,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.port_list = []
         self.loger = logfile.MyLogging().logger
         self._init_main_window()
-        self._close_max_min_icon()
+        # self._close_max_min_icon()
         self._initDrag()  # Set the mouse tracking judgment trigger default value
         self.setMouseTracking(True)  # Set widget mouse tracking
         self.widget.installEventFilter(self)  # Initialize event filter
@@ -229,11 +229,19 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # Maximize and restore (not used)
         if self.isMaximized():
             self.showNormal()
-            self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
+            # self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
+            icon_max = QtGui.QIcon()
+            icon_max.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/max.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.max_btn.setIcon(icon_max)
+            self.max_btn.setIconSize(QtCore.QSize(30, 30))
             self.max_btn.setToolTip("<html><head/><body><p>maximize</p></body></html>")
         else:
             self.showMaximized()
-            self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/nomel.png);".format(libraries_path))
+            # self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/nomel.png);".format(libraries_path))
+            icon_nomel = QtGui.QIcon()
+            icon_nomel.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/nomel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            self.max_btn.setIcon(icon_nomel)
+            self.max_btn.setIconSize(QtCore.QSize(30, 30))
             self.max_btn.setToolTip("<html><head/><body><p>recover</p></body></html>")
 
     @pyqtSlot()

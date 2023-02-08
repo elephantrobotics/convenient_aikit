@@ -96,6 +96,16 @@ color: rgb(255, 255, 255);</string>
          <property name="text">
           <string/>
          </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../AiKit_UI_img/close.png</normaloff>../AiKit_UI_img/close.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
@@ -161,6 +171,16 @@ color: rgb(255, 255, 255);</string>
          <property name="text">
           <string/>
          </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../AiKit_UI_img/min.png</normaloff>../AiKit_UI_img/min.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
         </widget>
        </item>
        <item row="0" column="3">
@@ -194,6 +214,16 @@ color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../AiKit_UI_img/max.png</normaloff>../AiKit_UI_img/max.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
          </property>
         </widget>
        </item>
