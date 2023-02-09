@@ -6,3 +6,33 @@
 2023-02-07 16:53:23,413 main.py[line:779]INFO - Color recognition ok
 2023-02-07 16:53:26,310 main.py[line:351]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
 2023-02-07 16:53:26,310 main.py[line:351]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-09 11:42:28,825 main.py[line:511]INFO - connection succeeded !
+2023-02-09 11:42:28,825 main.py[line:511]INFO - connection succeeded !
+2023-02-09 11:42:34,397 main.py[line:787]INFO - Color recognition ok
+2023-02-09 11:42:34,397 main.py[line:787]INFO - Color recognition ok
+2023-02-09 11:47:23,085 main.py[line:927]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-09 11:47:23,085 main.py[line:927]ERROR - Abnormal image recognition£ºOpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-09 11:47:29,171 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,171 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,204 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,204 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,236 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,236 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,269 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,269 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,300 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,300 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,331 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,331 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,364 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,364 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,396 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,396 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,429 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,429 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,460 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,460 main.py[line:881]INFO - Keypoints ok
+2023-02-09 11:47:29,489 main.py[line:890]INFO - ok
+2023-02-09 11:47:29,489 main.py[line:890]INFO - ok

@@ -238,6 +238,9 @@ color: rgb(255, 255, 255);</string>
         <height>0</height>
        </size>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -246,8 +249,8 @@ color: rgb(255, 255, 255);</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>1218</width>
-         <height>885</height>
+         <width>1220</width>
+         <height>887</height>
         </rect>
        </property>
        <property name="minimumSize">
