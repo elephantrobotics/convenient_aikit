@@ -36,3 +36,5 @@
 2023-02-09 11:47:29,460 main.py[line:881]INFO - Keypoints ok
 2023-02-09 11:47:29,489 main.py[line:890]INFO - ok
 2023-02-09 11:47:29,489 main.py[line:890]INFO - ok
+2023-02-14 16:33:58,302 main.py[line:511]INFO - connection succeeded !
+2023-02-14 16:33:58,302 main.py[line:511]INFO - connection succeeded !

@@ -231,7 +231,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.showNormal()
             # self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
             icon_max = QtGui.QIcon()
-            icon_max.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/max.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_max.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/max.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.max_btn.setIcon(icon_max)
             self.max_btn.setIconSize(QtCore.QSize(30, 30))
             self.max_btn.setToolTip("<html><head/><body><p>maximize</p></body></html>")
@@ -239,7 +239,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.showMaximized()
             # self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/nomel.png);".format(libraries_path))
             icon_nomel = QtGui.QIcon()
-            icon_nomel.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/nomel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_nomel.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/nomel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.max_btn.setIcon(icon_nomel)
             self.max_btn.setIconSize(QtCore.QSize(30, 30))
             self.max_btn.setToolTip("<html><head/><body><p>recover</p></body></html>")
@@ -654,6 +654,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """turn off the camera"""
         try:
             self.camera_status = False
+            self.yolov5_is_not_pick = False
             if self.has_mycobot():
                 self.auto_mode_status = True
                 self.auto_mode()
@@ -978,7 +979,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.connect_btn.setEnabled(True)
                             is_release = False
                         # yolov5 img path
-                        path_img = libraries_path + r'\res\yolov5_detect.png'
+                        path_img = libraries_path + '/res/yolov5_detect.png'
                         QApplication.processEvents()
                         # read camera
                         ret, frame = self.cap.read()
@@ -994,7 +995,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.prompts(
                                 'Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
                         else:
-                            self.prompts('请点击Cut按钮截取二维码白板部分的图片，按Enter确认。')
+                            self.prompts('请点击上方剪切按钮截取二维码白板部分的图片，按Enter确认。')
                         if self.is_yolov5_cut_btn_clicked:
                             roi = cv2.selectROI(windowName="Cut Image",
                                                 img=frame,
@@ -1734,7 +1735,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     0)
                                 self.stop_wait(2)
                                 self.myCobot.send_coords(
-                                    [self.home_coords[0] + x, self.home_coords[1] + y, 70, 178.99, -3.78, -62.9], 25, 0)
+                                    [self.home_coords[0] + x, self.home_coords[1] + y, 65, 178.99, -3.78, -62.9], 25, 0)
                                 self.stop_wait(3.5)
                             elif device == 'ultraArm P340':
                                 self.myCobot.set_coords([self.home_coords[0] + x, self.home_coords[1] - y, 65.51, 0],
@@ -1754,7 +1755,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.myCobot.send_coords([x, y, 110, -176.1, 2.4, -125.1], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
-                                    self.myCobot.send_coords([x, y, 70, -176.1, 2.4, -125.1], 25, 0)
+                                    self.myCobot.send_coords([x, y, 65, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
                                 elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
