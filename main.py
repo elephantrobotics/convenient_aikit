@@ -1009,7 +1009,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.cap.release()
                                 is_release = True
                                 self.comboBox_function.setEnabled(False)
-                                self.open_camera_btn.setEnabled(False)
+                                # self.open_camera_btn.setEnabled(False)
                                 self.connect_btn.setEnabled(False)
                                 cv2.destroyAllWindows()
 
