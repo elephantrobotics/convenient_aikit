@@ -70,12 +70,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.current_coord_btn.clicked.connect(self.get_current_coord_btnClick)  # get the robot coords
         self.language_btn.clicked.connect(self.set_language)  # set language
         self.get_serial_port_list()
-        self.combox_func_checked()
         self.offset_change()
         self.btn_status()
         self.device_coord()
         self.cut_yolov5_img_status()
         self._init_tooltip()
+        self.combox_func_checked()
 
     # Initialize variables
     def _init_variable(self):
@@ -655,6 +655,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         try:
             self.camera_status = False
             self.yolov5_is_not_pick = False
+            self.comboBox_function.setEnabled(True)
+            self.connect_btn.setEnabled(True)
             if self.has_mycobot():
                 self.auto_mode_status = True
                 self.auto_mode()
@@ -1009,7 +1011,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.cap.release()
                                 is_release = True
                                 self.comboBox_function.setEnabled(False)
-                                # self.open_camera_btn.setEnabled(False)
                                 self.connect_btn.setEnabled(False)
                                 cv2.destroyAllWindows()
 
@@ -1137,6 +1138,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                             self.num = self.real_sx = self.real_sy = 0
                                 except Exception as e:
                                     self.loger.error('yolov5 Exception:' + str(e))
+                            is_release = False
                     except Exception as e:
                         self.loger.error('yolov5 Exception:' + str(e))
                 else:
@@ -2082,9 +2084,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.algorithm_lab.setText(self.comboBox_function.currentText())
         self.prompts_lab.clear()
         self.offset_change()
-        device = self.comboBox_device.currentText()
+        device = self.comboBox_function.currentText()
         # if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
-        if self.comboBox_function.currentText() == 'yolov5':
+        if device == 'yolov5':
             IS_CV_4 = cv2.__version__[0] == '4'
             if IS_CV_4:
                 self.net = cv2.dnn.readNet(self.modelWeights)
@@ -2100,6 +2102,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.cut_yolov5_img_status()
         else:
             self.cut_yolov5_img_status()
+        if device != 'Keypoints':
+            print(1)
+            self.add_img_btn.setEnabled(False)
+            self.exit_add_btn.setEnabled(False)
+        else:
+            print(2)
+            self.add_img_btn.setEnabled(True)
+            self.exit_add_btn.setEnabled(True)
+        print(device)
 
         self.yolov5_count = 0
 
@@ -2491,8 +2502,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             op.setOpacity(1)
             self.yolov5_cut_btn.setGraphicsEffect(op)
             self.yolov5_cut_btn.setEnabled(True)
-            self.add_img_btn.setEnabled(False)
-            self.exit_add_btn.setEnabled(False)
         else:
             # 设置透明度的值，0.0到1.0，最小值0是透明，1是不透明
             op = QtWidgets.QGraphicsOpacityEffect()

@@ -38,3 +38,29 @@
 2023-02-09 11:47:29,489 main.py[line:890]INFO - ok
 2023-02-14 16:33:58,302 main.py[line:511]INFO - connection succeeded !
 2023-02-14 16:33:58,302 main.py[line:511]INFO - connection succeeded !
+2023-02-20 14:50:38,286 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:50:38,286 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:51:00,651 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:51:00,651 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:53:47,030 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:53:47,030 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-20 14:54:12,330 main.py[line:539]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'NO Port': FileNotFoundError(2, '系统找不到指定的文件。', None, 2)
+                =================================================
+            
+2023-02-20 14:54:12,330 main.py[line:539]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'NO Port': FileNotFoundError(2, '系统找不到指定的文件。', None, 2)
+                =================================================
+            
+2023-02-20 14:54:13,851 main.py[line:539]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'NO Port': FileNotFoundError(2, '系统找不到指定的文件。', None, 2)
+                =================================================
+            
+2023-02-20 14:54:13,851 main.py[line:539]ERROR -                 Connection failed !!!
+                =================================================
+                could not open port 'NO Port': FileNotFoundError(2, '系统找不到指定的文件。', None, 2)
+                =================================================
+            
