@@ -657,6 +657,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.yolov5_is_not_pick = False
             self.comboBox_function.setEnabled(True)
             self.connect_btn.setEnabled(True)
+            self.is_yolov5_cut_btn_clicked = False
             if self.has_mycobot():
                 self.auto_mode_status = True
                 self.auto_mode()
@@ -999,6 +1000,14 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         else:
                             self.prompts('请点击上方剪切按钮截取二维码白板部分的图片，按Enter确认。')
                         if self.is_yolov5_cut_btn_clicked:
+                            # print(6996)
+                            self.comboBox_function.setEnabled(False)
+                            self.open_camera_btn.setEnabled(False)
+                            if self.language == 1:
+                                self.prompts(
+                                    'Please complete the image cropping operation, place the mouse in the window and press the '+ "'c'"+' key to refresh the image.')
+                            else:
+                                self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘c’键可以刷新图像。')
                             roi = cv2.selectROI(windowName="Cut Image",
                                                 img=frame,
                                                 showCrosshair=False,
@@ -1010,9 +1019,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 cv2.imwrite(path_img, crop)
                                 self.cap.release()
                                 is_release = True
-                                self.comboBox_function.setEnabled(False)
-                                self.connect_btn.setEnabled(False)
-                                cv2.destroyAllWindows()
+                                cv2.destroyWindow('Cut Image')
 
                             frame = frame[int(roi[1]):int(roi[1] + roi[3]), int(roi[0]):int(roi[0] + roi[2])]
                             show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -1033,7 +1040,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     'Recognition, grabbing and placing are now possible.')
                             else:
                                 self.prompts('现在可以进行识别、抓取和放置了。')
+                            self.open_camera_btn.setEnabled(True)
                             while self.yolov5_is_not_pick:
+                                print(1211)
                                 try:
                                     QApplication.processEvents()
                                     frame = cv2.imread(path_img)
@@ -2103,14 +2112,14 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         else:
             self.cut_yolov5_img_status()
         if device != 'Keypoints':
-            print(1)
+            # print(1)
             self.add_img_btn.setEnabled(False)
             self.exit_add_btn.setEnabled(False)
         else:
-            print(2)
+            # print(2)
             self.add_img_btn.setEnabled(True)
             self.exit_add_btn.setEnabled(True)
-        print(device)
+        # print(device)
 
         self.yolov5_count = 0
 
@@ -2566,6 +2575,7 @@ if __name__ == '__main__':
     try:
         libraries_path = resource_path('libraries')
         libraries_path = libraries_path.replace("\\", "/")
+        print(libraries_path)
         app = QApplication(sys.argv)
         AiKit_window = AiKit_APP()
         AiKit_window.show()
