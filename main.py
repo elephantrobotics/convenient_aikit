@@ -2575,7 +2575,7 @@ if __name__ == '__main__':
     try:
         libraries_path = resource_path('libraries')
         libraries_path = libraries_path.replace("\\", "/")
-        print(libraries_path)
+        # print(libraries_path)
         app = QApplication(sys.argv)
         AiKit_window = AiKit_APP()
         AiKit_window.show()

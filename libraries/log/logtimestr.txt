@@ -17668,3 +17668,537 @@
 2023-02-27 15:33:58,435 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
 2023-02-27 15:34:08,907 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
 2023-02-27 15:34:08,907 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-27 18:51:04,513 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:04,513 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:04,883 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:04,883 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,369 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,369 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,381 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,381 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,438 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,438 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,446 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,446 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,510 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,510 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,563 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,563 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,569 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,569 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,623 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,623 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,627 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,627 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,666 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,666 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,681 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,681 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,708 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,708 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,756 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,756 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,785 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,785 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,816 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,816 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,858 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,858 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,863 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,863 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,891 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,891 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,933 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,933 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,963 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,963 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,992 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:05,992 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,030 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,030 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,046 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,046 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,074 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,074 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,127 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,127 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,133 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,133 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,181 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,181 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,220 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,220 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,253 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,253 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,301 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,301 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,306 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,306 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,364 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,364 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,370 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,370 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,398 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,398 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,457 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,457 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,470 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,470 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,503 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,503 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,543 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,543 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,586 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,586 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,603 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,603 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,648 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,648 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,690 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,690 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,700 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,700 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,733 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,733 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,764 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,764 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,800 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,800 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,842 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,842 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,883 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,883 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,928 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,928 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,936 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,936 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,970 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:06,970 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,021 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,021 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,050 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,050 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,087 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,087 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,112 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,112 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,149 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,149 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,178 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,178 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,219 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,219 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,245 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,245 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,288 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,288 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,300 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,300 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,338 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,338 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,367 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,367 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,397 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,397 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,446 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,446 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,479 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,479 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,521 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,521 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,527 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,527 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,583 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,583 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,590 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,590 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,644 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,644 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,674 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,674 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,733 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,733 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,741 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,741 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,768 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,768 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,815 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,815 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,851 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,851 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,868 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,868 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,894 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,894 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,917 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,917 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,955 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,955 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,995 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:07,995 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,040 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,040 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,072 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,072 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,101 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,101 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,141 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,141 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,179 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,179 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,212 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,212 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,245 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,245 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,285 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,285 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,315 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,315 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,352 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,352 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,373 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,373 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,419 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,419 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,444 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,444 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,499 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,499 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,526 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,526 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,560 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,560 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,580 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,580 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,619 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,619 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,645 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,645 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,664 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,664 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,703 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,703 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,738 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,738 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,773 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,773 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,782 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,782 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,857 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,857 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,891 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,891 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,911 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,911 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,932 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,932 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,988 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:08,988 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,027 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,027 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,062 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,062 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,099 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,099 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,109 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,109 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,147 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,147 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,194 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,194 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,201 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,201 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,256 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,256 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,270 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,270 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,328 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,328 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,336 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,336 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,366 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,366 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,414 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,414 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,452 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,452 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,473 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,473 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,521 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,521 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,528 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,528 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,593 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,593 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,599 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,599 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,643 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:09,643 main.py[line:1152]ERROR - yolov5 Exception:OpenCV(4.6.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2023-02-27 18:51:30,410 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2023-02-27 18:51:30,410 main.py[line:359]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
