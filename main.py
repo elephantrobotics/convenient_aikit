@@ -352,6 +352,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._corner_drag = False
         self._bottom_drag = False
         self._right_drag = False
+        self.setCursor(Qt.ArrowCursor)
 
     def has_mycobot(self):
         """Check whether it is connected on mycobot"""
