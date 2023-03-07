@@ -1043,7 +1043,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.prompts('现在可以进行识别、抓取和放置了。')
                             self.open_camera_btn.setEnabled(True)
                             while self.yolov5_is_not_pick:
-                                print(1211)
+                                # print(1211)
                                 try:
                                     QApplication.processEvents()
                                     frame = cv2.imread(path_img)
