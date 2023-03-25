@@ -10,7 +10,7 @@ python3 <path>/main.py
 
 After the startup is successful, as shown in the figure below:<br>
 
-![img](./libraries/AiKit_UI_img/1.png) 
+![img](../libraries/AiKit_UI_img/1.png) 
 
 #### **Features**
 
