@@ -179,7 +179,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.is_pick = False  # Whether the object has been grasped
         self.yolov5_is_not_pick = True
         self.is_yolov5_cut_btn_clicked = False
-        self.yolov5_count = 0
+        self.yolov5_count = False  # is first open camera
         self.open_camera_func = 1  # Opening mode of the camera, 1 is the open button, 2 is the add button
         with open(libraries_path + f'/offset/language.txt', "r", encoding="utf-8") as f:
             lange = f.read()
@@ -239,7 +239,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.showMaximized()
             # self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/nomel.png);".format(libraries_path))
             icon_nomel = QtGui.QIcon()
-            icon_nomel.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/nomel.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+            icon_nomel.addPixmap(QtGui.QPixmap("./libraries/AiKit_UI_img/nomel.ico"), QtGui.QIcon.Normal,
+                                 QtGui.QIcon.Off)
             self.max_btn.setIcon(icon_nomel)
             self.max_btn.setIconSize(QtCore.QSize(30, 30))
             self.max_btn.setToolTip("<html><head/><body><p>recover</p></body></html>")
@@ -634,6 +635,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.close_camera()
                 return
             self.prompts_lab.clear()
+            self.yolov5_count = False
             if self.language == 1:
                 self.add_img_btn.setText('Cut')
                 self.open_camera_btn.setText('Close')
@@ -976,7 +978,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.loger.error('abnormal' + str(e))
                 elif func == 'yolov5':
                     try:
-                        if self.yolov5_count != 0 and is_release:
+                        print(self.yolov5_count)
+                        print(is_release)
+                        if self.yolov5_count and is_release:
                             self.open_camera()
                             self.comboBox_function.setEnabled(True)
                             self.open_camera_btn.setEnabled(True)
@@ -1006,7 +1010,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.open_camera_btn.setEnabled(False)
                             if self.language == 1:
                                 self.prompts(
-                                    'Please complete the image cropping operation, place the mouse in the window and press the '+ "'c'"+' key to refresh the image.')
+                                    'Please complete the image cropping operation, place the mouse in the window and press the ' + "'c'" + ' key to refresh the image.')
                             else:
                                 self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘c’键可以刷新图像。')
                             roi = cv2.selectROI(windowName="Cut Image",
@@ -1020,6 +1024,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 cv2.imwrite(path_img, crop)
                                 self.cap.release()
                                 is_release = True
+                                self.yolov5_count = True
                                 cv2.destroyWindow('Cut Image')
 
                             frame = frame[int(roi[1]):int(roi[1] + roi[3]), int(roi[0]):int(roi[0] + roi[2])]
@@ -1148,7 +1153,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                             self.num = self.real_sx = self.real_sy = 0
                                 except Exception as e:
                                     self.loger.error('yolov5 Exception:' + str(e))
-                            is_release = False
+                            # is_release = False
                     except Exception as e:
                         self.loger.error('yolov5 Exception:' + str(e))
                 else:
@@ -1322,7 +1327,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.comboBox_function.currentText() == 'yolov5':
                 self.yolov5_is_not_pick = False
                 self.is_yolov5_cut_btn_clicked = False
-                self.yolov5_count += 1
         except Exception as e:
             self.loger.error(str(e))
 
@@ -1837,7 +1841,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     self.is_pick = False
                     self.yolov5_is_not_pick = False
                     self.is_yolov5_cut_btn_clicked = False
-                    self.yolov5_count += 1
                     if self.radioButton_A.isChecked():
                         color = 2
                     elif self.radioButton_B.isChecked():
@@ -2091,38 +2094,41 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.prompts_lab.setText('提示:\n' + msg)
 
     def combox_func_checked(self):
-        self.algorithm_lab.setText(self.comboBox_function.currentText())
-        self.prompts_lab.clear()
-        self.offset_change()
-        device = self.comboBox_function.currentText()
-        # if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
-        if device == 'yolov5':
-            IS_CV_4 = cv2.__version__[0] == '4'
-            if IS_CV_4:
-                self.net = cv2.dnn.readNet(self.modelWeights)
-                '''加载类别名'''
-                classesFile = libraries_path + "/yolov5File/coco.names"
-                self.classes = None
-                with open(classesFile, 'rt') as f:
-                    self.classes = f.read().rstrip('\n').split('\n')
-                self.cut_yolov5_img_status(True)
+        try:
+            self.algorithm_lab.setText(self.comboBox_function.currentText())
+            self.prompts_lab.clear()
+            self.offset_change()
+            device = self.comboBox_function.currentText()
+            # if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+            if device == 'yolov5':
+                IS_CV_4 = cv2.__version__[0] == '4'
+                if IS_CV_4:
+                    self.net = cv2.dnn.readNet(self.modelWeights)
+                    '''加载类别名'''
+                    classesFile = libraries_path + "/yolov5File/coco.names"
+                    self.classes = None
+                    with open(classesFile, 'rt') as f:
+                        self.classes = f.read().rstrip('\n').split('\n')
+                    self.cut_yolov5_img_status(True)
+                else:
+                    self.prompts('Load yolov5 model need the version of opencv is 4.')
+                    self.comboBox_function.setCurrentIndex(0)
+                    self.cut_yolov5_img_status()
             else:
-                self.prompts('Load yolov5 model need the version of opencv is 4.')
-                self.comboBox_function.setCurrentIndex(0)
                 self.cut_yolov5_img_status()
-        else:
-            self.cut_yolov5_img_status()
-        if device != 'Keypoints':
-            # print(1)
-            self.add_img_btn.setEnabled(False)
-            self.exit_add_btn.setEnabled(False)
-        else:
-            # print(2)
-            self.add_img_btn.setEnabled(True)
-            self.exit_add_btn.setEnabled(True)
-        # print(device)
+            if device != 'Keypoints' or device != '特征点识别':
+                # print(1)
+                self.add_img_btn.setEnabled(False)
+                self.exit_add_btn.setEnabled(False)
+            else:
+                # print(2)
+                self.add_img_btn.setEnabled(True)
+                self.exit_add_btn.setEnabled(True)
+            # print(device)
 
-        self.yolov5_count = 0
+            self.yolov5_count = False
+        except Exception as e:
+            self.loger.error(str(e))
 
     def auto_mode(self):
         """automated operation"""
