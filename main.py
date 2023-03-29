@@ -118,8 +118,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.cache_x = self.cache_y = 0
         # set color HSV
         self.HSV = {
-            # "yellow": [np.array([11, 85, 70]), np.array([59, 255, 245])],
-            "yellow": [np.array([22, 93, 0]), np.array([45, 255, 245])],
+            "yellow": [np.array([11, 85, 70]), np.array([59, 255, 245])],
+            #"yellow": [np.array([22, 93, 0]), np.array([45, 255, 245])],
             "red": [np.array([0, 43, 46]), np.array([8, 255, 255])],
             "green": [np.array([35, 43, 35]), np.array([90, 255, 255])],
             "blue": [np.array([100, 43, 46]), np.array([124, 255, 255])],
