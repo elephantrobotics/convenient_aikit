@@ -250,7 +250,7 @@ color: rgb(255, 255, 255);</string>
          <x>0</x>
          <y>0</y>
          <width>1220</width>
-         <height>887</height>
+         <height>888</height>
         </rect>
        </property>
        <property name="minimumSize">
@@ -478,6 +478,11 @@ border-style: outset;</string>
                       <item>
                        <property name="text">
                         <string>myCobot 280 for Pi</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>myCobot 280 for JN</string>
                        </property>
                       </item>
                       <item>

@@ -83,7 +83,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.pump_x = 0
         # device
         self.M5 = ['myPalletizer 260 for M5', 'myCobot 280 for M5', 'ultraArm P340']  # M5 robot
-        self.Pi = ['myCobot 280 for Pi', 'mechArm 270 for Pi']  # Pi robot
+        self.Pi = ['myCobot 280 for Pi', 'mechArm 270 for Pi', 'myCobot 280 for JN']  # Pi robot
 
         # angles to move
         self.move_angles = [
@@ -415,7 +415,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def device_coord(self):
         """Get points according to the device"""
         value = self.comboBox_device.currentText()
-        if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5':
+        if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5' or value == 'myCobot 280 for JN':
             # yolov5 model file path
             self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
             # y-axis offset
@@ -1696,7 +1696,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 elif device == 'mechArm 270 for Pi':
                     _moved = threading.Thread(target=self.moved(x + 38, y + 138))
                     _moved.start()
-                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
                     _moved = threading.Thread(target=self.moved(x - 5, y + 145))
                     _moved.start()
                 elif device == 'ultraArm P340':
@@ -1745,7 +1745,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 65, 172.36, 5.36, 125.58], 30, 0)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 108, 178.99, -3.78, -62.9], 25,
                                     0)
@@ -1773,7 +1773,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 65, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
@@ -1796,7 +1796,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 108, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
@@ -1828,7 +1828,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             if device == 'mechArm 270 for Pi':
                                 self.myCobot.send_angles([tmp[0], 17.22, -32.51, tmp[3], 97, tmp[5]], 30)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
                                 self.myCobot.send_angles([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 25)
                                 self.stop_wait(3)
 
