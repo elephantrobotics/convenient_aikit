@@ -415,7 +415,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def device_coord(self):
         """Get points according to the device"""
         value = self.comboBox_device.currentText()
-        if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5' or value == 'myCobot 280 for JN':
+        if value == 'myCobot 280 for Pi' or value == 'myCobot 280 for M5':
             # yolov5 model file path
             self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
             # y-axis offset
