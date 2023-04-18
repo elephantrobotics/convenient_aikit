@@ -433,6 +433,24 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [-6.9, 173.2, 201.5, 179.93, 0.63, 33.83],  # B Sorting area
             ]
             self.home_coords = [145.0, -65.5, 280.1, 178.99, 7.67, -179.9]
+        elif value == 'myCobot 280 for JN':
+            # yolov5 model file path
+            self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
+            # y-axis offset
+            self.pump_y = -55
+            # x-axis offset
+            self.pump_x = 15
+            self.move_angles = [
+                [0.61, 45.87, -92.37, -41.3, 2.02, 9.58],  # init the point
+                [18.63, 5.39, -83.49, -10.37, -0.08, -13.44],  # point to grab
+            ]
+            self.move_coords = [
+                [133.5, -149.5, 153.0, -178.91, -1.27, -112.78],  # D Sorting area
+                [242.5, -143.1, 164.3, -172.38, -4.38, -100.28],  # C Sorting area
+                [133.5, 168.0, 172.2, -175.89, -1.86, -13.65],  # A Sorting area
+                [21.6, 176.3, 171.4, -178.53, -1.69, 21.75],   # B Sorting area
+            ]
+            self.home_coords = [145.0, -65.5, 280.1, 178.99, 7.67, -179.9]
         elif value == 'myPalletizer 260 for M5':
             self.pump_y = -45
             self.pump_x = -30
@@ -1696,8 +1714,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 elif device == 'mechArm 270 for Pi':
                     _moved = threading.Thread(target=self.moved(x + 38, y + 138))
                     _moved.start()
-                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
+                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                     _moved = threading.Thread(target=self.moved(x - 5, y + 145))
+                    _moved.start()
+                elif device == 'myCobot 280 for JN':
+                    _moved = threading.Thread(target=self.moved(x - 5, y + 130))
                     _moved.start()
                 elif device == 'ultraArm P340':
                     _moved = threading.Thread(target=self.moved(x + 50, y + 60))
@@ -1745,13 +1766,21 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 65, 172.36, 5.36, 125.58], 30, 0)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 108, 178.99, -3.78, -62.9], 25,
                                     0)
                                 self.stop_wait(2)
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 65, 178.99, -3.78, -62.9], 25, 0)
+                                self.stop_wait(3.5)
+                            elif device == 'myCobot 280 for JN':
+                                self.myCobot.send_coords(
+                                    [self.home_coords[0] + x, self.home_coords[1] + y, 160, 178.99, -3.78, -62.9], 25,
+                                    0)
+                                self.stop_wait(2)
+                                self.myCobot.send_coords(
+                                    [self.home_coords[0] + x, self.home_coords[1] + y, 30, 178.99, -3.78, -62.9], 25, 0)
                                 self.stop_wait(3.5)
                             elif device == 'ultraArm P340':
                                 self.myCobot.set_coords([self.home_coords[0] + x, self.home_coords[1] - y, 65.51, 0],
@@ -1773,11 +1802,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 65, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 65.5, 179.87, -3.78, -62.75], 25, 0)
+                                    self.stop_wait(4)
+                                elif device == 'myCobot 280 for JN':
+                                    self.myCobot.send_coords([x, y, 160, 179.87, -3.78, -62.75], 25,
+                                                             0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
+                                    self.stop_wait(3)
+                                    self.myCobot.send_coords([x, y, 30, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
                                     self.myCobot.set_coords([x, -y, 65.51, 0], 50)
@@ -1796,11 +1831,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 108, -176.1, 2.4, -125.1], 25, 0)
                                     self.stop_wait(3)
-                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
+                                elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                     self.myCobot.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25,
                                                              0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                     self.stop_wait(3)
                                     self.myCobot.send_coords([x, y, 103, 179.87, -3.78, -62.75], 25, 0)
+                                    self.stop_wait(4)
+                                elif device == 'myCobot 280 for JN':
+                                    self.myCobot.send_coords([x, y, 160, 179.87, -3.78, -62.75], 25,
+                                                             0)  # usb :rx,ry,rz -173.3, -5.48, -57.9
+                                    self.stop_wait(3)
+                                    self.myCobot.send_coords([x, y, 70, 179.87, -3.78, -62.75], 25, 0)
                                     self.stop_wait(4)
                                 elif device == 'ultraArm P340':
                                     self.myCobot.set_coords([x, -y, 65.51, 0], 50)
@@ -1828,8 +1869,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             if device == 'mechArm 270 for Pi':
                                 self.myCobot.send_angles([tmp[0], 17.22, -32.51, tmp[3], 97, tmp[5]], 30)
                                 self.stop_wait(3.5)
-                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5' or device == 'myCobot 280 for JN':
+                            elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                 self.myCobot.send_angles([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 25)
+                                self.stop_wait(3)
+                            elif device == 'myCobot 280 for JN':
+                                self.myCobot.send_angles([tmp[0], 5.39, -83.49, -10.37, -0.08, tmp[5]], 25)
                                 self.stop_wait(3)
 
                         if not self.auto_mode_status:
