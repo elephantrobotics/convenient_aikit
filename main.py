@@ -35,7 +35,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.port_list = []
         self.loger = logfile.MyLogging().logger
         self._init_main_window()
-        # self._close_max_min_icon()
+        self._close_max_min_icon()
         self._initDrag()  # Set the mouse tracking judgment trigger default value
         self.setMouseTracking(True)  # Set widget mouse tracking
         self.widget.installEventFilter(self)  # Initialize event filter
