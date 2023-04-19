@@ -5,6 +5,7 @@ import os
 import sys
 import threading
 import time
+import traceback
 
 import cv2
 import numpy as np
@@ -2654,6 +2655,8 @@ if __name__ == '__main__':
         AiKit_window = AiKit_APP()
         AiKit_window.show()
     except Exception as e:
+        print(e)
+        e = traceback.format_exc()
         with open("error.txt", "w") as f:
             f.write(str(e))
     sys.exit(app.exec_())
