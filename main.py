@@ -206,9 +206,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     # Close, minimize button display text
     def _close_max_min_icon(self):
-        self.min_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/min.png);".format(libraries_path))
-        self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.png);".format(libraries_path))
-        self.close_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/close.png);".format(libraries_path))
+        self.min_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/min.ico);".format(libraries_path))
+        self.max_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/max.ico);".format(libraries_path))
+        self.close_btn.setStyleSheet("border-image: url({}/AiKit_UI_img/close.ico);".format(libraries_path))
 
     def _init_tooltip(self):
         if self.language == 1:
