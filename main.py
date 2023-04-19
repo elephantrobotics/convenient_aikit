@@ -364,6 +364,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def get_serial_port_list(self):
         """Get the current serial port and map it to the serial port drop-down box"""
+        device = self.comboBox_device.currentText()
+        if device == 'myCobot 280 for JN':
+            if self.comboBox_port.currentText() != '/dev/ttyTHS1':
+                # self.comboBox_port.addItem('/dev/ttyTHS1')
+                self.comboBox_port.setCurrentText('/dev/ttyTHS1')
+                self.port_list = None
+                self.connect_btn.setEnabled(True)
+            return
+
         plist = [
             str(x).split(" - ")[0].strip() for x in serial.tools.list_ports.comports()
         ]
@@ -402,6 +411,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 # self.comboBox_buad.clear()
                 # self.comboBox_buad.addItem('1000000')
                 self.comboBox_buad.setCurrentIndex(0)
+            elif value == 'myCobot 280 for JN':
+                self.comboBox_port.clear()
+                self.get_serial_port_list()
             else:
                 # self.comboBox_buad.clear()
                 # self.comboBox_buad.addItem('115200')
