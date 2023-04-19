@@ -1019,8 +1019,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.loger.error('abnormal' + str(e))
                 elif func == 'yolov5':
                     try:
-                        print(self.yolov5_count)
-                        print(is_release)
+                        # print(self.yolov5_count)
+                        # print(is_release)
                         if self.yolov5_count and is_release:
                             self.open_camera()
                             self.comboBox_function.setEnabled(True)
