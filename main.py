@@ -367,10 +367,23 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         device = self.comboBox_device.currentText()
         if device == 'myCobot 280 for JN':
             if self.comboBox_port.currentText() != '/dev/ttyTHS1':
-                # self.comboBox_port.addItem('/dev/ttyTHS1')
+                self.comboBox_port.addItem('/dev/ttyTHS1')
                 self.comboBox_port.setCurrentText('/dev/ttyTHS1')
                 self.port_list = None
                 self.connect_btn.setEnabled(True)
+                self.connect_btn.setStyleSheet("background-color: rgb(39, 174, 96);\n"
+                                               "color: rgb(255, 255, 255);\n"
+                                               "border-radius: 10px;\n"
+                                               "border: 2px groove gray;\n"
+                                               "border-style: outset;")
+                self.HSV = {
+                    "yellow": [np.array([15, 50, 50]), np.array([50, 255, 255])],
+                    # "yellow": [np.array([22, 93, 0]), np.array([45, 255, 245])],
+                    "red": [np.array([0, 43, 46]), np.array([8, 255, 255])],
+                    "green": [np.array([35, 43, 35]), np.array([90, 255, 255])],
+                    "blue": [np.array([78, 43, 46]), np.array([110, 255, 255])],
+                    "cyan": [np.array([78, 43, 46]), np.array([99, 255, 255])],
+                }
             return
 
         plist = [
@@ -411,14 +424,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 # self.comboBox_buad.clear()
                 # self.comboBox_buad.addItem('1000000')
                 self.comboBox_buad.setCurrentIndex(0)
-            elif value == 'myCobot 280 for JN':
-                self.comboBox_port.clear()
-                self.get_serial_port_list()
             else:
                 # self.comboBox_buad.clear()
                 # self.comboBox_buad.addItem('115200')
                 self.comboBox_buad.setCurrentIndex(1)
 
+            self.get_serial_port_list()
             self.offset_change()  # Get the corresponding offset of the device
             self.device_coord()  # Initialize the point of the corresponding device
         except Exception as e:
@@ -2172,7 +2183,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     self.cut_yolov5_img_status()
             else:
                 self.cut_yolov5_img_status()
-            if device != 'Keypoints' or device != '特征点识别':
+            if device != 'Keypoints' and device != '特征点识别':
                 # print(1)
                 self.add_img_btn.setEnabled(False)
                 self.exit_add_btn.setEnabled(False)
