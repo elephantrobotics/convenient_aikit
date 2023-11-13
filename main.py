@@ -754,6 +754,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             while self.camera_status:
                 func = self.comboBox_function.currentText()
                 if func == 'Color recognition' or func == '颜色识别':
+                    self.prompts_lab.clear()
                     # read camera
                     _, frame = self.cap.read()
                     # deal img
@@ -874,6 +875,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         res_queue[2] = self.parse_folder('res/A')
                         res_queue[3] = self.parse_folder('res/B')
                         QApplication.processEvents()
+                        self.prompts_lab.clear()
                         # read camera
                         _, frame = self.cap.read()
                         # deal img
@@ -977,6 +979,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 elif func == 'QR code recognition' or func == '二维码识别':
                     try:
                         QApplication.processEvents()
+                        self.prompts_lab.clear()
                         success, img = self.cap.read()
                         if not success:
                             break
@@ -1201,6 +1204,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 else:
                     try:
                         QApplication.processEvents()
+                        self.prompts_lab.clear()
                         # read camera
                         _, frame = self.cap.read()
                         # deal img
