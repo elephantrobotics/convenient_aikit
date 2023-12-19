@@ -1794,7 +1794,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 0], 20,
                                     0)
                                 self.stop_wait(2.5)
-                            elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for Pi':
+                            elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, 150, 172.36, 5.36, 125.58], 30,
                                     0)
@@ -2108,8 +2108,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             ratio = width / lab_width
                         else:
                             ratio = height / lab_height
-                        new_width = width / ratio
-                        new_height = height / ratio
+                        new_width = int(width / ratio)
+                        new_height = int(height / ratio)
                         showImage = showImage.scaled(new_width, new_height, Qt.KeepAspectRatio)
                         self.show_cutimg_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
                     except Exception as e:
