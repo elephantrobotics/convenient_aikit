@@ -1972,7 +1972,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_gpio_state(0)
             else:
-                self.myCobot.set_basic_output(2, 0)
+                self.myCobot.set_basic_output(2, 1)
                 self.myCobot.set_basic_output(5, 0)
         else:
             import RPi.GPIO as GPIO
@@ -1990,7 +1990,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_gpio_state(1)
             else:
-                self.myCobot.set_basic_output(2, 1)
+                self.myCobot.set_basic_output(2, 0)
                 self.myCobot.set_basic_output(5, 1)
         else:
             import RPi.GPIO as GPIO
