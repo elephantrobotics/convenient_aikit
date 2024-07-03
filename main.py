@@ -1981,7 +1981,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(20, GPIO.OUT)
             GPIO.setup(21, GPIO.OUT)
-            self.GPIO.output(20, 0)
+            self.GPIO.output(20, 1)
             self.GPIO.output(21, 0)
 
     def pump_off(self):
@@ -1999,7 +1999,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(20, GPIO.OUT)
             GPIO.setup(21, GPIO.OUT)
-            self.GPIO.output(20, 1)
+            self.GPIO.output(20, 0)
             self.GPIO.output(21, 1)
 
     # The path to save the image folder
