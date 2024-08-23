@@ -440,6 +440,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [115.8, 177.3, 210.6, 178.06, -0.92, -6.11],  # A Sorting area
                 [-6.9, 173.2, 201.5, 179.93, 0.63, 33.83],  # B Sorting area
             ]
+            self.new_move_coords_to_angles = [
+                [-24.87, -2.98, -92.46, 5.88, -3.07, -8.34],  # D Sorting area
+                [-13.71, -52.11, -25.4, -4.57, -3.86, -7.73],  # C Sorting area
+                [74.0, -18.1, -64.24, -9.84, -0.79, -9.49],  # A Sorting area
+                [112.93, 3.16, -96.32, 0.87, 0.26, -9.75],  # B Sorting area
+            ]
             self.home_coords = [145.0, -65.5, 280.1, 178.99, 7.67, -179.9]
         elif value == 'myCobot 280 for JN':
             # yolov5 model file path
@@ -1354,7 +1360,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             # self.is_pick = True
             self.btn_color(self.place_btn, 'red')
 
-    def check_position(self, data, ids):
+    def check_position(self, data, ids, max_same_data_count=50):
         """
         循环检测是否到位某个位置
         :param data: 角度或者坐标
@@ -1362,11 +1368,19 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         :return:
         """
         try:
+            same_data_count = 0
+            last_data = None
             while True:
                 res = self.myCobot.is_in_position(data, ids)
-                # print('res', res)
-                if res == 1:
-                    time.sleep(0.1)
+                # print('res', res, data)
+                if data == last_data:
+                    same_data_count += 1
+                else:
+                    same_data_count = 0
+
+                last_data = data
+                # print('count:', same_data_count)
+                if res == 1 or same_data_count >= max_same_data_count:
                     break
                 time.sleep(0.1)
         except Exception as e:
@@ -1806,7 +1820,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.stop_wait(3)
                         else:
                             self.myCobot.send_angles(self.move_angles[1], 20)
-                            self.check_position(self.move_angles[1], 0)
+                            # self.check_position(self.move_angles[1], 0)
                         # send coordinates to move mycobot
                         if func == 'QR code recognition' or func == '二维码识别':
                             if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
@@ -1967,9 +1981,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     if device == 'ultraArm P340':
                         self.myCobot.set_coords(self.move_coords[color], 40)
                         self.stop_wait(4)
+
+                    elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
+                        self.myCobot.send_angles(self.new_move_coords_to_angles[color], 25)
+                        self.check_position(self.new_move_coords_to_angles[color], 0)
                     else:
                         self.myCobot.send_coords(self.move_coords[color], 40, 0)
-                        self.check_position(self.move_coords[color], 1)
+                        self.stop_wait(4)
 
                     # close pump
                     self.pump_off()

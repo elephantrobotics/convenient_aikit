@@ -9,7 +9,7 @@ import time
 
 from pymycobot.mycobot import MyCobot
 
-mc = MyCobot('COM3', debug=False)
+mc = MyCobot('COM5', debug=False)
 
 point_angles = [[0.61, 45.87, -92.37, -41.3, 2.02, 9.58],  # init the point
                 [18.8, -7.91, -54.49, -23.02, -0.79, -14.76]]
@@ -21,9 +21,9 @@ point_coords = [[132.2, -136.9, 200.8, -178.24, -3.72, -107.17],  # D Sorting ar
 
 x = 166
 y = 5
-# mc.set_fresh_mode(0)
+mc.set_fresh_mode(0)
 
-
+# print(mc.get_fresh_mode())
 def check_position(data, ids):
     try:
         while True:
@@ -41,11 +41,11 @@ def check_position(data, ids):
 
 
 mc.send_angles(point_angles[0], 30)
-check_position(point_angles[0], 0)
+# check_position(point_angles[0], 0)
 print('1')
 
 mc.send_angles(point_angles[1], 20)
-check_position(point_angles[1], 0)
+# check_position(point_angles[1], 0)
 print(2)
 
 mc.send_coords([x, y, 170.6, 179.87, -3.78, -62.75], 25, 0)
@@ -64,8 +64,9 @@ while True:
         tmp = mc.get_angles()
     else:
         break
+print('tmp', tmp)
 mc.send_angles([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 25)
-check_position([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 0)
+# check_position([tmp[0], -0.71, -54.49, -23.02, -0.79, tmp[5]], 0)
 
 mc.send_coords(point_coords[0], 40, 0)
 check_position(point_coords[0], 1)
