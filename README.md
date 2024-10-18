@@ -13,7 +13,7 @@ Raspberry Pi Ubuntu20.04 system、Windows 10 or Windows 11、Jetson Nano Ubuntu2
 ```bash
 opencv-python==4.6.0.66
 opencv-contrib-python==4.6.0.66
-pymycobot==3.2.7
+pymycobot==3.6.3
 PyQt5==5.15.10
 ```
 
