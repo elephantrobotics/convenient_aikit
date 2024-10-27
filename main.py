@@ -418,6 +418,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.get_serial_port_list()
             self.offset_change()  # Get the corresponding offset of the device
             self.device_coord()  # Initialize the point of the corresponding device
+            if value in ['ultraArm P340']:
+                self.widget_11.hide()
+                self.widget_20.hide()
+            else:
+                self.widget_11.show()
+                self.widget_20.show()
 
         except Exception as e:
             e = traceback.format_exc()
