@@ -16,13 +16,27 @@ from PyQt5.QtCore import QPoint, QRegularExpression
 from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication
 from PyQt5.QtGui import QEnterEvent, QPixmap, QIntValidator, QRegularExpressionValidator
 from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QWidget, QMessageBox
-from pymycobot.ultraArm import ultraArm
-from pymycobot.mycobot280 import MyCobot280
-from pymycobot.mecharm270 import MechArm270
-from pymycobot.mypalletizer260 import MyPalletizer260
 
 from libraries.log import logfile
 from libraries.pyqtFile.AiKit_auto import Ui_AiKit_UI as AiKit_window
+import pymycobot
+from packaging import version
+
+# min low version require
+MIN_REQUIRE_VERSION = '3.6.0'
+
+current_verison = pymycobot.__version__
+print('current pymycobot library version: {}'.format(current_verison))
+if version.parse(current_verison) < version.parse(MIN_REQUIRE_VERSION):
+    raise RuntimeError(
+        '{}The version of pymycobot library must be greater than {} or higher. The current version is {}. Please upgrade the library version.'.format(
+            MIN_REQUIRE_VERSION, current_verison))
+else:
+    print('pymycobot library version meets the requirements!')
+    from pymycobot.ultraArm import ultraArm
+    from pymycobot.mycobot280 import MyCobot280
+    from pymycobot.mecharm270 import MechArm270
+    from pymycobot.mypalletizer260 import MyPalletizer260
 
 
 class AiKit_APP(AiKit_window, QMainWindow, QWidget):
@@ -1850,7 +1864,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                      125.58], 30, 0)
                                 # self.stop_wait(3.5)
                                 data = [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
-                                     125.58]
+                                        125.58]
                                 self.check_position(data, 1)
                             elif device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
                                 self.myCobot.send_coords(
