@@ -16,8 +16,6 @@ from PyQt5.QtCore import QPoint, QRegularExpression
 from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication
 from PyQt5.QtGui import QEnterEvent, QPixmap, QIntValidator, QRegularExpressionValidator
 from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QWidget, QMessageBox
-# from pymycobot.mycobot import MyCobot
-# from pymycobot.mypalletizer import MyPalletizer
 from pymycobot.ultraArm import ultraArm
 from pymycobot.mycobot280 import MyCobot280
 from pymycobot.mecharm270 import MechArm270
@@ -2035,12 +2033,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.loger.info(e)
 
     def pump_on(self):
-        """Start the suction pump"""
+        """Start the suction pump v2.0"""
         if self.comboBox_device.currentText() in self.M5:
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_gpio_state(0)
             else:
-                self.myCobot.set_basic_output(2, 1)
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
         else:
@@ -2050,18 +2047,23 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(20, GPIO.OUT)
             GPIO.setup(21, GPIO.OUT)
-            self.GPIO.output(20, 1)
-            self.GPIO.output(21, 0)
+            self.GPIO.output(20, 0)
 
     def pump_off(self):
-        """stop suction pump m5"""
+        """stop suction pump v2.0"""
         if self.comboBox_device.currentText() in self.M5:
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_gpio_state(1)
+                time.sleep(0.5)
             else:
-                self.myCobot.set_basic_output(2, 0)
+                # 关闭电磁阀
                 self.myCobot.set_basic_output(5, 1)
-            time.sleep(0.5)
+                time.sleep(0.05)
+                # 泄气阀门开始工作
+                self.myCobot.set_basic_output(2, 0)
+                time.sleep(1)
+                self.myCobot.set_basic_output(2, 1)
+                time.sleep(0.05)
         else:
             import RPi.GPIO as GPIO
             GPIO.setwarnings(False)
@@ -2069,8 +2071,14 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             GPIO.setmode(GPIO.BCM)
             GPIO.setup(20, GPIO.OUT)
             GPIO.setup(21, GPIO.OUT)
-            self.GPIO.output(20, 0)
+            # 关闭电磁阀
+            self.GPIO.output(20, 1)
+            time.sleep(0.05)
+            # 打开泄气阀门
+            self.GPIO.output(21, 0)
+            time.sleep(1)
             self.GPIO.output(21, 1)
+            time.sleep(0.05)
 
     # The path to save the image folder
     def parse_folder(self, folder):
