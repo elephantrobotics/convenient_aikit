@@ -6,6 +6,7 @@ import sys
 import threading
 import time
 import traceback
+import platform
 
 import cv2
 import numpy as np
@@ -60,7 +61,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
         self._init_language()
 
-        self.cap = cv2.VideoCapture()  # video stream
+        # self.cap = cv2.VideoCapture()  # video stream
         self.min_btn.clicked.connect(self.min_clicked)  # minimize
         self.max_btn.clicked.connect(self.max_clicked)
         self.close_btn.clicked.connect(self.close_clicked)  # close
@@ -678,8 +679,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             QApplication.processEvents()
             self.camera_status = True
             self.camera_edit.setEnabled(False)
-            flag = self.cap.open(int(self.camera_edit.text()))  # Get the serial number of the camera to open
-            if not flag:  # Flag indicates whether the camera is successfully opened
+            # 获取摄像头序号
+            camera_index = int(self.camera_edit.text())
+            if platform.system() == "Windows":
+                self.cap = cv2.VideoCapture(camera_index, cv2.CAP_DSHOW)
+            elif platform.system() == "Linux":
+                self.cap = cv2.VideoCapture(camera_index, cv2.CAP_V4L)
+
+            self.cap.set(3, 640)
+            self.cap.set(4, 480)
+            # flag = self.cap.open(int(self.camera_edit.text()))  # Get the serial number of the camera to open
+            if not self.cap.isOpened():  # Flag indicates whether the camera is successfully opened
                 if self.language == 1:
                     self.prompts(
                         'The camera failed to open, please check whether the serial number is correct or the camera is connected.')
