@@ -154,12 +154,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # The ratio of pixels to actual values
         self.ratio = 0
         # Get ArUco marker dict that can be detected.
-        self.aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+        #self.aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+        self.aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
         # Get ArUco marker params.
-        self.aruco_params = cv2.aruco.DetectorParameters_create()
+        self.aruco_params = cv2.aruco.DetectorParameters()
+        #self.aruco_params = cv2.aruco.DetectorParameters_create()
 
         # Initialize the background subtractor
-        self.mog = cv2.bgsegm.createBackgroundSubtractorMOG()
+        #self.mog = cv2.bgsegm.createBackgroundSubtractorMOG()
+        self.mog = cv2.createBackgroundSubtractorMOG2()
         # yolov5 model file path
         self.modelWeights = libraries_path + '/yolov5File/yolov5s.onnx'
 
@@ -440,7 +443,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.camera_edit.setText('20')
             else:
                 self.camera_edit.setText('0')
-
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
@@ -1015,9 +1017,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             break
                         if self.discern_status:
                             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                            corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
-                                gray, self.aruco_dict, parameters=self.aruco_params
-                            )
+
+                            try:
+                                detector = cv2.aruco.ArucoDetector(self.aruco_dict, self.aruco_params)
+                                corners, ids, rejectImaPoint = detector.detectMarkers(gray)
+                            except AttributeError:
+                                corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
+                                    gray, self.aruco_dict, parameters=self.aruco_params
+                                )
+                            #corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
+                            #    gray, self.aruco_dict, parameters=self.aruco_params
+                            #)
                             if len(corners) > 0:
                                 if ids is not None:
                                     ret = cv2.aruco.estimatePoseSingleMarkers(
@@ -1475,9 +1485,16 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # Convert the image to a gray image
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         # self ArUco marker.
-        corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
-            gray, self.aruco_dict, parameters=self.aruco_params
-        )
+        #corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
+        #    gray, self.aruco_dict, parameters=self.aruco_params
+        #)
+        try:
+            detector = cv2.aruco.ArucoDetector(self.aruco_dict, self.aruco_params)
+            corners, ids, rejectImaPoint = detector.detectMarkers(gray)
+        except AttributeError:
+            corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
+                gray, self.aruco_dict, parameters=self.aruco_params
+            )
 
         """
         Two Arucos must be present in the picture and in the same order.
@@ -1605,21 +1622,26 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     if mycolor == "yellow":
 
                         self.color = 3
+                        print("yellow")
                         break
 
                     elif mycolor == "red":
                         self.color = 0
+                        print("red")
                         break
 
                     elif mycolor == "cyan":
                         self.color = 2
+                        print("cyan")
                         break
 
                     elif mycolor == "blue":
                         self.color = 2
+                        print("blue")
                         break
                     elif mycolor == "green":
                         self.color = 1
+                        print("green")
                         break
 
         # Judging whether it is recognized normally
@@ -1634,7 +1656,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Keypoints"""
         i = 0
         MIN_MATCH_COUNT = 5
-        sift = cv2.xfeatures2d.SIFT_create()
+        # sift = cv2.xfeatures2d.SIFT_create()
+        sift = cv2.SIFT_create()
 
         # find the keypoints and descriptors with SIFT
         kp = []
@@ -1758,6 +1781,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                     if objCor == 3:
                         objectType = ["Triangle", "三角形"]
+                        print("Triangle")
                         self.color = 3
                         cv2.drawContours(img, [cnt], 0, (0, 0, 255), 3)
 
@@ -2128,7 +2152,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 time.sleep(1)
                 self.myCobot.set_basic_output(2, 1)
                 time.sleep(0.05)
-
         elif self.comboBox_device.currentText() in self.MUSE_Pi:
             from gpiozero.pins.lgpio import LGPIOFactory
             from gpiozero import Device, LED

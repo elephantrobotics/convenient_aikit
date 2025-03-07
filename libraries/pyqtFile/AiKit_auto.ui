@@ -492,6 +492,11 @@ border-style: outset;</string>
                       </item>
                       <item>
                        <property name="text">
+                        <string>myCobot 280 for MUSE Pi</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
                         <string>myPalletizer 260 for M5</string>
                        </property>
                       </item>
