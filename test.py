@@ -7,9 +7,9 @@
 # @version : V1
 import time
 
-from pymycobot.mycobot import MyCobot
+from pymycobot import MyCobot280
 
-mc = MyCobot('COM5', debug=False)
+mc = MyCobot280('COM5', debug=False)
 
 point_angles = [[0.61, 45.87, -92.37, -41.3, 2.02, 9.58],  # init the point
                 [18.8, -7.91, -54.49, -23.02, -0.79, -14.76]]

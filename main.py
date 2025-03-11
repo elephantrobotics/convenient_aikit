@@ -98,9 +98,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.pump_x = 0
         # device
         self.M5 = ['myPalletizer 260 for M5', 'myCobot 280 for M5', 'ultraArm P340', 'mechArm 270 for M5']  # M5 robot
-        self.Pi = ['myCobot 280 for Pi', 'mechArm 270 for Pi', 'myCobot 280 for JN',
-                   'myPalletizer 260 for Pi']  # Pi robot
-        self.MUSE_Pi = ['myCobot 280 for MUSE Pi']
+        self.Pi = ['myCobot 280 for Pi', 'mechArm 270 for Pi', 'myCobot 280 for JN', 'myPalletizer 260 for Pi']  # Pi robot
+        self.RISC_V = ['myCobot 280 for RISC V']
 
         # angles to move
         self.move_angles = [
@@ -419,9 +418,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             """Switch the baud rate according to the device and initialize the corresponding variable"""
             # self.btn_status(True)
             value = self.comboBox_device.currentText()
-            if value in self.Pi or self.MUSE_Pi:
+            if value in self.Pi:
                 # self.comboBox_buad.clear()
                 # self.comboBox_buad.addItem('1000000')
+                self.comboBox_buad.setCurrentIndex(0)
+            elif value in self.RISC_V:
                 self.comboBox_buad.setCurrentIndex(0)
             else:
                 # self.comboBox_buad.clear()
@@ -436,7 +437,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             else:
                 self.widget_11.show()
                 self.widget_20.show()
-            if value in ['myCobot 280 for MUSE Pi']:
+            if value in ['myCobot 280 for RISC V']:
                 self.camera_edit.setText('20')
             else:
                 self.camera_edit.setText('0')
@@ -448,7 +449,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def device_coord(self):
         """Get points according to the device"""
         value = self.comboBox_device.currentText()
-        if value in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for MUSE Pi']:
+        if value in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for RISC V']:
             # yolov5 model file path
             self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
             # y-axis offset
@@ -1822,7 +1823,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 elif device == 'ultraArm P340':
                     _moved = threading.Thread(target=self.moved(x + 50, y + 60))
                     _moved.start()
-                elif device == 'myCobot 280 for MUSE Pi':
+                elif device == 'myCobot 280 for RISC V':
                     _moved = threading.Thread(target=self.moved(x - 5, y + 145))
                     _moved.start()
             else:
@@ -1920,7 +1921,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     [self.home_coords[0] + x, self.home_coords[1] - y, self.camera_z, 0], 50)
                                 time.sleep(3)
 
-                            elif device == 'myCobot 280 for MUSE Pi':
+                            elif device == 'myCobot 280 for RISC V':
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 178.99, -3.78,
                                      -62.9], 25, 1)
@@ -1964,7 +1965,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.set_coords([x, -y, self.camera_z, 0], 50)
                                 time.sleep(2)
 
-                            elif device in ['myCobot 280 for MUSE Pi']:
+                            elif device in ['myCobot 280 for RISC V']:
                                 self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 25, 1)
                                 self.check_position([x, y, self.camera_z, 179.87, -3.78, -62.75], 1)
 
@@ -1997,7 +1998,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.set_coords([x, -y, self.camera_z, 0], 50)
                                 time.sleep(2)
 
-                            elif device in ['myCobot 280 for MUSE Pi']:
+                            elif device in ['myCobot 280 for RISC V']:
                                 self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 25, 1)
                                 self.check_position([x, y, self.camera_z, 179.87, -3.78, -62.75], 1)
 
@@ -2030,7 +2031,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 # self.stop_wait(3)
                                 self.check_position([tmp[0], 5.39, -83.49, -10.37, -0.08, tmp[5]], 0)
 
-                            elif device in ['myCobot 280 for MUSE Pi']:
+                            elif device in ['myCobot 280 for RISC V']:
                                 self.myCobot.send_angles([tmp[0], -0.71, -74.49, -23.02, -0.79, tmp[5]], 25)
                                 self.check_position([tmp[0], -0.71, -74.49, -23.02, -0.79, tmp[5]], 0)
 
@@ -2055,7 +2056,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.myCobot.set_coords(self.move_coords[color], 40)
                         self.stop_wait(4)
 
-                    elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for MUSE Pi']:
+                    elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for RISC V']:
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 25)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
                     else:
@@ -2091,7 +2092,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             else:
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
-        elif self.comboBox_device.currentText() in self.MUSE_Pi:
+        elif self.comboBox_device.currentText() in self.RISC_V:
             from gpiozero.pins.lgpio import LGPIOFactory
             from gpiozero import Device, LED
             Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
@@ -2129,7 +2130,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.myCobot.set_basic_output(2, 1)
                 time.sleep(0.05)
 
-        elif self.comboBox_device.currentText() in self.MUSE_Pi:
+        elif self.comboBox_device.currentText() in self.RISC_V:
             from gpiozero.pins.lgpio import LGPIOFactory
             from gpiozero import Device, LED
             Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
