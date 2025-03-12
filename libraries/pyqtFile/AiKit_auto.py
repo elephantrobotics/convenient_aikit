@@ -938,7 +938,7 @@ class Ui_AiKit_UI(object):
         self.comboBox_device.setItemText(0, _translate("AiKit_UI", "myCobot 280 for Pi"))
         self.comboBox_device.setItemText(1, _translate("AiKit_UI", "myCobot 280 for JN"))
         self.comboBox_device.setItemText(2, _translate("AiKit_UI", "myCobot 280 for M5"))
-        self.comboBox_device.setItemText(3, _translate("AiKit_UI", "myCobot 280 for RISC V"))
+        self.comboBox_device.setItemText(3, _translate("AiKit_UI", "myCobot 280 for RISCV"))
         self.comboBox_device.setItemText(4, _translate("AiKit_UI", "myPalletizer 260 for M5"))
         self.comboBox_device.setItemText(5, _translate("AiKit_UI", "mechArm 270 for Pi"))
         self.comboBox_device.setItemText(6, _translate("AiKit_UI", "ultraArm P340"))
