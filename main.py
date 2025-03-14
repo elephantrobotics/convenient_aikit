@@ -34,7 +34,7 @@ if version.parse(current_verison) < version.parse(MIN_REQUIRE_VERSION):
             MIN_REQUIRE_VERSION, current_verison))
 else:
     print('pymycobot library version meets the requirements!')
-    from pymycobot.ultraArm import ultraArm
+    from pymycobot.ultraArmP340 import ultraArmP340
     from pymycobot.mycobot280 import MyCobot280
     from pymycobot.mecharm270 import MechArm270
     from pymycobot.mypalletizer260 import MyPalletizer260
@@ -558,7 +558,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
                 self.myCobot = MyPalletizer260(port, baud, timeout=0.2)
             elif device == 'ultraArm P340':
-                self.myCobot = ultraArm(port, baud, timeout=0.2)
+                self.myCobot = ultraArmP340(port, baud, timeout=0.2)
                 self.stop_wait(0.1)
                 zero = threading.Thread(target=self.go_zero)
                 zero.start()
