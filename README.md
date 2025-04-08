@@ -1,12 +1,32 @@
 # **AiKit UI Instructions**
 
-- **Applicable models and devices:** myPalletizer 260 for M5、myCobot 280 for M5、ultraArm P340、mechArm 270 for M5、myCobot 280 for Pi、mechArm 270 for Pi、myCobot 280 for JN、myPalletizer 260 for Pi
+- **Applicable models and devices:** 
+  - myPalletizer 260 for M5
+  - myCobot 280 for M5
+  - ultraArm P340
+  - mechArm 270 for M5
+  - myCobot 280 for Pi
+  - mechArm 270 for Pi
+  - myCobot 280 for JN
+  - myPalletizer 260 for Pi
+  - myCobot 280 RISCV
 
-## Requires environment
+## 一、Requires environment
 
 Raspberry Pi Ubuntu20.04 system、Windows 10 or Windows 11、Jetson Nano Ubuntu20.04 system
 
 ## python dependency package
+
+### 1. 普通机型设备
+   - myPalletizer 260 for M5
+   - myCobot 280 for M5
+   - ultraArm P340
+   - mechArm 270 for M5
+   - myCobot 280 for Pi
+   - mechArm 270 for Pi
+   - myCobot 280 for JN
+   - myPalletizer 260 for Pi
+
 
 使用前需确保系统已经安装以下第三方库，其中 `opencv-python`和 `opencv-contrib-python`必须指定安装 **4.6.0.66** 的版本，其他库原则上无需指定版本号。
 
@@ -27,13 +47,44 @@ pip install pyqt5
 
 ```
 
-## Install
+#### Install
 
 ```angular2html
 git clone https://github.com/elephantrobotics/AiKit_UI.git
 ```
 
-## **start method**
+### 2. RISCV机型
+   - myCobot 280 RISCV
+
+#### 创建虚拟环境
+
+```bash
+sudo apt install python3-virtualenv
+virtualenv elephantics-venv
+source elephantics-venv/bin/activate
+```
+
+#### 安装依赖项
+
+```bash
+sudo apt install libopenblas-dev
+```
+
+#### 安装
+
+```bash
+git clone https://github.com/elephantrobotics/AiKit_UI.git
+```
+
+#### 安装python依赖库
+
+```bash
+cd AiKit_UI/libraries/yolov8File
+pip install -r requirements.txt
+```
+
+
+## 二、start method
 
 path: Project file path
 
@@ -41,6 +92,8 @@ path: Project file path
 cd AiKit_UI
 python main.py
 ```
+
+>> **注意**： myCobot 280 RISCV机型的YOLO算法识别改用为YOLOv8，不再使用YOLOv5识别算法，当机型设备为RISCV时，算法下拉框列表只能选中yolov8,不可选中yolov5,yolov8的使用更加简单便捷，无需手动框选识别区域，可自动框选，使用方式与颜色识别一样。
 
 After the startup is successful, as shown in the figure below:<br>
 

@@ -7,6 +7,7 @@ import threading
 import time
 import traceback
 import platform
+from collections import deque
 
 import cv2
 import numpy as np
@@ -20,6 +21,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QWidget, QM
 
 from libraries.log import logfile
 from libraries.pyqtFile.AiKit_auto import Ui_AiKit_UI as AiKit_window
+from libraries.yolov8File.yolov8_detect import YOLODetection
 import pymycobot
 from packaging import version
 
@@ -87,6 +89,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.current_coord_btn.clicked.connect(self.get_current_coord_btnClick)  # get the robot coords
         self.language_btn.clicked.connect(self.set_language)  # set language
         self.get_serial_port_list()
+        self.buad_choose()
         self.offset_change()
         self.btn_status()
         self.device_coord()
@@ -164,6 +167,27 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.mog = cv2.bgsegm.createBackgroundSubtractorMOG()
         # yolov5 model file path
         self.modelWeights = libraries_path + '/yolov5File/yolov5s.onnx'
+        # yolov8 model and label file path (only for 280 RISCV)
+        self.yolov8_model_path = libraries_path + '/yolov8File/yolov8n.q.onnx'
+        self.yolov8_label_path = libraries_path + '/yolov8File/yolov8_label.txt'
+        self.yolov8_detect = YOLODetection(self.yolov8_model_path, self.yolov8_label_path)
+
+        self.is_picking = False # 初始化是否正在抓取标志-yolov8
+        self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
+        self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
+
+        self.mycobot_riscv = open("/sys/devices/soc0/machine").read().strip() == "spacemit k1-x RV4B board"
+        if self.mycobot_riscv:
+            from gpiozero.pins.lgpio import LGPIOFactory
+            from gpiozero import Device, LED
+            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
+            # 初始化 GPIO 控制的设备
+            self.pump = LED(71)  # 气泵
+            self.valve = LED(72)  # 阀门
+            self.pump.on()  # 关闭泵
+            time.sleep(0.05)
+            self.valve.on()  # 打开阀门
+            time.sleep(1)
 
         self._init_ = 20
         self.init_num = 0
@@ -416,6 +440,28 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 for p in plist:
                     self.comboBox_port.addItem(p)
 
+    def set_comboBox_options_mutually_exclusive(self, comboBox, enable_text: str, disable_text: str):
+        model = comboBox.model()
+
+        # 启用目标选项
+        enable_index = comboBox.findText(enable_text)
+        if enable_index != -1:
+            enable_item = model.item(enable_index)
+            enable_item.setEnabled(True)
+
+        # 禁用另一个选项
+        disable_index = comboBox.findText(disable_text)
+        if disable_index != -1:
+            disable_item = model.item(disable_index)
+            disable_item.setEnabled(False)
+
+        # 如果当前选中的是被禁用项，则切换到启用项
+        current_index = comboBox.currentIndex()
+        current_item = model.item(current_index)
+        if current_item is not None and not current_item.isEnabled():
+            if enable_index != -1:
+                comboBox.setCurrentIndex(enable_index)
+
     def buad_choose(self):
         try:
             """Switch the baud rate according to the device and initialize the corresponding variable"""
@@ -442,8 +488,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.widget_20.show()
             if value in ['myCobot 280 for RISCV']:
                 self.camera_edit.setText('20')
+
+                self.set_comboBox_options_mutually_exclusive(self.comboBox_function, 'yolov8', 'yolov5')
+
             else:
                 self.camera_edit.setText('0')
+
+                self.set_comboBox_options_mutually_exclusive(self.comboBox_function, 'yolov5', 'yolov8')
 
         except Exception as e:
             e = traceback.format_exc()
@@ -1258,6 +1309,158 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     except Exception as e:
                         e = traceback.format_exc()
                         self.loger.error('yolov5 Exception:' + str(e))
+                elif func == 'yolov8':
+                    try:
+                        QApplication.processEvents()
+                        self.prompts_lab.clear()
+                        # read camera
+                        _, frame = self.cap.read()
+                        # deal img
+                        frame = self.transform_frame(frame)
+                        if self._init_ > 0:
+                            self._init_ -= 1
+                            if self.camera_status:
+                                show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                         QtGui.QImage.Format_RGB888)
+                                self.show_camera_lab.setPixmap(
+                                    QtGui.QPixmap.fromImage(showImage))
+                            continue
+
+                        # calculate the parameters of camera clipping
+                        if self.init_num < 20:
+                            if self.get_calculate_params(frame) is None:
+                                if self.camera_status:
+                                    show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                    showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                             QtGui.QImage.Format_RGB888)
+                                    self.show_camera_lab.setPixmap(
+                                        QtGui.QPixmap.fromImage(showImage))
+                                continue
+                            else:
+                                x1, x2, y1, y2 = self.get_calculate_params(frame)
+                                self.draw_marker(frame, x1, y1)
+                                self.draw_marker(frame, x2, y2)
+                                self.sum_x1 += x1
+                                self.sum_x2 += x2
+                                self.sum_y1 += y1
+                                self.sum_y2 += y2
+                                self.init_num += 1
+                                continue
+                        elif self.init_num == 20:
+                            self.set_cut_params(
+                                (self.sum_x1) / 20.0,
+                                (self.sum_y1) / 20.0,
+                                (self.sum_x2) / 20.0,
+                                (self.sum_y2) / 20.0,
+                            )
+                            self.sum_x1 = self.sum_x2 = self.sum_y1 = self.sum_y2 = 0
+                            self.init_num += 1
+                            continue
+
+                        # calculate params of the coords between cube and mycobot
+                        if self.nparams < 10:
+                            if self.get_calculate_params(frame) is None:
+                                if self.camera_status:
+                                    show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                    showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                             QtGui.QImage.Format_RGB888)
+                                    self.show_camera_lab.setPixmap(
+                                        QtGui.QPixmap.fromImage(showImage))
+                                continue
+                            else:
+                                x1, x2, y1, y2 = self.get_calculate_params(frame)
+                                self.draw_marker(frame, x1, y1)
+                                self.draw_marker(frame, x2, y2)
+                                self.sum_x1 += x1
+                                self.sum_x2 += x2
+                                self.sum_y1 += y1
+                                self.sum_y2 += y2
+                                self.nparams += 1
+                                continue
+                        elif self.nparams == 10:
+                            self.nparams += 1
+                            # calculate and set params of calculating real coord between cube and mycobot
+                            self.set_params(
+                                (self.sum_x1 + self.sum_x2) / 20.0,
+                                (self.sum_y1 + self.sum_y2) / 20.0,
+                                abs(self.sum_x1 - self.sum_x2) / 10.0 +
+                                abs(self.sum_y1 - self.sum_y2) / 10.0
+                            )
+                            print('ok, start yolov8 recognition.....')
+                            continue
+                        if self.cooldown_counter > 0:
+                            self.cooldown_counter -= 1
+                            if self.camera_status:
+                                show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                         QtGui.QImage.Format_RGB888)
+                                self.show_camera_lab.setPixmap(
+                                    QtGui.QPixmap.fromImage(showImage))
+                            continue
+
+                        detect_result = None
+                        if self.discern_status:
+                            detect_result = self.yolov8_detect.infer(frame)
+                        if detect_result is None:
+                            if self.camera_status:
+                                show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                         QtGui.QImage.Format_RGB888)
+                                self.show_camera_lab.setPixmap(
+                                    QtGui.QPixmap.fromImage(showImage))
+                            continue
+                        else:
+                            x, y, class_ids, input_img = detect_result
+                            # 根据类别索引范围设置 detect.color
+                            for class_id in class_ids:
+                                if 0 <= class_id <= 19:
+                                    self.color = 1
+                                elif 20 <= class_id <= 39:
+                                    self.color = 2
+                                elif 40 <= class_id <= 59:
+                                    self.color = 3
+                                elif 60 <= class_id <= 79:
+                                    self.color = 4
+                            self.detect_history.append((x, y))
+                            if len(self.detect_history) == 5:
+                                dx = max([abs(self.detect_history[i][0] - self.detect_history[i - 1][0]) for i in range(1, 5)])
+                                dy = max([abs(self.detect_history[i][1] - self.detect_history[i - 1][1]) for i in range(1, 5)])
+
+                                if dx < 5 and dy < 5:  # 坐标变化小，认为物体静止
+                                    if not self.is_picking and self.cooldown_counter == 0:
+                                        print("物体稳定，准备抓取")
+                                        # calculate real coord between cube and mycobot
+                                        self.real_x, self.real_y = self.get_position(x, y)
+                                        self.is_picking = True
+
+                                        def pick_task():
+                                            if self.crawl_status:
+                                                self.decide_move(self.real_x, self.real_y, self.color)
+                                                # global is_picking, cooldown_counter
+                                                self.is_picking = False
+                                                self.cooldown_counter = 20  # 设置冷却帧数，防止连续触发
+
+                                        threading.Thread(target=pick_task).start()
+                                else:
+                                    # print("物体未稳定，等待...")
+                                    pass
+                            else:
+                                pass
+                                # print("帧数不足，继续观察中...")
+
+                            if self.camera_status:
+                                show = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
+                                showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
+                                                         QtGui.QImage.Format_RGB888)
+                                self.show_camera_lab.setPixmap(QtGui.QPixmap.fromImage(showImage))
+
+                        if self.cooldown_counter > 0:
+                            self.cooldown_counter -= 1
+
+                    except Exception as e:
+                        e = traceback.format_exc()
+                        self.loger.error('Abnormal yolov8 recognition:' + str(e))
                 else:
                     try:
                         QApplication.processEvents()
@@ -1821,7 +2024,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def decide_move(self, x, y, color):
         device = self.comboBox_device.currentText()
-        if device == 'yolov5':
+        if self.comboBox_function.currentText() == 'yolov5':
+            self.cache_x = self.cache_y = 0
+            _moved = threading.Thread(target=self.moved(x, y))
+            _moved.start()
+            return
+        if self.comboBox_function.currentText() == 'yolov8':
             self.cache_x = self.cache_y = 0
             _moved = threading.Thread(target=self.moved(x, y))
             _moved.start()
@@ -1935,7 +2143,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 data = [x, y, self.camera_z, 178.99, -3.78, 62.9]
                                 self.check_position(data, 1)
 
-                        elif func in ['shape recognition', 'Keypoints', '形状识别', '特征点识别', 'yolov5']:
+                        elif func in ['shape recognition', 'Keypoints', '形状识别', '特征点识别', 'yolov5', 'yolov8']:
                             if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
                                 self.myCobot.send_coords([x, y, 103, 0], 20, 0)
                                 self.stop_wait(2.5)
@@ -2092,17 +2300,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
         elif self.comboBox_device.currentText() in self.RISCV:
-            from gpiozero.pins.lgpio import LGPIOFactory
-            from gpiozero import Device, LED
-            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
-            # 初始化 GPIO 控制的设备
-            pump = LED(71)  # 气泵
-            valve = LED(72)  # 阀门
-            pump.on()  # 关闭泵
-            time.sleep(0.05)
-            valve.on()  # 打开阀门
-            time.sleep(1)
-            valve.off()  # 关闭阀门
+            self.pump.on()
+            self.valve.off()  # 关闭阀门
             time.sleep(0.05)
         else:
             import RPi.GPIO as GPIO
@@ -2130,19 +2329,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 time.sleep(0.05)
 
         elif self.comboBox_device.currentText() in self.RISCV:
-            from gpiozero.pins.lgpio import LGPIOFactory
-            from gpiozero import Device, LED
-            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
-            # 初始化 GPIO 控制的设备
-            pump = LED(71)  # 使用 LED 类控制 GPIO 70
-            valve = LED(72)  # 使用 LED 类控制 GPIO 70
-            # 关闭电磁阀
-            pump.off()
-            time.sleep(0.05)
-            # 打开泄气阀
-            valve.off()
-            time.sleep(1)
-            valve.on()
+            self.pump.off()
+            self.valve.on()
             time.sleep(0.05)
         else:
             import RPi.GPIO as GPIO
@@ -2338,8 +2526,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if msg is not None:
             if self.language == 1:
                 self.prompts_lab.setText('Prmpt:\n' + msg)
+                QApplication.processEvents()
             else:
                 self.prompts_lab.setText('提示:\n' + msg)
+                QApplication.processEvents()
 
     def combox_func_checked(self):
         try:
@@ -2417,10 +2607,20 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 '颜色识别': 'color',
                 'Keypoints': 'feature',
                 '特征点识别': 'feature',
-                'yolov5': 'yolov5'
+                'yolov5': 'yolov5',
+                'yolov8': 'yolov8'
             }
             if func in mapping:
                 offset_file = f'/offset/{device}_{mapping[func]}.txt'
+                full_path = libraries_path + offset_file
+                if not os.path.exists(full_path):
+                    # self.loger.warning(f'找不到 offset 文件：{full_path}')
+                    # 可选：如果文件不存在，自动切换回 yolov5
+                    fallback_func = 'yolov5'
+                    fallback_index = self.comboBox_function.findText(fallback_func)
+                    if fallback_index != -1:
+                        self.comboBox_function.setCurrentIndex(fallback_index)
+                    return
                 with open(libraries_path + offset_file, "r", encoding="utf-8") as f:
                     offset = f.read().splitlines()
                 # self.loger.info(offset)
@@ -2454,7 +2654,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 '颜色识别': 'color',
                 'Keypoints': 'feature',
                 '特征点识别': 'feature',
-                'yolov5': 'yolov5'
+                'yolov5': 'yolov5',
+                'yolov8': 'yolov8'
             }
             if x and x.lstrip('-').isdigit() and -100 < int(x) < 300 and y and y.lstrip(
                     '-').isdigit() and -165 < int(y) < 165 and z and z.lstrip(
