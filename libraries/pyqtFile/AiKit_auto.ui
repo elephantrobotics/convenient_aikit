@@ -1367,6 +1367,11 @@ border-style: outset;</string>
                      <string>yolov5</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>yolov8</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                 </layout>
