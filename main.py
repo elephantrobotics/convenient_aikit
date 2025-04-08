@@ -176,6 +176,19 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
         self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
 
+        self.mycobot_riscv = open("/sys/devices/soc0/machine").read().strip() == "spacemit k1-x RV4B board"
+        if self.mycobot_riscv:
+            from gpiozero.pins.lgpio import LGPIOFactory
+            from gpiozero import Device, LED
+            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
+            # 初始化 GPIO 控制的设备
+            self.pump = LED(71)  # 气泵
+            self.valve = LED(72)  # 阀门
+            self.pump.on()  # 关闭泵
+            time.sleep(0.05)
+            self.valve.on()  # 打开阀门
+            time.sleep(1)
+
         self._init_ = 20
         self.init_num = 0
         self.nparams = 0
@@ -2017,7 +2030,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             _moved.start()
             return
         if self.comboBox_function.currentText() == 'yolov8':
-            print('yolov8-----start')
             self.cache_x = self.cache_y = 0
             _moved = threading.Thread(target=self.moved(x, y))
             _moved.start()
@@ -2288,17 +2300,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
         elif self.comboBox_device.currentText() in self.RISCV:
-            from gpiozero.pins.lgpio import LGPIOFactory
-            from gpiozero import Device, LED
-            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
-            # 初始化 GPIO 控制的设备
-            pump = LED(71)  # 气泵
-            valve = LED(72)  # 阀门
-            pump.on()  # 关闭泵
-            time.sleep(0.05)
-            valve.on()  # 打开阀门
-            time.sleep(1)
-            valve.off()  # 关闭阀门
+            self.pump.on()
+            self.valve.off()  # 关闭阀门
             time.sleep(0.05)
         else:
             import RPi.GPIO as GPIO
@@ -2326,19 +2329,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 time.sleep(0.05)
 
         elif self.comboBox_device.currentText() in self.RISCV:
-            from gpiozero.pins.lgpio import LGPIOFactory
-            from gpiozero import Device, LED
-            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
-            # 初始化 GPIO 控制的设备
-            pump = LED(71)  # 使用 LED 类控制 GPIO 70
-            valve = LED(72)  # 使用 LED 类控制 GPIO 70
-            # 关闭电磁阀
-            pump.off()
-            time.sleep(0.05)
-            # 打开泄气阀
-            valve.off()
-            time.sleep(1)
-            valve.on()
+            self.pump.off()
+            self.valve.on()
             time.sleep(0.05)
         else:
             import RPi.GPIO as GPIO
@@ -2534,8 +2526,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if msg is not None:
             if self.language == 1:
                 self.prompts_lab.setText('Prmpt:\n' + msg)
+                QApplication.processEvents()
             else:
                 self.prompts_lab.setText('提示:\n' + msg)
+                QApplication.processEvents()
 
     def combox_func_checked(self):
         try:
