@@ -21,7 +21,6 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QInputDialog, QWidget, QM
 
 from libraries.log import logfile
 from libraries.pyqtFile.AiKit_auto import Ui_AiKit_UI as AiKit_window
-from libraries.yolov8File.yolov8_detect import YOLODetection
 import pymycobot
 from packaging import version
 
@@ -170,24 +169,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         # yolov8 model and label file path (only for 280 RISCV)
         self.yolov8_model_path = libraries_path + '/yolov8File/yolov8n.q.onnx'
         self.yolov8_label_path = libraries_path + '/yolov8File/yolov8_label.txt'
-        self.yolov8_detect = YOLODetection(self.yolov8_model_path, self.yolov8_label_path)
+        self.yolov8_detect = None
 
         self.is_picking = False # 初始化是否正在抓取标志-yolov8
         self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
         self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
 
-        self.mycobot_riscv = open("/sys/devices/soc0/machine").read().strip() == "spacemit k1-x RV4B board"
-        if self.mycobot_riscv:
-            from gpiozero.pins.lgpio import LGPIOFactory
-            from gpiozero import Device, LED
-            Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
-            # 初始化 GPIO 控制的设备
-            self.pump = LED(71)  # 气泵
-            self.valve = LED(72)  # 阀门
-            self.pump.on()  # 关闭泵
-            time.sleep(0.05)
-            self.valve.on()  # 打开阀门
-            time.sleep(1)
+        self.pump = None
+        self.valve =None
+
 
         self._init_ = 20
         self.init_num = 0
@@ -490,6 +480,19 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.camera_edit.setText('20')
 
                 self.set_comboBox_options_mutually_exclusive(self.comboBox_function, 'yolov8', 'yolov5')
+                # self.mycobot_riscv = open("/sys/devices/soc0/machine").read().strip() == "spacemit k1-x RV4B board"
+                from libraries.yolov8File.yolov8_detect import YOLODetection
+                self.yolov8_detect = YOLODetection(self.yolov8_model_path, self.yolov8_label_path)
+                from gpiozero.pins.lgpio import LGPIOFactory
+                from gpiozero import Device, LED
+                Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
+                # 初始化 GPIO 控制的设备
+                self.pump = LED(71)  # 气泵
+                self.valve = LED(72)  # 阀门
+                self.pump.on()  # 关闭泵
+                time.sleep(0.05)
+                self.valve.on()  # 打开阀门
+                time.sleep(1)
 
             else:
                 self.camera_edit.setText('0')
