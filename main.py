@@ -175,7 +175,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
         self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
 
-        self.pump = None
         self.valve =None
 
 
@@ -487,12 +486,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 from gpiozero import Device, LED
                 Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
                 # 初始化 GPIO 控制的设备
-                self.pump = LED(71)  # 气泵
                 self.valve = LED(72)  # 阀门
-                self.pump.on()  # 关闭泵
-                time.sleep(0.05)
-                self.valve.on()  # 打开阀门
-                time.sleep(1)
 
             else:
                 self.camera_edit.setText('0')
@@ -2303,7 +2297,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
         elif self.comboBox_device.currentText() in self.RISCV:
-            self.pump.on()
             self.valve.off()  # 关闭阀门
             time.sleep(0.05)
         else:
@@ -2332,7 +2325,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 time.sleep(0.05)
 
         elif self.comboBox_device.currentText() in self.RISCV:
-            self.pump.off()
             self.valve.on()
             time.sleep(0.05)
         else:
