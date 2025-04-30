@@ -1435,11 +1435,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                         self.is_picking = True
 
                                         def pick_task():
-                                            if self.crawl_status:
-                                                self.decide_move(self.real_x, self.real_y, self.color)
-                                                # global is_picking, cooldown_counter
-                                                self.is_picking = False
-                                                self.cooldown_counter = 20  # 设置冷却帧数，防止连续触发
+                                            # if self.crawl_status:
+                                            self.decide_move(self.real_x, self.real_y, self.color)
+                                            # global is_picking, cooldown_counter
+                                            self.is_picking = False
+                                            self.cooldown_counter = 20  # 设置冷却帧数，防止连续触发
 
                                         threading.Thread(target=pick_task).start()
                                 else:
@@ -2086,6 +2086,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def moved(self, x, y):
         try:
             # print('xy',x, y)
+            # 机械臂执行过程中，禁用某些控件编辑
+            self.controls_disable_place_offset(False)
             self.is_crawl = True
             while self.is_pick:
                 QApplication.processEvents()
@@ -2115,8 +2117,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 if self.is_crawl:
                     if self.crawl_status:
                         self.is_crawl = False
-                        # 机械臂执行过程中，禁用某些控件编辑
-                        self.controls_disable_place_offset(False)
                         if device == 'ultraArm P340':
                             self.myCobot.set_angles(self.move_angles[1], 20)
                             self.stop_wait(3)
@@ -2297,6 +2297,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                     # close pump
                     self.pump_off()
+                    self.stop_wait(2)
 
                     # self.stop_wait(4)
                     if device == 'ultraArm P340':
@@ -2417,6 +2418,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     return
             if not self.camera_status:
                 self.open_camera()
+            if self.language == 1:
+                self.prompts('Put the image you want to recognize into the camera area, and click the Cut button.')
+            else:
+                self.prompts('将要识别的图像放入相机区域，然后单击剪切按钮。')
             while self.camera_status:
                 while self.camera_status:
                     QApplication.processEvents()
@@ -2551,10 +2556,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if msg is not None:
             if self.language == 1:
                 self.prompts_lab.setText('Prmpt:\n' + msg)
-                QApplication.processEvents()
+                # QApplication.processEvents()
             else:
                 self.prompts_lab.setText('提示:\n' + msg)
-                QApplication.processEvents()
+        QApplication.processEvents()
 
     def combox_func_checked(self):
         try:
