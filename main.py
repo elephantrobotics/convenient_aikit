@@ -1665,6 +1665,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         try:
             """back to initial position"""
             self.is_pick = False
+            self.controls_disable_place_offset(True)
             self.pump_off()
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_angles(self.move_angles[0], 30)
