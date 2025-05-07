@@ -175,7 +175,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
         self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
 
-        self.pump = None
         self.valve =None
 
 
@@ -201,6 +200,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.BLACK = (0, 0, 0)
         self.BLUE = (255, 178, 50)
         self.YELLOW = (0, 255, 255)
+
+        self.init_point_done = False  # 标志位：是否点击过初始点按钮
 
     # initialization status
     def _init_status(self):
@@ -487,12 +488,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 from gpiozero import Device, LED
                 Device.pin_factory = LGPIOFactory(chip=0)  # 显式指定/dev/gpiochip0
                 # 初始化 GPIO 控制的设备
-                self.pump = LED(71)  # 气泵
                 self.valve = LED(72)  # 阀门
-                self.pump.on()  # 关闭泵
-                time.sleep(0.05)
-                self.valve.on()  # 打开阀门
-                time.sleep(1)
+                self.valve.on()
 
             else:
                 self.camera_edit.setText('0')
@@ -1438,11 +1435,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                         self.is_picking = True
 
                                         def pick_task():
-                                            if self.crawl_status:
-                                                self.decide_move(self.real_x, self.real_y, self.color)
-                                                # global is_picking, cooldown_counter
-                                                self.is_picking = False
-                                                self.cooldown_counter = 20  # 设置冷却帧数，防止连续触发
+                                            # if self.crawl_status:
+                                            self.decide_move(self.real_x, self.real_y, self.color)
+                                            # global is_picking, cooldown_counter
+                                            self.is_picking = False
+                                            self.cooldown_counter = 20  # 设置冷却帧数，防止连续触发
 
                                         threading.Thread(target=pick_task).start()
                                 else:
@@ -1601,6 +1598,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def crawl_func(self):
         """Turn crawling on/off"""
+        if not self.init_point_done:
+            if self.language == 1:
+                QMessageBox.warning(self, 'prompt', 'Please return to the initial point first！')
+            else:
+                QMessageBox.warning(self, '警告', '请先回到初始点！')
+            return
         if self.crawl_status:
             self.crawl_status = False
             self.btn_color(self.crawl_btn, 'blue')
@@ -1639,7 +1642,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             start_time = time.time()
             while True:
                 # 超时检测
-                if (time.time() - start_time) >= 3:
+                if (time.time() - start_time) >= 5:
                     break
                 res = self.myCobot.is_in_position(data, ids)
                 # print('res', res, data)
@@ -1662,6 +1665,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         try:
             """back to initial position"""
             self.is_pick = False
+            self.controls_disable_place_offset(True)
             self.pump_off()
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_angles(self.move_angles[0], 30)
@@ -1673,6 +1677,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.comboBox_function.currentText() == 'yolov5':
                 self.yolov5_is_not_pick = False
                 self.is_yolov5_cut_btn_clicked = False
+            self.init_point_done = True
+            if self.language == 1:
+                msg_box = QMessageBox(QMessageBox.Information, 'prompt', 'Returned to initial point successfully！')
+            else:
+                msg_box = QMessageBox(QMessageBox.Information, '提示', '成功返回初始点！')
+            msg_box.exec_()
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
@@ -2025,6 +2035,16 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         else:
             return None
 
+    def controls_disable_place_offset(self, status):
+        """禁用/打开 ABCD四个放置点按钮、XYZ坐标偏移量修改"""
+        controls_list = [self.radioButton_A, self.radioButton_B, self.radioButton_C, self.radioButton_D, self.xoffset_edit, self.yoffset_edit, self.zoffset_edit]
+        if status:
+            for b in controls_list:
+                b.setEnabled(True)
+        else:
+            for b in controls_list:
+                b.setEnabled(False)
+
     def decide_move(self, x, y, color):
         device = self.comboBox_device.currentText()
         if self.comboBox_function.currentText() == 'yolov5':
@@ -2067,6 +2087,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def moved(self, x, y):
         try:
             # print('xy',x, y)
+            # 机械臂执行过程中，禁用某些控件编辑
+            self.controls_disable_place_offset(False)
             self.is_crawl = True
             while self.is_pick:
                 QApplication.processEvents()
@@ -2092,6 +2114,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                     self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
+
                 if self.is_crawl:
                     if self.crawl_status:
                         self.is_crawl = False
@@ -2100,7 +2123,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             self.stop_wait(3)
                         else:
                             self.myCobot.send_angles(self.move_angles[1], 50)
-                            # self.check_position(self.move_angles[1], 0)
+                            self.check_position(self.move_angles[1], 0)
                         # send coordinates to move mycobot
                         if func == 'QR code recognition' or func == '二维码识别':
                             if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
@@ -2113,11 +2136,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.stop_wait(2.5)
                             elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
                                 self.myCobot.send_coords(
-                                    [self.home_coords[0] + x, self.home_coords[1] + y, 150, 172.36, 5.36, 125.58], 30,
+                                    [self.home_coords[0] + x, self.home_coords[1] + y, 150, 172.36, 5.36, 125.58], 70,
                                     1)
                                 self.myCobot.send_coords(
                                     [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
-                                     125.58], 30, 1)
+                                     125.58], 70, 1)
                                 data = [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
                                         125.58]
                                 self.check_position(data, 1)
@@ -2142,7 +2165,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 time.sleep(3)
 
                             elif device == 'myCobot 280 for RISCV':
-                                self.myCobot.send_coords([x, y, self.camera_z, 178.99, -3.78, -62.9], 70, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, 178.99, -3.78, -62.9], 90, 1)
                                 data = [x, y, self.camera_z, 178.99, -3.78, 62.9]
                                 self.check_position(data, 1)
 
@@ -2153,10 +2176,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.send_coords([x, y, self.camera_z, 0], 20, 0)
                                 self.stop_wait(1.5)
                             elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
-                                self.myCobot.send_coords([x, y, 110, -176.1, 2.4, -125.1], 60,
+                                self.myCobot.send_coords([x, y, 110, -176.1, 2.4, -125.1], 70,
                                                          1)  # usb :rx,ry,rz -173.3, -5.48, -57.9
                                 # self.stop_wait(3)
-                                self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 60, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 70, 1)
                                 # self.stop_wait(3)
                                 self.check_position([x, y, self.camera_z, -176.1, 2.4, -125.1], 1)
 
@@ -2178,7 +2201,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 time.sleep(2)
 
                             elif device in ['myCobot 280 for RISCV']:
-                                self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 60, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 90, 1)
                                 self.check_position([x, y, self.camera_z, 179.87, -3.78, -62.75], 1)
 
                         else:
@@ -2189,8 +2212,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.stop_wait(1.5)
 
                             elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
-                                self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 60, 1)
-                                self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 60, 1)
+                                self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 70, 1)
                                 self.check_position([x, y, self.camera_z, -176.1, 2.4, -125.1], 1)
 
                             elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5']:
@@ -2211,7 +2234,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 time.sleep(2)
 
                             elif device in ['myCobot 280 for RISCV']:
-                                self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 70, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 90, 1)
                                 self.check_position([x, y, self.camera_z, 179.87, -3.78, -62.75], 1)
 
                         # open pump
@@ -2270,11 +2293,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
                     else:
-                        self.myCobot.send_coords(self.move_coords[color], 40, 0)
+                        self.myCobot.send_coords(self.move_coords[color], 50, 0)
                         self.stop_wait(4)
 
                     # close pump
                     self.pump_off()
+                    self.stop_wait(2)
 
                     # self.stop_wait(4)
                     if device == 'ultraArm P340':
@@ -2287,6 +2311,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.btn_color(self.place_btn, 'blue')
                     self.num = 0
                     self.real_sx = self.real_sy = 0
+                    # 运动结束后启用某些控件编辑
+                    self.controls_disable_place_offset(True)
                 time.sleep(0.1)
             if self.auto_mode_status:
                 self.is_pick = True
@@ -2303,7 +2329,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.myCobot.set_basic_output(5, 0)
             time.sleep(0.05)
         elif self.comboBox_device.currentText() in self.RISCV:
-            self.pump.on()
             self.valve.off()  # 关闭阀门
             time.sleep(0.05)
         else:
@@ -2332,7 +2357,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 time.sleep(0.05)
 
         elif self.comboBox_device.currentText() in self.RISCV:
-            self.pump.off()
             self.valve.on()
             time.sleep(0.05)
         else:
@@ -2395,6 +2419,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     return
             if not self.camera_status:
                 self.open_camera()
+            if self.language == 1:
+                self.prompts('Put the image you want to recognize into the camera area, and click the Cut button.')
+            else:
+                self.prompts('将要识别的图像放入相机区域，然后单击剪切按钮。')
             while self.camera_status:
                 while self.camera_status:
                     QApplication.processEvents()
@@ -2529,10 +2557,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if msg is not None:
             if self.language == 1:
                 self.prompts_lab.setText('Prmpt:\n' + msg)
-                QApplication.processEvents()
+                # QApplication.processEvents()
             else:
                 self.prompts_lab.setText('提示:\n' + msg)
-                QApplication.processEvents()
+        QApplication.processEvents()
 
     def combox_func_checked(self):
         try:
@@ -2575,6 +2603,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def auto_mode(self):
         """automated operation"""
         btn = [self.discern_btn, self.crawl_btn, self.place_btn]
+        if not self.init_point_done:
+            if self.language == 1:
+                QMessageBox.warning(self, 'prompt', 'Please return to the initial point first！')
+            else:
+                QMessageBox.warning(self, '警告', '请先回到初始点！')
+            return
         if self.auto_mode_status:
             self.auto_mode_status = False
             self.discern_status = False
