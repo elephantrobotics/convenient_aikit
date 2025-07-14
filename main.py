@@ -96,6 +96,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._init_tooltip()
         self.combox_func_checked()
 
+        self.init_point_done = False  # 标志位：是否点击过初始点按钮
+
     # Initialize variables
     def _init_variable(self):
         self.pump_y = 0
@@ -171,12 +173,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.yolov8_label_path = libraries_path + '/yolov8File/yolov8_label.txt'
         self.yolov8_detect = None
 
-        self.is_picking = False # 初始化是否正在抓取标志-yolov8
-        self.cooldown_counter = 0 # 新增冷却计数器（单位：帧）- yolov8
-        self.detect_history = deque(maxlen=5) # 存放最近5帧识别结果 - yolov8
+        self.is_picking = False  # 初始化是否正在抓取标志-yolov8
+        self.cooldown_counter = 0  # 新增冷却计数器（单位：帧）- yolov8
+        self.detect_history = deque(maxlen=5)  # 存放最近5帧识别结果 - yolov8
 
-        self.valve =None
-
+        self.valve = None
 
         self._init_ = 20
         self.init_num = 0
@@ -200,8 +201,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.BLACK = (0, 0, 0)
         self.BLUE = (255, 178, 50)
         self.YELLOW = (0, 255, 255)
-
-        self.init_point_done = False  # 标志位：是否点击过初始点按钮
 
     # initialization status
     def _init_status(self):
@@ -520,11 +519,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [115.8, 177.3, 210.6, 178.06, -0.92, -6.11],  # A Sorting area
                 [-6.9, 173.2, 201.5, 179.93, 0.63, 33.83],  # B Sorting area
             ]
+            # self.new_move_coords_to_angles = [
+            #     [-24.87, -2.98, -92.46, 5.88, -3.07, -8.34],  # D Sorting area
+            #     [-13.71, -52.11, -25.4, -4.57, -3.86, -7.73],  # C Sorting area
+            #     [74.0, -18.1, -64.24, -9.84, -0.79, -9.49],  # A Sorting area
+            #     [112.93, 3.16, -96.32, 0.87, 0.26, -9.75],  # B Sorting area
+            # ]
             self.new_move_coords_to_angles = [
-                [-24.87, -2.98, -92.46, 5.88, -3.07, -8.34],  # D Sorting area
-                [-13.71, -52.11, -25.4, -4.57, -3.86, -7.73],  # C Sorting area
-                [74.0, -18.1, -64.24, -9.84, -0.79, -9.49],  # A Sorting area
-                [112.93, 3.16, -96.32, 0.87, 0.26, -9.75],  # B Sorting area
+                [-39.99, -10.28, -84.99, 4.83, 0.08, -7.99],  # D Sorting area
+                [-22.93, -52.82, -26.45, -5.53, 0.08, -7.91],  # C Sorting area
+                [49.13, -53.61, -27.15, -6.41, 0.08, -7.73],  # A Sorting area
+                [73.38, 0.35, -90.26, 7.2, 0.08, -9.75],  # B Sorting area
             ]
             self.home_coords = [145.0, -65.5, 280.1, 178.99, 7.67, -179.9]
         elif value == 'myCobot 280 for JN':
@@ -627,6 +632,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     self.myCobot.set_fresh_mode(0)
             self.stop_wait(0.2)
             self.loger.info("connection succeeded !")
+            self.check_if_at_origin_point()
             if device != 'ultraArm P340':
                 self.btn_status(True)
             if self.language == 1:
@@ -762,6 +768,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 return
             self.prompts_lab.clear()
             self.yolov5_count = False
+            self.yolov5_cut_btn.setEnabled(True)
             if self.language == 1:
                 self.add_img_btn.setText('Cut')
                 self.open_camera_btn.setText('Close')
@@ -794,6 +801,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.cap.release()  # free video stream
             self.camera_edit.setEnabled(True)
             self.show_camera_lab.clear()  # Clear the video display area
+            self.prompts_lab.setText('')
+            self.yolov5_cut_btn.setEnabled(False)
             if self.language == 1:
                 self.open_camera_btn.setText('Open')
             else:
@@ -1085,40 +1094,53 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             corners, ids, rejectImaPoint = cv2.aruco.detectMarkers(
                                 gray, self.aruco_dict, parameters=self.aruco_params
                             )
-                            if len(corners) > 0:
-                                if ids is not None:
-                                    ret = cv2.aruco.estimatePoseSingleMarkers(
-                                        corners, 0.03, self.camera_matrix, self.dist_coeffs
-                                    )
-                                    # rvec:rotation offset,tvec:translation deviator
-                                    (rvec, tvec) = (ret[0], ret[1])
-                                    (rvec - tvec).any()
-                                    xyz = tvec[0, 0, :]
-                                    # calculate the coordinates of the aruco relative to the pump
-                                    if self.comboBox_device.currentText() in ["myCobot 280 for RISCV",
-                                                                              "myCobot 280 for M5",
-                                                                              "myCobot 280 for JN",
-                                                                              "myCobot 280 for Pi"]:
-                                        xyz = [round(xyz[0] * 1000 + int(self.yoffset_edit.text()), 2),
-                                               round(xyz[1] * 1000 + int(self.xoffset_edit.text()), 2),
-                                               round(xyz[2] * 1000, 2)]
-                                    else:
-                                        xyz = [round(xyz[0] * 1000 + self.pump_y + int(self.yoffset_edit.text()), 2),
-                                               round(xyz[1] * 1000 + self.pump_x + int(self.xoffset_edit.text()), 2),
-                                               round(xyz[2] * 1000, 2)]
+                            # 只处理目标ID
+                            target_ids = [3, 4, 5, 6]
+                            filtered_corners = []
+                            filtered_ids = []
 
-                                    # cv.putText(img, 'coords' + str(xyz), (0, 64), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
-                                    for i in range(rvec.shape[0]):
-                                        # draw the aruco on img
-                                        cv2.aruco.drawDetectedMarkers(img, corners)
-                                        if num < 40:
-                                            sum_x += xyz[1]
-                                            sum_y += xyz[0]
-                                            num += 1
-                                        elif num == 40:
-                                            if self.crawl_status:
-                                                self.decide_move(sum_x / 40.0, sum_y / 40.0, 0)
-                                                num = sum_x = sum_y = 0
+                            if ids is not None:
+                                for i, id_val in enumerate(ids.flatten()):
+                                    if id_val in target_ids:
+                                        filtered_corners.append(corners[i])
+                                        filtered_ids.append(id_val)
+                            # print('filtered_ids:', filtered_ids)
+                            if len(filtered_corners) > 0:
+                                filtered_corners = np.array(filtered_corners)
+                                filtered_ids = np.array(filtered_ids).reshape(-1, 1)
+                                ret = cv2.aruco.estimatePoseSingleMarkers(
+                                    filtered_corners, 0.03, self.camera_matrix, self.dist_coeffs
+                                )
+                                # rvec:rotation offset,tvec:translation deviator
+                                (rvec, tvec) = (ret[0], ret[1])
+                                (rvec - tvec).any()
+                                xyz = tvec[0, 0, :]
+                                # calculate the coordinates of the aruco relative to the pump
+                                if self.comboBox_device.currentText() in ["myCobot 280 for RISCV",
+                                                                          "myCobot 280 for M5",
+                                                                          "myCobot 280 for JN",
+                                                                          "myCobot 280 for Pi"]:
+                                    xyz = [round(xyz[0] * 1000 + int(self.yoffset_edit.text()), 2),
+                                           round(xyz[1] * 1000 + int(self.xoffset_edit.text()), 2),
+                                           round(xyz[2] * 1000, 2)]
+                                else:
+                                    xyz = [round(xyz[0] * 1000 + self.pump_y + int(self.yoffset_edit.text()), 2),
+                                           round(xyz[1] * 1000 + self.pump_x + int(self.xoffset_edit.text()), 2),
+                                           round(xyz[2] * 1000, 2)]
+
+                                # cv.putText(img, 'coords' + str(xyz), (0, 64), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
+                                # print(f"ID: {filtered_ids[i][0]}, XYZ: {xyz}")
+                                for i in range(rvec.shape[0]):
+                                    # draw the aruco on img
+                                    cv2.aruco.drawDetectedMarkers(img, filtered_corners)
+                                    if num < 40:
+                                        sum_x += xyz[1]
+                                        sum_y += xyz[0]
+                                        num += 1
+                                    elif num == 40:
+                                        if self.crawl_status:
+                                            self.decide_move(sum_x / 40.0, sum_y / 40.0, 0)
+                                            num = sum_x = sum_y = 0
                         if self.camera_status:
                             show = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                             showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
@@ -1150,20 +1172,22 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                                      QtGui.QImage.Format_RGB888)
                             self.show_camera_lab.setPixmap(
                                 QtGui.QPixmap.fromImage(showImage))
-                        if self.language == 1:
-                            self.prompts(
-                                'Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
-                        else:
-                            self.prompts('请点击上方剪切按钮截取二维码白板部分的图片，按Enter确认。')
+                        if self.camera_status:
+                            if self.language == 1:
+                                self.prompts(
+                                    'Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
+                            else:
+                                self.prompts('请点击上方剪切按钮截取二维码白板部分的图片，按Enter确认。')
                         if self.is_yolov5_cut_btn_clicked:
                             # print(6996)
                             self.comboBox_function.setEnabled(False)
                             self.open_camera_btn.setEnabled(False)
-                            if self.language == 1:
-                                self.prompts(
-                                    'Please complete the image cropping operation, place the mouse in the window and press the ' + "'c'" + ' key to refresh the image.')
-                            else:
-                                self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘c’键可以刷新图像。')
+                            if self.camera_status:
+                                if self.language == 1:
+                                    self.prompts(
+                                        'Please complete the image cropping operation, place the mouse in the window and press the ' + "'C'" + ' key to refresh the image.')
+                                else:
+                                    self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘C’键可以刷新图像。')
                             roi = cv2.selectROI(windowName="Cut Image",
                                                 img=frame,
                                                 showCrosshair=False,
@@ -1424,8 +1448,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     self.color = 4
                             self.detect_history.append((x, y))
                             if len(self.detect_history) == 5:
-                                dx = max([abs(self.detect_history[i][0] - self.detect_history[i - 1][0]) for i in range(1, 5)])
-                                dy = max([abs(self.detect_history[i][1] - self.detect_history[i - 1][1]) for i in range(1, 5)])
+                                dx = max([abs(self.detect_history[i][0] - self.detect_history[i - 1][0]) for i in
+                                          range(1, 5)])
+                                dy = max([abs(self.detect_history[i][1] - self.detect_history[i - 1][1]) for i in
+                                          range(1, 5)])
 
                                 if dx < 5 and dy < 5:  # 坐标变化小，认为物体静止
                                     if not self.is_picking and self.cooldown_counter == 0:
@@ -1661,22 +1687,48 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             print(e)
             self.loger.error(str(e))
 
+    def check_if_at_origin_point(self):
+        """检查当前是否已经在初始点，如果是，则设置 init_point_done 为 True"""
+        try:
+            current_angles = self.myCobot.get_angles()
+            target_angles = self.move_angles[0]
+            threshold = 2.0  # 容差范围，单位为角度
+            if all(abs(c - t) < threshold for c, t in zip(current_angles, target_angles)):
+                self.init_point_done = True
+
+        except Exception as e:
+            e = traceback.format_exc()
+            self.loger.error(str(e))
+
     def to_origin_func(self):
         try:
             """back to initial position"""
             self.is_pick = False
             self.controls_disable_place_offset(True)
             self.pump_off()
+            if self.comboBox_function.currentText() == 'yolov5':
+                self.yolov5_is_not_pick = False
+                self.is_yolov5_cut_btn_clicked = False
+
+            # ==== 提前检查是否已经在初始点 ====
+            current_angles = self.myCobot.get_angles()
+            target_angles = self.move_angles[0]
+            threshold = 2.0
+
+            if all(abs(c - t) < threshold for c, t in zip(current_angles, target_angles)):
+                self.init_point_done = True
+                if self.language == 1:
+                    msg_box = QMessageBox(QMessageBox.Information, 'prompt', 'Already at initial point!')
+                else:
+                    msg_box = QMessageBox(QMessageBox.Information, '提示', '已在初始点，无需移动！')
+                msg_box.exec_()
+                return
             if self.comboBox_device.currentText() == 'ultraArm P340':
                 self.myCobot.set_angles(self.move_angles[0], 30)
                 self.stop_wait(3)
             else:
                 self.myCobot.send_angles(self.move_angles[0], 50)
                 self.check_position(self.move_angles[0], 0)
-
-            if self.comboBox_function.currentText() == 'yolov5':
-                self.yolov5_is_not_pick = False
-                self.is_yolov5_cut_btn_clicked = False
             self.init_point_done = True
             if self.language == 1:
                 msg_box = QMessageBox(QMessageBox.Information, 'prompt', 'Returned to initial point successfully！')
@@ -1750,7 +1802,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def set_params(self, c_x, c_y, ratio):
         self.c_x = c_x
         self.c_y = c_y
-        self.ratio = 220.0 / ratio
+        # self.ratio = 220.0 / ratio
+        self.ratio = 235.0 / ratio
 
     # calculate the coords between cube and mycobot
     def get_position(self, x, y):
@@ -1779,7 +1832,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                interpolation=cv2.INTER_CUBIC)
             if self.x1 != self.x2:
                 # the cutting ratio here is adjusted according to the actual situation
-                frame = frame[int(self.y2 * 0.78):int(self.y1 * 1.1),
+                frame = frame[int(self.y2 * 0.66):int(self.y1 * 1.1),
                         int(self.x1 * 0.84):int(self.x2 * 1.08)]
             return frame
         except Exception as e:
@@ -1789,12 +1842,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     # detect cube color
     def color_detect(self, img):
         """color recognition"""
-        # set the arrangement of color'HSV
-        x = y = 0
-        for mycolor, item in self.HSV.items():
-            redLower = np.array(item[0])
-            redUpper = np.array(item[1])
 
+        x = y = None
+        # set the arrangement of color'HSV
+        for mycolor, item in self.HSV.items():
             # transfrom the img to model of gray
             hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
@@ -1830,40 +1881,50 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                        < min(img.shape[0], img.shape[1]) / 1
                 ]
                 if boxes:
+                    valid_boxes = []
                     for box in boxes:
-                        x, y, w, h = box
+                        _, _, w, h = box
+                        area = w * h
+                        if area < 10000:  # 可以根据实际图像尺寸调整这个阈值
+                            continue
+                        valid_boxes.append(box)
                     # find the largest object that fits the requirements
-                    c = max(contours, key=cv2.contourArea)
-                    # get the lower left and upper right points of the positioning object
-                    x, y, w, h = cv2.boundingRect(c)
-                    # locate the target by drawing rectangle
-                    cv2.rectangle(img, (x, y), (x + w, y + h), (153, 153, 0), 2)
-                    # calculate the rectangle center
-                    x, y = (x * 2 + w) / 2, (y * 2 + h) / 2
-                    # calculate the real coordinates of mycobot relative to the target
+                    # c = max(contours, key=cv2.contourArea)
+                    # # get the lower left and upper right points of the positioning object
+                    # x, y, w, h = cv2.boundingRect(c)
+                    if valid_boxes:
+                        # Select the rectangle with the largest area from all valid boxes
+                        largest_box = max(valid_boxes, key=lambda b: b[2] * b[3])
+                        # Unpack the top-left corner (x, y) and width-height (w, h) of the largest box
+                        x, y, w, h = largest_box
+                        # locate the target by drawing rectangle
+                        cv2.rectangle(img, (x, y), (x + w, y + h), (153, 153, 0), 2)
+                        # calculate the rectangle center
+                        x, y = (x * 2 + w) / 2, (y * 2 + h) / 2
+                        # calculate the real coordinates of mycobot relative to the target
 
-                    if mycolor == "yellow":
+                        if mycolor == "yellow":
 
-                        self.color = 3
-                        break
+                            self.color = 3
+                            break
 
-                    elif mycolor == "red":
-                        self.color = 0
-                        break
+                        elif mycolor == "red":
+                            self.color = 0
+                            break
 
-                    elif mycolor == "cyan":
-                        self.color = 2
-                        break
+                        elif mycolor == "cyan":
+                            self.color = 2
+                            break
 
-                    elif mycolor == "blue":
-                        self.color = 2
-                        break
-                    elif mycolor == "green":
-                        self.color = 1
-                        break
+                        elif mycolor == "blue":
+                            self.color = 2
+                            break
+                        elif mycolor == "green":
+                            self.color = 1
+                            break
 
         # Judging whether it is recognized normally
-        if abs(x) + abs(y) > 0:
+        if x is not None and y is not None and (abs(x) + abs(y) > 0):
             return x, y
         else:
             return None
@@ -2037,7 +2098,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
     def controls_disable_place_offset(self, status):
         """禁用/打开 ABCD四个放置点按钮、XYZ坐标偏移量修改"""
-        controls_list = [self.radioButton_A, self.radioButton_B, self.radioButton_C, self.radioButton_D, self.xoffset_edit, self.yoffset_edit, self.zoffset_edit]
+        controls_list = [self.radioButton_A, self.radioButton_B, self.radioButton_C, self.radioButton_D,
+                         self.xoffset_edit, self.yoffset_edit, self.zoffset_edit]
         if status:
             for b in controls_list:
                 b.setEnabled(True)
@@ -2102,6 +2164,23 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     elif device in ["myCobot 280 for RISCV", "myCobot 280 for M5", "myCobot 280 for JN",
                                     "myCobot 280 for Pi"]:
+                        # y坐标补偿逻辑
+                        if y < -1:
+                            y -= 5
+                        elif y > 42:
+                            y += 5
+
+                        # x坐标补偿逻辑 + z轴微调
+                        if x <= 130:
+                            x += 10
+                            self.camera_z -= 2  # 偏左时同时降低高度
+                        elif x < 146:
+                            x += 5
+                        elif x < 160:
+                            x += 5
+                        elif x > 222:
+                            x += 7
+                        # print('纠正后坐标:', x, y)
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     else:
@@ -2114,7 +2193,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                     self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
-
                 if self.is_crawl:
                     if self.crawl_status:
                         self.is_crawl = False
@@ -2124,6 +2202,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         else:
                             self.myCobot.send_angles(self.move_angles[1], 50)
                             self.check_position(self.move_angles[1], 0)
+
                         # send coordinates to move mycobot
                         if func == 'QR code recognition' or func == '二维码识别':
                             if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
@@ -2144,12 +2223,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 data = [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
                                         125.58]
                                 self.check_position(data, 1)
-                            elif device == ['myCobot 280 for Pi', 'myCobot 280 for M5']:
-                                self.myCobot.send_coords([x, y, 108, 178.99, -3.78, -62.9], 70, 1)
+                            elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5']:
+                                self.myCobot.send_coords([x, y, 170, 178.99, -3.78, -62.9], 70, 1)
                                 self.myCobot.send_coords([x, y, self.camera_z, 178.99, -3.78, -62.9], 70, 1)
                                 data = [x, y, self.camera_z, 178.99, -3.78, -62.9]
                                 self.check_position(data, 1)
-
                             elif device == 'myCobot 280 for JN':
                                 self.myCobot.send_coords([x, y, 160, 178.99, -3.78, -62.9], 70, 1)
                                 self.myCobot.send_coords([x, y, self.camera_z, 178.99, -3.78, -62.9], 70, 1)
@@ -2236,7 +2314,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             elif device in ['myCobot 280 for RISCV']:
                                 self.myCobot.send_coords([x, y, self.camera_z, 179.87, -3.78, -62.75], 90, 1)
                                 self.check_position([x, y, self.camera_z, 179.87, -3.78, -62.75], 1)
-
                         # open pump
                         self.pump_on()
                         self.stop_wait(2)
@@ -2696,7 +2773,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             }
             if x and x.lstrip('-').isdigit() and -100 < int(x) < 300 and y and y.lstrip(
                     '-').isdigit() and -165 < int(y) < 165 and z and z.lstrip(
-                '-').isdigit() and -60 < int(z) < 130:
+                '-').isdigit() and -60 < int(z) < 150:
                 offset = [x, y, z]
                 if func in mapping:
                     offset_file = f'/offset/{device}_{mapping[func]}.txt'
