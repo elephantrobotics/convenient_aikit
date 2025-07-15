@@ -490,8 +490,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 self.valve = LED(72)  # 阀门
                 self.valve.on()
 
-            else:
-                self.camera_edit.setText('0')
+            # else:
+            #     self.camera_edit.setText('0')
 
                 self.set_comboBox_options_mutually_exclusive(self.comboBox_function, 'yolov5', 'yolov8')
 
