@@ -63,6 +63,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self._init_status()
 
         self._init_language()
+        self.title.setText('Elephant Robotics AI Kits V1.0.0')
+        self.update_model_combo()
+        self.update_algorithm_combo()
 
         # self.cap = cv2.VideoCapture()  # video stream
         self.min_btn.clicked.connect(self.min_clicked)  # minimize
@@ -201,6 +204,24 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         self.BLACK = (0, 0, 0)
         self.BLUE = (255, 178, 50)
         self.YELLOW = (0, 255, 255)
+
+        self.allowed_models = [
+            'myCobot 280 for M5',
+            'myCobot 280 for Pi',
+            'mechArm 270 for M5',
+            'mechArm 270 for Pi',
+            'myPalletizer 260 for M5',
+            'myPalletizer 260 for Pi'
+        ]
+
+        self.algorithms_function = {
+            'Color recognition': '颜色识别',
+            'shape recognition': '形状识别',
+            'QR code recognition': '二维码识别',
+            'Keypoints': '特征点识别',
+            'yolov5': 'yolov5',
+            'yolov8': 'yolov8'
+        }
 
     # initialization status
     def _init_status(self):
@@ -376,6 +397,40 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.loger.info("Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !")
             return False
         return True
+
+    def update_model_combo(self):
+        self.comboBox_device.clear()
+        for model in self.allowed_models:
+            self.comboBox_device.addItem(model)
+        self.comboBox_device.setCurrentText("myCobot 280 for Pi")
+
+    def update_algorithm_combo(self):
+        self.comboBox_function.clear()
+
+        # 实际用于显示的算法项（仅英文）
+        all_algorithms = [
+            'Color recognition',
+            'shape recognition',
+            'QR code recognition',
+            'Keypoints',
+            'yolov5',
+            'yolov8'
+        ]
+
+        # 定义要隐藏的算法（英文）
+        hidden_algorithms = ['shape recognition', 'yolov8']
+
+        # for name in all_algorithms:
+        #     if name not in hidden_algorithms:
+        #         self.comboBox_function.addItem(name)
+        for key in all_algorithms:
+            if key in hidden_algorithms:
+                continue
+            display_text = key if self.language == 1 else self.algorithms_function.get(key, key)
+            self.comboBox_function.addItem(display_text, key)  # key 作为实际值
+
+        # 默认选中第一项（可选）
+        self.comboBox_function.setCurrentIndex(0)
 
     def get_serial_port_list(self):
         """Get the current serial port and map it to the serial port drop-down box"""
@@ -574,11 +629,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [0, 0, 0, 0, 90, 0],  # init the point
             ]
 
-            self.move_coords = [
-                [96.5, -101.9, 185.6, 155.25, 19.14, 75.88],  # D
-                [180.9, -99.3, 184.6, 124.4, 30.9, 80.58],  # C
-                [77.4, 122.1, 179.2, 151.66, 17.94, 178.24],  # A
-                [2.2, 128.5, 171.6, 163.27, 10.58, -147.25]  # B
+            self.new_move_coords_to_angles = [
+                [-52.64, 35.06, -39.63, -2.28, 82.35, 55.45],  # D
+                [-34.18, 60.9, -69.08, -0.96, 70.04, 88.06],  # C
+                [32.34, 58.35, -62.13, 4.3, 61.52, 15.64],  # A
+                [55.19, 42.71, -46.4, -0.96, 84.19, 15.99]  # B
             ]
             self.home_coords = [81.8, -52.3, 186.7, 174.48, 4.08, 92.41]
         elif value == 'ultraArm P340':
@@ -624,13 +679,15 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     self.prompts('正在进行回零校正，请耐心等待......')
                 self.btn_status(False)
                 self.connect_btn.setEnabled(False)
-            elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
+            elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
                 self.myCobot = MechArm270(port, baud, timeout=0.2)
+                if self.myCobot.get_fresh_mode() != 0:
+                    self.myCobot.set_fresh_mode(0)
             else:
                 self.myCobot = MyCobot280(port, baud, timeout=0.2)
                 if self.myCobot.get_fresh_mode() != 0:
                     self.myCobot.set_fresh_mode(0)
-            self.stop_wait(0.2)
+            self.stop_wait(0.1)
             self.loger.info("connection succeeded !")
             self.check_if_at_origin_point()
             if device != 'ultraArm P340':
@@ -790,6 +847,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     def close_camera(self):
         """turn off the camera"""
         try:
+            self.controls_disable_place_offset(True)
             self.camera_status = False
             self.yolov5_is_not_pick = False
             self.comboBox_function.setEnabled(True)
@@ -1119,7 +1177,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 if self.comboBox_device.currentText() in ["myCobot 280 for RISCV",
                                                                           "myCobot 280 for M5",
                                                                           "myCobot 280 for JN",
-                                                                          "myCobot 280 for Pi"]:
+                                                                          "myCobot 280 for Pi",
+                                                                          "mechArm 270 for M5",
+                                                                          "mechArm 270 for Pi",]:
                                     xyz = [round(xyz[0] * 1000 + int(self.yoffset_edit.text()), 2),
                                            round(xyz[1] * 1000 + int(self.xoffset_edit.text()), 2),
                                            round(xyz[2] * 1000, 2)]
@@ -1628,8 +1688,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.language == 1:
                 QMessageBox.warning(self, 'prompt', 'Please return to the initial point first！')
             else:
-                QMessageBox.warning(self, '警告', '请先回到初始点！')
+                QMessageBox.warning(self, '提示', '请先回到初始点！')
             return
+        self.controls_disable_place_offset(True)
         if self.crawl_status:
             self.crawl_status = False
             self.btn_color(self.crawl_btn, 'blue')
@@ -1832,7 +1893,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                interpolation=cv2.INTER_CUBIC)
             if self.x1 != self.x2:
                 # the cutting ratio here is adjusted according to the actual situation
-                frame = frame[int(self.y2 * 0.66):int(self.y1 * 1.1),
+                frame = frame[int(self.y2 * 0.64):int(self.y1 * 1.1),
                         int(self.x1 * 0.84):int(self.x2 * 1.08)]
             return frame
         except Exception as e:
@@ -2132,7 +2193,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     _moved = threading.Thread(target=self.moved(x + 28, y + 98))
                     _moved.start()
                 elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
-                    _moved = threading.Thread(target=self.moved(x + 38, y + 138))
+                    _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
                     _moved.start()
                 elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for JN',
                                 'myCobot 280 for RISCV']:
@@ -2183,6 +2244,17 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         # print('纠正后坐标:', x, y)
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
+                    elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
+                        if x < 130 or x > 200:
+                            self.camera_z -= 2
+                        if x > 206:
+                            if self.language == 1:
+                                QMessageBox.warning(self, 'warning', 'The object is too far away and the target point cannot be reached. Please reposition the identifiable object!')
+                            else:
+                                QMessageBox.warning(self, '警告', '物体距离过远，目标点位无法到达，请重新摆放可识别物体位置！')
+                            return
+                        self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
+                        self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     else:
                         self.pos_x, self.pos_y, self.pos_z = round(self.home_coords[0] + x, 2), round(
                             self.home_coords[1] + y, 2), self.camera_z
@@ -2191,6 +2263,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     if device == 'ultraArm P340':
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
+                    elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
+                        if x > 206:
+                            if self.language == 1:
+                                QMessageBox.warning(self, 'warning', 'The object is too far away and the target point cannot be reached. Please reposition the identifiable object!')
+                            else:
+                                QMessageBox.warning(self, '警告', '物体距离过远，目标点位无法到达，请重新摆放可识别物体位置！')
+                            return
                     self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                     self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                 if self.is_crawl:
@@ -2214,14 +2293,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                     0)
                                 self.stop_wait(2.5)
                             elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
-                                self.myCobot.send_coords(
-                                    [self.home_coords[0] + x, self.home_coords[1] + y, 150, 172.36, 5.36, 125.58], 70,
-                                    1)
-                                self.myCobot.send_coords(
-                                    [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
-                                     125.58], 70, 1)
-                                data = [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 172.36, 5.36,
-                                        125.58]
+                                self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70, 1)
+                                self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 70, 1)
+                                data = [x, y, self.camera_z, -176.1, 2.4, -125.1]
                                 self.check_position(data, 1)
                             elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5']:
                                 self.myCobot.send_coords([x, y, 170, 178.99, -3.78, -62.9], 70, 1)
@@ -2254,11 +2328,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                 self.myCobot.send_coords([x, y, self.camera_z, 0], 20, 0)
                                 self.stop_wait(1.5)
                             elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
-                                self.myCobot.send_coords([x, y, 110, -176.1, 2.4, -125.1], 70,
-                                                         1)  # usb :rx,ry,rz -173.3, -5.48, -57.9
-                                # self.stop_wait(3)
+                                self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70,
+                                                         1)  # usb :rx,ry,rz -176.1, 2.4, -125.1
                                 self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 70, 1)
-                                # self.stop_wait(3)
                                 self.check_position([x, y, self.camera_z, -176.1, 2.4, -125.1], 1)
 
                             elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5']:
@@ -2370,8 +2442,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
                     else:
-                        self.myCobot.send_coords(self.move_coords[color], 50, 0)
-                        self.stop_wait(4)
+                        self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
+                        self.check_position(self.new_move_coords_to_angles[color], 0)
 
                     # close pump
                     self.pump_off()
@@ -2684,8 +2756,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             if self.language == 1:
                 QMessageBox.warning(self, 'prompt', 'Please return to the initial point first！')
             else:
-                QMessageBox.warning(self, '警告', '请先回到初始点！')
+                QMessageBox.warning(self, '提示', '请先回到初始点！')
             return
+        self.controls_disable_place_offset(True)
         if self.auto_mode_status:
             self.auto_mode_status = False
             self.discern_status = False
