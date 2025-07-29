@@ -610,7 +610,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.pump_x = -30
             self.move_angles = [
                 [-22.0, 0, 0, 7.28],  # point to grab
-                [17.4, -10.1, -87.27, 5.8],  # point to grab
+                [0, 0, 0, 0],  # point to grab
             ]
 
             self.home_coords = [166.4, -21.8, 219, 0.96]
@@ -621,6 +621,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [111.6, 159, 221.5, -120],  # A Sorting area
                 [-15.9, 164.6, 217.5, -119.35],  # B Sorting area
             ]
+            self.new_move_coords_to_angles = [
+                [-55.54, 17.84, 4.39, -76.28],  # D Sorting area
+                [-31.11, 53.61, -44.64, -70.57],  # C Sorting area
+                [36.82, 51.15, -40.34, -64.68],  # A Sorting area
+                [57.48, 23.46, 1.23, -64.68],  # B Sorting area
+            ]
+
         elif value == 'mechArm 270 for Pi' or value == 'mechArm 270 for M5':
             self.pump_y = -55
             self.pump_x = 15
@@ -1179,7 +1186,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                                                                           "myCobot 280 for JN",
                                                                           "myCobot 280 for Pi",
                                                                           "mechArm 270 for M5",
-                                                                          "mechArm 270 for Pi",]:
+                                                                          "mechArm 270 for Pi",
+                                                                          "myPalletizer 260 for M5",
+                                                                          "myPalletizer 260 for Pi"]:
                                     xyz = [round(xyz[0] * 1000 + int(self.yoffset_edit.text()), 2),
                                            round(xyz[1] * 1000 + int(self.xoffset_edit.text()), 2),
                                            round(xyz[2] * 1000, 2)]
@@ -2190,7 +2199,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             # decrease y, move to the right; increase x, move forward; decrease x, move backward
             if self.comboBox_function.currentText() == 'QR code recognition' or self.comboBox_function.currentText() == '二维码识别':
                 if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
-                    _moved = threading.Thread(target=self.moved(x + 28, y + 98))
+                    _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
                     _moved.start()
                 elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
                     _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
@@ -2203,7 +2212,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     _moved = threading.Thread(target=self.moved(x + 50, y + 60))
                     _moved.start()
             else:
-                _moved = threading.Thread(target=self.moved(x, y))
+                _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
                 _moved.start()
 
     # Grasping motion
@@ -2255,6 +2264,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             return
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
+                    if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                        self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
+                        self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                     else:
                         self.pos_x, self.pos_y, self.pos_z = round(self.home_coords[0] + x, 2), round(
                             self.home_coords[1] + y, 2), self.camera_z
@@ -2284,15 +2296,14 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                         # send coordinates to move mycobot
                         if func == 'QR code recognition' or func == '二维码识别':
-                            if device == 'myPalletizer 260 for M5' or device == 'myPalletizer 260 for Pi':
-                                self.myCobot.send_coords([self.home_coords[0] + x, self.home_coords[1] + y, 103, 0], 20,
-                                                         0)
+                            if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                                self.myCobot.send_coords([x, y, 160, 0], 60)
+                                self.stop_wait(1.5)
+                                self.myCobot.send_coords([ x, y, self.camera_z, 0], 60)
                                 self.stop_wait(2.5)
-                                self.myCobot.send_coords(
-                                    [self.home_coords[0] + x, self.home_coords[1] + y, self.camera_z, 0], 20,
-                                    0)
-                                self.stop_wait(2.5)
-                            elif device == 'mechArm 270 for Pi' or device == 'mechArm 270 for M5':
+                                self.myCobot.send_coords([x, y, self.camera_z, 0], 60)
+
+                            elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
                                 self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70, 1)
                                 self.myCobot.send_coords([x, y, self.camera_z, -176.1, 2.4, -125.1], 70, 1)
                                 data = [x, y, self.camera_z, -176.1, 2.4, -125.1]
@@ -2323,10 +2334,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                         elif func in ['shape recognition', 'Keypoints', '形状识别', '特征点识别', 'yolov5', 'yolov8']:
                             if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
-                                self.myCobot.send_coords([x, y, 103, 0], 20, 0)
-                                self.stop_wait(2.5)
-                                self.myCobot.send_coords([x, y, self.camera_z, 0], 20, 0)
+                                self.myCobot.send_coords([x, y, 160, 0], 60)
                                 self.stop_wait(1.5)
+                                self.myCobot.send_coords([x, y, self.camera_z, 0], 60)
+                                self.stop_wait(2)
+
                             elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
                                 self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70,
                                                          1)  # usb :rx,ry,rz -176.1, 2.4, -125.1
@@ -2356,10 +2368,11 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
                         else:
                             if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
-                                self.myCobot.send_coords([x, y, 160, 0], 20, 0)
+                                self.myCobot.send_coords([x, y, 160, 0], 60)
                                 self.stop_wait(1.5)
-                                self.myCobot.send_coords([x, y, self.camera_z, 0], 20, 0)
-                                self.stop_wait(1.5)
+                                self.myCobot.send_coords([x, y, self.camera_z, 0], 60)
+                                self.stop_wait(2)
+                                self.myCobot.send_coords([x, y, self.camera_z, 0], 60)
 
                             elif device in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
                                 self.myCobot.send_coords([x, y, 150, -176.1, 2.4, -125.1], 70, 1)
@@ -2392,7 +2405,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
                             self.myCobot.send_angle(2, 0, 20)
                             self.stop_wait(0.3)
-                            self.myCobot.send_angle(3, -20, 20)
+                            self.myCobot.send_angle(3, 0, 20)
                             self.stop_wait(2)
                         elif device == 'ultraArm P340':
                             self.myCobot.set_angles([0, 0, 0, 0], 50)
@@ -2437,10 +2450,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     if device == 'ultraArm P340':
                         self.myCobot.set_coords(self.move_coords[color], 40)
                         self.stop_wait(4)
-
-                    elif device in ['myCobot 280 for Pi', 'myCobot 280 for M5', 'myCobot 280 for RISCV']:
-                        self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
-                        self.check_position(self.new_move_coords_to_angles[color], 0)
+                    elif device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                        self.myCobot.send_angles(self.new_move_coords_to_angles[color], 20)
+                        self.stop_wait(4)
                     else:
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
@@ -3136,6 +3148,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 row = outputs[0][0][r]
                 confidence = row[4]
                 if confidence > self.CONFIDENCE_THRESHOLD:
+                    print('1111111')
                     classes_scores = row[5:]
                     class_id = np.argmax(classes_scores)
                     if (classes_scores[class_id] > self.SCORE_THRESHOLD):
