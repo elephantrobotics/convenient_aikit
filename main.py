@@ -223,6 +223,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             'yolov8': 'yolov8'
         }
 
+        self.z_down_values = [138, 145, 147, 135]  # D, C, A, B
+
     # initialization status
     def _init_status(self):
         self.camera_status = False  # camera open state
@@ -418,7 +420,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         ]
 
         # 定义要隐藏的算法（英文）
-        hidden_algorithms = ['shape recognition', 'yolov8']
+        hidden_algorithms = ['yolov8']
 
         # for name in all_algorithms:
         #     if name not in hidden_algorithms:
@@ -587,6 +589,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [72.42, -6.06, -98.43, 14.23, -0.87, -8.96],  # B Sorting area
             ]
             self.home_coords = [145.0, -65.5, 280.1, 178.99, 7.67, -179.9]
+
+            self.z_down_values = [138, 145, 147, 135]  # D, C, A, B
+
         elif value == 'myCobot 280 for JN':
             # yolov5 model file path
             self.modelWeights = libraries_path + "/yolov5File/yolov5s.onnx"
@@ -2106,7 +2111,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if len(contours) > 0:
             for cnt in contours:
                 # if 6000>cv2.contourArea(cnt) and cv2.contourArea(cnt)>4500:
-                if cv2.contourArea(cnt) > 5500:
+                if cv2.contourArea(cnt) > 6000:
                     objectType = None
                     peri = cv2.arcLength(cnt, True)
                     approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
@@ -2457,6 +2462,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
 
+                    if device in ['myCobot 280 for M5', 'myCobot 280 for Pi']:
+                        self.myCobot.send_coord(3, self.z_down_values[color], 50)
+                        time.sleep(2)
+
                     # close pump
                     self.pump_off()
                     self.stop_wait(2)
@@ -2757,6 +2766,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             # print(device)
 
             self.yolov5_count = False
+
+            if device in ['形状识别', 'shape recognition']:
+                self.z_down_values = [113, 120, 122, 110]  # D, C, A, B
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
