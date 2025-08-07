@@ -643,11 +643,13 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
 
             self.new_move_coords_to_angles = [
                 [-52.64, 35.06, -39.63, -2.28, 82.35, 55.45],  # D
-                [-34.18, 60.9, -69.08, -0.96, 70.04, 88.06],  # C
+                [-35.59, 61.78, -68.2, -1.14, 68.29, 88.33],  # C
                 [32.34, 58.35, -62.13, 4.3, 61.52, 15.64],  # A
                 [55.19, 42.71, -46.4, -0.96, 84.19, 15.99]  # B
             ]
             self.home_coords = [81.8, -52.3, 186.7, 174.48, 4.08, 92.41]
+            self.z_down_values = [125, 130, 135, 125]  # D, C, A, B
+
         elif value == 'ultraArm P340':
             self.pump_y = -30
             # x-axis offset
@@ -2133,7 +2135,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         if len(contours) > 0:
             for cnt in contours:
                 # if 6000>cv2.contourArea(cnt) and cv2.contourArea(cnt)>4500:
-                if cv2.contourArea(cnt) > 6000:
+                if cv2.contourArea(cnt) > 6900:
                     objectType = None
                     peri = cv2.arcLength(cnt, True)
                     approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
@@ -2309,6 +2311,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             else:
                                 QMessageBox.warning(self, '警告', '物体距离过远，目标点位无法到达，请重新摆放可识别物体位置！')
                             return
+                        if func in ['shape recognition', '形状识别']:
+                            if x < 235:
+                                self.camera_z -= 3
+
                     self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                     self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                 if self.is_crawl:
@@ -2484,7 +2490,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.myCobot.send_angles(self.new_move_coords_to_angles[color], 50)
                         self.check_position(self.new_move_coords_to_angles[color], 0)
 
-                    if device in ['myCobot 280 for M5', 'myCobot 280 for Pi']:
+                    if device in ['myCobot 280 for M5', 'myCobot 280 for Pi', 'mechArm 270 for Pi', 'mechArm 270 for M5']:
                         self.myCobot.send_coord(3, self.z_down_values[color], 50)
                         time.sleep(2)
 
@@ -2760,6 +2766,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.prompts_lab.clear()
             self.offset_change()
             device = self.comboBox_function.currentText()
+            model = self.comboBox_device.currentText()
             # if device == 'myCobot 280 for Pi' or device == 'myCobot 280 for M5':
             if device == 'yolov5':
                 IS_CV_4 = cv2.__version__[0] == '4'
@@ -2790,7 +2797,10 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.yolov5_count = False
 
             if device in ['形状识别', 'shape recognition']:
-                self.z_down_values = [113, 120, 122, 110]  # D, C, A, B
+                if model in ['myCobot 280 for M5', 'myCobot 280 for Pi']:
+                    self.z_down_values = [113, 120, 122, 110]  # D, C, A, B
+                elif model in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
+                    self.z_down_values = [100, 105, 110, 100]  # D, C, A, B
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
