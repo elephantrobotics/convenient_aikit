@@ -1249,34 +1249,40 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         if self.camera_status:
                             if self.language == 1:
                                 self.prompts(
-                                    'Please click the Cut button to capture the picture of the whiteboard part of the QR code.')
+                                    'After placing the object for recognition, click the cut button above to automatically capture the image of the QR code whiteboard part..')
                             else:
-                                self.prompts('请点击上方剪切按钮截取二维码白板部分的图片，按Enter确认。')
+                                self.prompts('请放置识别物体后，点击上方剪切按钮自动截取二维码白板部分的图片。')
                         if self.is_yolov5_cut_btn_clicked:
                             # print(6996)
                             self.comboBox_function.setEnabled(False)
                             self.open_camera_btn.setEnabled(False)
-                            if self.camera_status:
-                                if self.language == 1:
-                                    self.prompts(
-                                        'Please complete the image cropping operation, place the mouse in the window and press the ' + "'C'" + ' key to refresh the image.')
-                                else:
-                                    self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘C’键可以刷新图像。')
-                            roi = cv2.selectROI(windowName="Cut Image",
-                                                img=frame,
-                                                showCrosshair=False,
-                                                fromCenter=False)
-                            cv2.moveWindow("Cut Image", 798, 220)
-                            x, y, w, h = roi
-                            if roi != (0, 0, 0, 0):
-                                crop = frame[y:y + h, x:x + w]
-                                cv2.imwrite(path_img, crop)
-                                self.cap.release()
-                                is_release = True
-                                self.yolov5_count = True
-                                cv2.destroyWindow('Cut Image')
+                            # if self.camera_status:
+                            #     if self.language == 1:
+                            #         self.prompts(
+                            #             'Please complete the image cropping operation, place the mouse in the window and press the ' + "'C'" + ' key to refresh the image.')
+                            #     else:
+                            #         self.prompts('请完成图片裁剪操作，鼠标放在窗口内按‘C’键可以刷新图像。')
+                            # roi = cv2.selectROI(windowName="Cut Image",
+                            #                     img=frame,
+                            #                     showCrosshair=False,
+                            #                     fromCenter=False)
+                            # cv2.moveWindow("Cut Image", 798, 220)
+                            # x, y, w, h = roi
+                            # if roi != (0, 0, 0, 0):
+                            #     crop = frame[y:y + h, x:x + w]
+                            #     cv2.imwrite(path_img, crop)
+                            #     self.cap.release()
+                            #     is_release = True
+                            #     self.yolov5_count = True
+                            #     cv2.destroyWindow('Cut Image')
+                            transformed = self.transform_frame_image(frame)
+                            cv2.imwrite(path_img, transformed)
+                            self.cap.release()
+                            is_release = True
+                            self.yolov5_count = True
 
-                            frame = frame[int(roi[1]):int(roi[1] + roi[3]), int(roi[0]):int(roi[0] + roi[2])]
+                            # frame = frame[int(roi[1]):int(roi[1] + roi[3]), int(roi[0]):int(roi[0] + roi[2])]
+                            frame = transformed
                             show = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                             showImage = QtGui.QImage(show.data, show.shape[1], show.shape[0], show.shape[1] * 3,
                                                      QtGui.QImage.Format_RGB888)
@@ -1677,6 +1683,22 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
+
+    def transform_frame_image(self, frame):
+        # enlarge the image by 1.5 times
+        fx = 1.5
+        fy = 1.5
+        frame = cv2.resize(frame, (0, 0),
+                           fx=fx,
+                           fy=fy,
+                           interpolation=cv2.INTER_CUBIC)
+        x1, x2 = 507, 653
+        y1, y2 = 483, 238
+        if x1 != x2:
+            # the cutting ratio here is adjusted according to the actual situation
+            frame = frame[int(y2 * 0.2):int(y1 * 1.15),
+                          int(x1 * 0.4):int(x2 * 1.15)]
+        return frame
 
     def discern_func(self):
         """Turn recognition on/off"""
@@ -3160,7 +3182,6 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 row = outputs[0][0][r]
                 confidence = row[4]
                 if confidence > self.CONFIDENCE_THRESHOLD:
-                    print('1111111')
                     classes_scores = row[5:]
                     class_id = np.argmax(classes_scores)
                     if (classes_scores[class_id] > self.SCORE_THRESHOLD):
