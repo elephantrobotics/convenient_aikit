@@ -2261,8 +2261,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                         self.pos_x, self.pos_y, self.pos_z = round(self.home_coords[0] + x, 2), round(
                             self.home_coords[1] - y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
-                    elif device in ["myCobot 280 for RISCV", "myCobot 280 for M5", "myCobot 280 for JN",
-                                    "myCobot 280 for Pi"]:
+                    elif device in ["myCobot 280 for RISCV", "myCobot 280 for M5", "myCobot 280 for JN", "myCobot 280 for Pi"]:
                         # y坐标补偿逻辑
                         if y < -1:
                             y -= 5
@@ -2293,12 +2292,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                             return
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
-                    if device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                    elif device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
                         self.pos_x, self.pos_y, self.pos_z = round(x, 2), round(y, 2), self.camera_z
-                        self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
-                    else:
-                        self.pos_x, self.pos_y, self.pos_z = round(self.home_coords[0] + x, 2), round(
-                            self.home_coords[1] + y, 2), self.camera_z
                         self.prompts(f'X:{self.pos_x}  Y:{self.pos_y}  Z:{self.pos_z}')
                 else:
                     if device == 'ultraArm P340':
