@@ -614,7 +614,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
             self.pump_y = -45
             self.pump_x = -30
             self.move_angles = [
-                [-22.0, 0, 0, 7.28],  # point to grab
+                [-30.0, 0, 0, 7.28],  # point to grab
                 [0, 0, 0, 0],  # point to grab
             ]
 
@@ -627,11 +627,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                 [-15.9, 164.6, 217.5, -119.35],  # B Sorting area
             ]
             self.new_move_coords_to_angles = [
-                [-55.54, 17.84, 4.39, -76.28],  # D Sorting area
-                [-31.11, 53.61, -44.64, -70.57],  # C Sorting area
-                [36.82, 51.15, -40.34, -64.68],  # A Sorting area
-                [57.48, 23.46, 1.23, -64.68],  # B Sorting area
+                [-54, 14.15, 16.34, 0],  # D Sorting area
+                [-35, 53.61, -44.64, 0],  # C Sorting area
+                [34, 51.15, -40.34, 0],  # A Sorting area
+                [52.38, 14.67, 12.83, -0.43],  # B Sorting area
             ]
+            self.z_down_values = [115, 120, 120, 115]  # D, C, A, B
 
         elif value == 'mechArm 270 for Pi' or value == 'mechArm 270 for M5':
             self.pump_y = -55
@@ -2210,12 +2211,12 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         device = self.comboBox_device.currentText()
         if self.comboBox_function.currentText() == 'yolov5':
             self.cache_x = self.cache_y = 0
-            _moved = threading.Thread(target=self.moved(x, y))
+            _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
             _moved.start()
             return
         if self.comboBox_function.currentText() == 'yolov8':
             self.cache_x = self.cache_y = 0
-            _moved = threading.Thread(target=self.moved(x, y))
+            _moved = threading.Thread(target=self.moved(round(x, 2), round(y, 2)))
             _moved.start()
             return
         # detect the cube status move or run
@@ -2247,7 +2248,7 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
     # Grasping motion
     def moved(self, x, y):
         try:
-            # print('xy',x, y)
+            # print('xy11111',x, y)
             # 机械臂执行过程中，禁用某些控件编辑
             self.controls_disable_place_offset(False)
             self.is_crawl = True
@@ -2488,7 +2489,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     if device in ['myCobot 280 for M5', 'myCobot 280 for Pi', 'mechArm 270 for Pi', 'mechArm 270 for M5']:
                         self.myCobot.send_coord(3, self.z_down_values[color], 50)
                         time.sleep(2)
-
+                    elif device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                        self.myCobot.send_coord(3, self.z_down_values[color], 25)
+                        time.sleep(2.5)
                     # close pump
                     self.pump_off()
                     self.stop_wait(2)
@@ -2496,6 +2499,9 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     # self.stop_wait(4)
                     if device == 'ultraArm P340':
                         self.myCobot.set_angles(self.move_angles[0], 25)
+                    elif device in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                        self.myCobot.send_angles(self.move_angles[0], 25)
+                        time.sleep(2)
                     else:
                         self.myCobot.send_angles(self.move_angles[0], 50)
                         self.check_position(self.move_angles[0], 0)
@@ -2796,6 +2802,8 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
                     self.z_down_values = [113, 120, 122, 110]  # D, C, A, B
                 elif model in ['mechArm 270 for Pi', 'mechArm 270 for M5']:
                     self.z_down_values = [100, 105, 110, 100]  # D, C, A, B
+                elif model in ['myPalletizer 260 for M5', 'myPalletizer 260 for Pi']:
+                    self.z_down_values = [95, 105, 105, 95]  # D, C, A, B
         except Exception as e:
             e = traceback.format_exc()
             self.loger.error(str(e))
