@@ -1,6 +1,6 @@
 # AiKit 便捷套装
 
-使用Python + Opencv 在机械臂上进行颜色识别、形状识别、特征点图像识别、AR二维码识别和 YOLOv5 图像识别，以及支持启动AiKit_UI图形化软件、手柄控制程序。
+使用Python + Opencv 在机械臂上进行颜色识别、形状识别、特征点图像识别、AR二维码识别和 YOLOv5 图像识别，以及支持启动AiKit_UI图形化软件、手柄控制程序，也支持myCobot自适应夹爪案例、myCobot五指灵巧手案例、myCobot摄像头法兰stag码跟踪案例的演示。
 
 ## 1 支持机械臂型号
 
@@ -13,7 +13,7 @@
 
 ## 2 运行环境
 
-Linux 树莓派系统 + 套装组件 + USB一体化键盘鼠标手柄设备，末端执行器仅支持myCobot 垂直吸泵2.0
+Linux 树莓派系统 + 套装组件 + USB一体化键盘鼠标手柄设备，末端执行器支持myCobot 垂直吸泵2.0、myCobot自适应夹爪、myCobot五指灵巧手、myCobot摄像头法兰。
 
 ## 3 代码安装
 
@@ -84,15 +84,15 @@ cp aikit_autostart_260PI.desktop $HOME/.config/autostart/aikit_autostart_260PI.d
 
 ## 6 功能使用
 
-支持启动颜色识别、形状识别、特征点图像识别、AR二维码识别、YOLOv5 图像识别、AiKit_UI程序、手柄控制程序。
+支持启动颜色识别、形状识别、特征点图像识别、AR二维码识别、YOLOv5 图像识别、AiKit_UI程序、手柄控制程序、自适应夹爪案例、五指灵巧手案例、stag码跟踪案例。
 
 ![start](./img/auto_start_M5.png)
 
 ### 设备选择
 
-根据终端信息提示，选择对应机械臂型号，如果是PI版本设备，则忽略此步骤。这里以270M5为例：
+根据终端信息提示，选择对应机械臂型号，如果是PI版本设备，则忽略此步骤。这里以280M5为例：
 
-![start](./img/auto_start_M5-1.png)
+![start](./img/auto_start_M5-2.png)
 
 ### 按键功能说明
 
@@ -100,19 +100,29 @@ cp aikit_autostart_260PI.desktop $HOME/.config/autostart/aikit_autostart_260PI.d
 
 键盘按键输入：
 
-`1`: 启动颜色识别功能。
+`1`: 按下数字1，启动颜色识别功能。
 
-`2`: 启动形状识别功能。
+`2`: 按下数字2，启动形状识别功能。
 
-`3`: 启动AR二维码识别功能。
+`3`: 按下数字3，启动AR二维码识别功能。
 
-`4`: 启动特征点图像识别功能。
+`4`: 按下数字4，启动特征点图像识别功能。
 
-`5`: 启动yolov5识别功能。
+`5`: 按下数字5，启动yolov5识别功能。将yolov5图像木块放置识别区域，根据终端输出信息提示，鼠标光标放置摄像头窗口后，键盘按下字母z，机械臂将执行抓取流程。
 
-`6`: 启动AiKit_UI图形化软件功能，可直接使用各种算法识别功能。[AiKit UI 使用说明](./AiKit_UI/README_CN.md)
+`6`: 按下数字6，启动AiKit_UI图形化软件功能，可直接使用各种算法识别功能。[AiKit UI 使用说明](./AiKit_UI/README_CN.md)
 
-`7`: 启动手柄控制功能。启动后需将键鼠设备切换到手柄控制模式，手柄按键功能使用参考 [功能按键使用](https://docs.elephantrobotics.com/docs/mycobot_280_pi_cn/3-FunctionsAndApplications/6.developmentGuide/python/7.9_HandleControl.html)。
+`7`: 按下数字7，启动手柄控制功能。启动后需将键鼠设备切换到手柄控制模式，手柄按键功能使用参考 [功能按键使用](https://docs.elephantrobotics.com/docs/mycobot_280_pi_cn/3-FunctionsAndApplications/6.developmentGuide/python/7.9_HandleControl.html)。
+
+`8`: 切换键盘模式后，按下数字8，启动myCobot自适应夹爪案例功能，机器做固定上下动作，自适应夹爪重复开合三次，最后从A点夹取木块至B点，最后回零。
+
+`9`: 按下数字9，启动myCobot五指灵巧手案例功能，机器做左右摇摆动作打招呼2次，五指灵巧手居中握拳（手心朝下）往前后移动，做碰拳动作2次，最后回零。
+
+`0`: 按下数字0，启动stag码跟踪案例功能。首先机械臂会运动到观测点初始位置，然后Stag码木块与机械臂末端摄像头法兰保持30cm距离，机械臂开始进行跟踪运动。
+
+### 坐标偏移量
+
+当运行1-5识别算法功能时，如果机械臂无法准确抓取可识别物体或木块，需根据不同的算法调整XYZ偏移量，可以按下数字6启动AiKit_UI图形化软件进行修改偏移量：[AiKit UI 使用说明](./AiKit_UI/README_CN.md)
 
 ### 注意事项
 

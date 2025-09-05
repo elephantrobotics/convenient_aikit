@@ -1,6 +1,6 @@
 # AiKit Convenient Kit
 
-Use Python + OpenCV to perform color recognition, shape recognition, feature point image recognition, AR QR code recognition, and YOLOv5 image recognition on the robotic arm. It also supports launching the AiKit_UI graphical software and controller control program.
+Use Python + OpenCV to perform color recognition, shape recognition, feature point image recognition, AR QR code recognition, and YOLOv5 image recognition on the robotic arm. It also supports launching the AiKit_UI graphical software and handle control program. It also supports demonstrations of the myCobot adaptive gripper case, the myCobot five-finger dexterous hand case, and the myCobot camera flange stag code tracking case.
 
 ## 1 Supported Robot Arm Models
 
@@ -13,7 +13,7 @@ Use Python + OpenCV to perform color recognition, shape recognition, feature poi
 
 ## 2 Operating Environment
 
-Linux Raspberry Pi system + package components + USB integrated keyboard and mouse controller. The end effector only supports the myCobot Vertical Suction Pump 2.0.
+Linux Raspberry Pi system + package components + USB integrated keyboard and mouse controller. The end effector supports myCobot Vertical Suction Pump 2.0, myCobot Adaptive Gripper, myCobot Five-Finger Dexterous Hand, and myCobot Camera Flange.
 
 ## 3 Code Installation
 
@@ -84,15 +84,15 @@ This indicates that the program has successfully started automatically.
 
 ## 6 Function Usage
 
-Supports launching color recognition, shape recognition, feature point image recognition, AR QR code recognition, YOLOv5 image recognition, AiKit_UI programs, and controller control programs.
+Supports color recognition, shape recognition, feature point image recognition, AR QR code recognition, YOLOv5 image recognition, AiKit_UI program, handle control program, adaptive gripper case, five-finger dexterous hand case, and stag code tracking case.
 
 ![start](./img/auto_start_M5.png)
 
 ### Device Selection
 
-Follow the terminal prompts and select the corresponding robot arm model. If you are using a PI version device, skip this step. Here, we use the 270M5 as an example:
+Follow the terminal prompts and select the corresponding robot arm model. If you are using a PI version device, skip this step. Here, we use the 280M5 as an example:
 
-![start](./img/auto_start_M5-1.png)
+![start](./img/auto_start_M5-2.png)
 
 ### Key Function Description
 
@@ -100,19 +100,29 @@ Follow the terminal prompts and select the corresponding robot arm model. If you
 
 Keyboard Input:
 
-`1`: Enables color recognition.
+`1`: Press 1 to activate color recognition.
 
-`2`: Enables shape recognition.
+`2`: Press 2 to activate shape recognition.
 
-`3`: Enables AR QR code recognition.
+`3`: Press 3 to activate AR QR code recognition.
 
-`4`: Enables feature point image recognition.
+`4`: Press 4 to activate feature point image recognition.
 
-`5`: Enables YOLOv5 recognition.
+`5`: Press 5 to activate YOLOv5 recognition. Place the YOLOv5 image block in the recognition area. Following the prompts displayed in the terminal, place the mouse cursor over the camera window and press the letter z on the keyboard to initiate the grabbing process.
 
-`6`: Enables the AiKit_UI graphical software, allowing you to directly use various recognition algorithms. [AiKit UI User Guide](./AiKit_UI/README.md)
+`6`: Press 6 to activate AiKit_UI graphical software, allowing you to directly use various recognition algorithms. [AiKit UI User Guide](./AiKit_UI/README.md)
 
-`7`: Enables controller control. After startup, switch your keyboard and mouse to controller mode. For controller button usage, refer to [Function Button Usage](https://docs.elephantrobotics.com/docs/mycobot_280_pi_en/3-FunctionsAndApplications/6.developmentGuide/python/9_HandleControl.html).
+`7`: Press 7 to activate controller control. After startup, switch your keyboard and mouse to controller mode. For controller button usage, refer to [Function Button Usage](https://docs.elephantrobotics.com/docs/mycobot_280_pi_en/3-FunctionsAndApplications/6.developmentGuide/python/9_HandleControl.html).
+
+`8`: After switching to keyboard mode, press the number 8 to activate the myCobot Adaptive Gripper demonstration. The robot performs a fixed up-and-down motion, with the adaptive gripper opening and closing three times, finally gripping a wooden block from point A to point B and returning to zero.
+
+`9`: Press the number 9 to activate the myCobot Five-Finger Dexterous Hand demonstration. The robot performs a left-right greeting motion twice. The five-fingered dexterous hand forms a central fist (palm facing down), moves forward and backward, performs a fist bump motion twice, and finally returns to zero.
+
+`0`: Press the number 0 to activate the Stag Code Tracking demonstration. The robot arm first moves to the initial observation point position. Then, the Stag Code wooden block is placed 30 cm away from the camera flange at the end of the robot arm, and the robot arm begins tracking.
+
+### Coordinate Offsets
+
+When running the 1-5 recognition algorithms, if the robot arm cannot accurately grasp a recognized object or block, adjust the XYZ offsets based on the algorithm. Press 6 to launch the AiKit_UI graphical software and modify the offsets: [AiKit UI User Guide](./AiKit_UI/README.md)
 
 ### Notes
 
