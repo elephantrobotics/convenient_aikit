@@ -39,8 +39,8 @@ class UVCCamera:
 
     def capture(self) -> None:
         """Opens the camera and sets the capture resolution."""
-        self.cap = cv2.VideoCapture(self.cam_index, cv2.CAP_DSHOW)  # Windows
-        # self.cap = cv2.VideoCapture(self.cam_index, cv2.CAP_V4L)  # Linux
+        # self.cap = cv2.VideoCapture(self.cam_index, cv2.CAP_DSHOW)  # Windows
+        self.cap = cv2.VideoCapture(self.cam_index, cv2.CAP_V4L)  # Linux
         width, height = self.capture_size
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
