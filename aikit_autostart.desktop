@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/home/er/aikit_V2/start_aikit.sh
+Exec=/home/er/convenient_aikit/start_aikit.sh
 Hidden=false
 X-MATE-Autostart-enabled=true
 Name[en_US]=AiKit APP

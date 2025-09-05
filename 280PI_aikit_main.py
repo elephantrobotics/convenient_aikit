@@ -5,9 +5,6 @@ This module controls the robotic arm movements.
 Author: Wang Weijian
 Date: 2025-08-01
 """
-with open("/home/er/aikit_log.txt", "a") as f:
-    f.write("脚本在启动时运行了\n")
-
 import subprocess
 import sys
 import os
@@ -19,9 +16,9 @@ in_ui_mode = False  # UI 模式状态
 last_ui_exit_time = 0
 
 # 固定路径（适配当前设备）
-BASE_DIR = "/home/er/aikit_V2/AiKit_280PI/scripts"  # ← 替换 XXX 为当前机型
-HANDLE_DIR = "/home/er/aikit_V2/handle_control"
-UI_PATH = "/home/er/AiKit_UI/main.py"
+BASE_DIR = "/home/er/convenient_aikit/AiKit_280PI/scripts"  # ← 替换 XXX 为当前机型
+HANDLE_DIR = "/home/er/convenient_aikit/handle_control"
+UI_PATH = "/home/er/convenient_aikit/AiKit_UI/main.py"
 DEVICE_KEY = "280PI"  # ← 替换为当前机型编号
 
 # 启动脚本函数

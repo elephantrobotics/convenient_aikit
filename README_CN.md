@@ -19,14 +19,13 @@ Linux 树莓派系统 + 套装组件 + USB一体化键盘鼠标手柄设备，�
 
 ```bash
 cd ~
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/aikit_V2.git
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/AiKit_UI.git
+git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 
 ## 4 依赖库安装
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 pip install -r requirements.txt
 ```
 
@@ -35,7 +34,7 @@ pip install -r requirements.txt
 1. 将可执行脚本赋予可执行权限：
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 sudo chmod +x start_aikit*.sh
 ```
 
@@ -44,28 +43,28 @@ sudo chmod +x start_aikit*.sh
 - 280M5、270M5、260M5设备：
   
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart.desktop $HOME/.config/autostart/aikit_autostart.desktop
 ```
 
 - 280PI设备：
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_280PI.desktop $HOME/.config/autostart/aikit_autostart_280PI.desktop
 ```
 
 - 270PI设备：
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_270PI.desktop $HOME/.config/autostart/aikit_autostart_270PI.desktop
 ```
 
 - 260PI设备：
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_260PI.desktop $HOME/.config/autostart/aikit_autostart_260PI.desktop
 ```
 
@@ -111,7 +110,7 @@ cp aikit_autostart_260PI.desktop $HOME/.config/autostart/aikit_autostart_260PI.d
 
 `5`: 启动yolov5识别功能。
 
-`6`: 启动AiKit_UI图形化软件功能，可直接使用各种算法识别功能。
+`6`: 启动AiKit_UI图形化软件功能，可直接使用各种算法识别功能。[AiKit UI 使用说明](./AiKit_UI/README_CN.md)
 
 `7`: 启动手柄控制功能。启动后需将键鼠设备切换到手柄控制模式，手柄按键功能使用参考 [功能按键使用](https://docs.elephantrobotics.com/docs/mycobot_280_pi_cn/3-FunctionsAndApplications/6.developmentGuide/python/7.9_HandleControl.html)。
 

@@ -19,14 +19,13 @@ Linux Raspberry Pi system + package components + USB integrated keyboard and mou
 
 ```bash
 cd ~
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/aikit_V2.git
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/AiKit_UI.git
+git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 
 ## 4 Dependency Library Installation
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 pip install -r requirements.txt
 ```
 
@@ -35,7 +34,7 @@ pip install -r requirements.txt
 1. Grant executable permissions to the script:
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 sudo chmod +x start_aikit*.sh
 ```
 
@@ -44,28 +43,28 @@ sudo chmod +x start_aikit*.sh
 - 280M5, 270M5, and 260M5 devices:
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart.desktop $HOME/.config/autostart/aikit_autostart.desktop
 ```
 
 - 280PI devices:
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_280PI.desktop $HOME/.config/autostart/aikit_autostart_280PI.desktop
 ```
 
 - 270PI devices:
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_270PI.desktop $HOME/.config/autostart/aikit_autostart_270PI.desktop
 ```
 
 - 260PI devices:
 
 ```bash
-cd ~/aikit_V2
+cd ~/convenient_aikit
 cp aikit_autostart_260PI.desktop $HOME/.config/autostart/aikit_autostart_260PI.desktop
 ```
 
@@ -111,7 +110,7 @@ Keyboard Input:
 
 `5`: Enables YOLOv5 recognition.
 
-`6`: Enables the AiKit_UI graphical software, allowing you to directly use various recognition algorithms.
+`6`: Enables the AiKit_UI graphical software, allowing you to directly use various recognition algorithms. [AiKit UI User Guide](./AiKit_UI/README.md)
 
 `7`: Enables controller control. After startup, switch your keyboard and mouse to controller mode. For controller button usage, refer to [Function Button Usage](https://docs.elephantrobotics.com/docs/mycobot_280_pi_en/3-FunctionsAndApplications/6.developmentGuide/python/9_HandleControl.html).
 

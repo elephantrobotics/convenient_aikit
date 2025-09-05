@@ -29,7 +29,7 @@ def get_script_path(script_name):
     if not device_name:
         print("请先选择设备！")
         return None
-    return os.path.join('/home/er/aikit_V2', device_name, 'scripts', script_name)
+    return os.path.join('/home/er/convenient_aikit', device_name, 'scripts', script_name)
 
 # Start script function
 def run_script(script_path, use_sudo=False):
@@ -77,14 +77,14 @@ def on_press(key):
                 run_script(get_script_path('yolov5_img.py'), use_sudo=False)
             elif key.char == '6':
                 in_ui_mode = True
-                run_script('/home/er/AiKit_UI/main.py', use_sudo=False)
+                run_script('/home/er/convenient_aikit/AiKit_UI/main.py', use_sudo=False)
                 if current_process:
                     current_process.wait()
                 in_ui_mode = False
                 last_ui_exit_time = time.time()  #Record UI exit time
                 print("UI 模式结束，恢复数字键切换功能")
             elif key.char == '7':
-                handle_path = os.path.join('/home/er/aikit_V2/handle_control', f'{device_key}_wireless_keyboard_mouse_handle_control_raspi_linux.py')
+                handle_path = os.path.join('/home/er/convenient_aikit/handle_control', f'{device_key}_wireless_keyboard_mouse_handle_control_raspi_linux.py')
                 run_script(handle_path, use_sudo=False)
             elif key.char == '8':
                 run_script(get_script_path('gripper_block_demo.py'), use_sudo=False)
