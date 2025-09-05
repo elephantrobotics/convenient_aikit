@@ -58,13 +58,13 @@ class camera_detect:
         self.EyesInHand_matrix = None
         self.load_matrix()
 
-    def save_matrix(self, filename="/home/er/aikit_V2/AiKit_280M5/scripts/EyesInHand_matrix.json"):
+    def save_matrix(self, filename="/home/er/convenient_aikit/AiKit_280M5/scripts/EyesInHand_matrix.json"):
         """Save EyesInHand_matrix to JSON file."""
         if self.EyesInHand_matrix is not None:
             with open(filename, 'w') as f:
                 json.dump(self.EyesInHand_matrix.tolist(), f)
 
-    def load_matrix(self, filename="/home/er/aikit_V2/AiKit_280M5/scripts/EyesInHand_matrix.json"):
+    def load_matrix(self, filename="/home/er/convenient_aikit/AiKit_280M5/scripts/EyesInHand_matrix.json"):
         """Load EyesInHand_matrix from JSON file."""
         try:
             with open(filename, 'r') as f:
@@ -541,7 +541,7 @@ class camera_detect:
 
 if __name__ == "__main__":
     # Load camera configuration parameters
-    camera_params = np.load("/home/er/aikit_V2/AiKit_280M5/scripts/camera_params.npz")
+    camera_params = np.load("/home/er/convenient_aikit/AiKit_280M5/scripts/camera_params.npz")
     mtx, dist = camera_params["mtx"], camera_params["dist"]
 
     # Initialize the camera detector
