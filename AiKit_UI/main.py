@@ -2933,13 +2933,22 @@ class AiKit_APP(AiKit_window, QMainWindow, QWidget):
         """Open the folder where the file is located"""
         try:
             value = self.comboBox_device.currentText()
-            if value in self.M5:
-                os.startfile(libraries_path)
+
+            # 判断操作系统
+            if sys.platform.startswith('win'):
+                os.startfile(libraries_path)  # Windows
+            elif sys.platform.startswith('linux'):
+                os.system(f'xdg-open "{libraries_path}"')  # Linux
+            elif sys.platform.startswith('darwin'):
+                os.system(f'open "{libraries_path}"')  # MacOS
             else:
-                os.system('xdg-open ' + libraries_path)
+                self.loger.info(f"Unsupported OS: {sys.platform}")
+
+            # 原本自定义窗口功能，可以保留或注释
             # self.file_window = fileWindow()
             # self.file_window.show()
-        except Exception as e:
+
+        except Exception:
             e = traceback.format_exc()
             self.loger.info(str(e))
 
