@@ -8,17 +8,26 @@ Date: 2025-09-03
 import argparse
 import time
 from pymycobot import MyCobot280
+from pymycobot.utils import get_port_list
 
-# Parse command-line arguments for serial port and baud rate
-parser = argparse.ArgumentParser(description='Five-finger dexterous hand demonstration')
-parser.add_argument('--port', type=str, default='/dev/ttyACM0', help='Device serial port number')
-parser.add_argument('--baud', type=int, default=115200, help='Baud rate')
-args = parser.parse_args()
+# List available serial ports
+plist = get_port_list()
+print('serial:', plist)
 
-print(f"Using serial port: {args.port}, baud rate: {args.baud}")
+port = None
+for p in plist:
+    if "ACM" in p:
+        port = p
+        break
+
+if port is None:
+    raise RuntimeError("No ACM device found! Please check USB connection.")
+
+baud = 115200
+print(f"Using serial port: {port}, baud rate: {baud}")
 
 # Initialize the MyCobot280 robotic arm
-mc = MyCobot280(args.port, args.baud)
+mc = MyCobot280(port, baud)
 
 # Ensure the fresh mode is set to 0
 if mc.get_fresh_mode() != 0:

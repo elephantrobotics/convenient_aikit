@@ -8,6 +8,8 @@ Date: 2025-09-03
 import argparse
 import time
 from pymycobot import MyCobot280
+from pymycobot.utils import get_port_list
+
 
 class GripperBlockDemo:
     def __init__(self, port='COM39', baud=115200):
@@ -109,11 +111,22 @@ class GripperBlockDemo:
         self.go_home(50)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Adaptive gripper demonstration')
-    parser.add_argument('--port', type=str, default='/dev/ttyACM0', help='Device serial port number')
-    parser.add_argument('--baud', type=int, default=115200, help='Baud rate')
-    args = parser.parse_args()
-    print(f"Using serial port: {args.port}, baud rate: {args.baud}")
-    demo = GripperBlockDemo(port=args.port, baud=args.baud)
+    # List available serial ports
+    plist = get_port_list()
+    print('serial:', plist)
+
+    # Initialize MyCobot280 with serial port and baud rate
+    port = None
+    for p in plist:
+        if "ACM" in p:
+            port = p
+            break
+
+    if port is None:
+        raise RuntimeError("No ACM device found! Please check USB connection.")
+
+    baud = 115200
+    print(f"Using serial port: {port}, baud rate: {baud}")
+    demo = GripperBlockDemo(port=port, baud=baud)
     demo.run()
 

@@ -15,12 +15,18 @@ plist = get_port_list()
 print('serial:', plist)
 
 # Initialize MyCobot280 with serial port and baud rate
-parser = argparse.ArgumentParser(description='Camera flange demonstration')
-parser.add_argument('--port', type=str, default='/dev/ttyACM0', help='Device serial port number')
-parser.add_argument('--baud', type=int, default=115200, help='Baud rate')
-args = parser.parse_args()
-print(f"Using serial port: {args.port}, baud rate: {args.baud}")
-mc = MyCobot280(args.port, args.baud)
+port = None
+for p in plist:
+    if "ACM" in p:
+        port = p
+        break
+
+if port is None:
+    raise RuntimeError("No ACM device found! Please check USB connection.")
+
+baud = 115200
+print(f"Using serial port: {port}, baud rate: {baud}")
+mc = MyCobot280(port, baud)
 
 # Detect robot version (280 or 320)
 type = mc.get_system_version()
