@@ -14,7 +14,7 @@ from offset_utils import load_offset_from_txt
 IS_CV_4 = cv2.__version__[0] == '4'
 __version__ = "1.0"  # Adaptive seeed
 
-offset_path = '/home/er/AiKit_UI/libraries/offset/myCobot 280 for Pi_feature.txt'
+offset_path = os.path.expanduser('~/convenient_aikit/AiKit_UI/libraries/offset/myCobot 280 for Pi_feature.txt')
 
 camera_x, camera_y, camera_z = load_offset_from_txt(offset_path)
 

@@ -1,3 +1,4 @@
+import os
 import platform
 import time
 
@@ -14,7 +15,7 @@ pump_y = -45
 pump_x = -30
 
 
-offset_path = '/home/er/AiKit_UI/libraries/offset/myPalletizer 260 for Pi_encode.txt'
+offset_path = os.path.expanduser('~/convenient_aikit/AiKit_UI/libraries/offset/myPalletizer 260 for Pi_encode.txt')
 
 camera_x, camera_y, camera_z = load_offset_from_txt(offset_path)
 
