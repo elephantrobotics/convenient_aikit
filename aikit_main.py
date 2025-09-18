@@ -24,6 +24,50 @@ DEVICE_MAP = {
     '3': ('AiKit_260M5', '260M5'),
 }
 
+MENU_MAP = {
+    '1': """
+    等待键盘输入 (按 Esc 退出):
+
+      1: 颜色识别
+      2: 形状识别
+      3: AR二维码识别
+      4: 特征点图像识别
+      5: YOLOv5 图像识别
+      6: 启动 AiKit_UI
+      7: 启动手柄控制
+      8: 自适应夹爪案例
+      9: 灵巧手案例
+      0: STAG 码跟踪案例
+    """,
+
+    '2': """
+    等待键盘输入 (按 Esc 退出):
+
+      1: 颜色识别
+      2: 形状识别
+      3: AR二维码识别
+      4: 特征点图像识别
+      5: YOLOv5 图像识别
+      6: 启动 AiKit_UI
+      7: 启动手柄控制
+      8: 自适应夹爪案例
+      9: 灵巧手案例
+    """,
+
+    '3': """
+    等待键盘输入 (按 Esc 退出):
+
+      1: 颜色识别
+      2: 形状识别
+      3: AR二维码识别
+      4: 特征点图像识别
+      5: YOLOv5 图像识别
+      6: 启动 AiKit_UI
+      7: 启动手柄控制
+      8: 自适应夹爪案例
+    """,
+}
+
 # Script path splicing function
 def get_script_path(script_name):
     if not device_name:
@@ -130,20 +174,7 @@ if __name__ == '__main__':
     device_name, device_key = DEVICE_MAP[device_input]
     print(f"当前选择设备: {device_key}")
 
-    menu = """
-    等待键盘输入 (按 Esc 退出):
+    print(MENU_MAP[device_input])
 
-      1: 颜色识别
-      2: 形状识别
-      3: AR二维码识别
-      4: 特征点图像识别
-      5: YOLOv5 图像识别
-      6: 启动 AiKit_UI
-      7: 启动手柄控制
-      8: 自适应夹爪案例
-      9: 灵巧手案例
-      0: STAG 码跟踪案例
-    """
-    print(menu)
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()
