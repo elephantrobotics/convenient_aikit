@@ -16,7 +16,7 @@ in_ui_mode = False  # UI 模式状态
 last_ui_exit_time = 0
 
 # 固定路径（适配当前设备）
-BASE_DIR = "/home/er/convenient_aikit/AiKit_270Pi/scripts"  # ← 替换 XXX 为当前机型，如 AiKit_280M5
+BASE_DIR = "/home/er/convenient_aikit/AiKit_270Pi/scripts"
 HANDLE_DIR = "/home/er/convenient_aikit/handle_control"
 UI_PATH = "/home/er/convenient_aikit/AiKit_UI/main.py"
 DEVICE_KEY = "270PI"  # ← 替换为当前机型编号，如 260M5、270M5
@@ -52,7 +52,7 @@ def on_press(key):
 
         if hasattr(key, 'char'):
             # UI 模式下屏蔽算法切换
-            if in_ui_mode and key.char in ['1', '2', '3', '4', '5', '7']:
+            if in_ui_mode and key.char in ['1', '2', '3', '4', '5', '7', '8', '9']:
                 # print("当前在 UI 模式，忽略数字键输入")
                 return
             if key.char == '1':
@@ -76,8 +76,12 @@ def on_press(key):
             elif key.char == '7':
                 handle_script = os.path.join(HANDLE_DIR, f"{DEVICE_KEY}_wireless_keyboard_mouse_handle_control_raspi_linux.py")
                 run_script(handle_script)
+            elif key.char == '8':
+                run_script(os.path.join(BASE_DIR, 'gripper_block_demo.py'))
+            elif key.char == '9':
+                run_script(os.path.join(BASE_DIR, 'dance_action_finger_demo.py'))
             else:
-                print(f"无效按键：{key.char}，请按 1-7 或 Esc")
+                print(f"无效按键：{key.char}，请按 1-9 或 Esc")
 
         elif key == keyboard.Key.esc:
             print("退出监听")
@@ -93,8 +97,21 @@ def on_press(key):
         print(f"按键监听出错: {e}")
         return False
 
-# 主程序
+
 if __name__ == '__main__':
-    print("等待键盘输入 (1-5: 识别算法功能, 6: 启动AiKit_UI, 7: 启动手柄控制)，按 Esc 退出")
+    menu = """
+    等待键盘输入 (按 Esc 退出):
+
+      1: 颜色识别
+      2: 形状识别
+      3: AR二维码识别
+      4: 特征点图像识别
+      5: YOLOv5 图像识别
+      6: 启动 AiKit_UI
+      7: 启动手柄控制
+      8: 自适应夹爪案例
+      9: 灵巧手案例
+    """
+    print(menu)
     with keyboard.Listener(on_press=on_press) as listener:
         listener.join()
