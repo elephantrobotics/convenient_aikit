@@ -1,0 +1,2 @@
+2025-09-18 14:02:51,600 main.py[line:399]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
+2025-09-18 14:02:51,600 main.py[line:399]INFO - Mycobot is not connected yet! ! ! Please connect to myCobot first! ! !
