@@ -17,13 +17,13 @@ Linux Raspberry Pi, Windows 10 or Windows 11. The end effector only supports the
 ## 2 Installing the Code
 
 ```bash
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/AiKit_UI.git
+git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 
 ## 3 Python Installing Dependencies
 
 ```bash
-cd AiKit_UI
+cd convenient_aikit/AiKit_UI
 pip install -r requirements.txt
 ```
 
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 Switch to the project folder and run the main.py script
 
 ```bash
-cd AiKit_UI
+cd convenient_aikit/AiKit_UI
 python main.py
 ```
 

@@ -17,13 +17,13 @@ Linux 树莓派系统、Windows 10 or Windows 11，末端执行器仅支持myCob
 ## 2 安装代码
 
 ```bash
-git clone -b Convenient_AiKit https://github.com/elephantrobotics/AiKit_UI.git
+git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 
 ## 3 python 依赖库安装
 
 ```bash
-cd AiKit_UI
+cd convenient_aikit/AiKit_UI
 pip install -r requirements.txt
 ```
 
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 路径切换到项目文件夹，运行main.py脚本
 
 ```bash
-cd AiKit_UI
+cd convenient_aikit/AiKit_UI
 python main.py
 ```
 
