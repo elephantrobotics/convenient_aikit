@@ -2,6 +2,12 @@
 
 Use Python + OpenCV to perform color recognition, shape recognition, feature point image recognition, AR QR code recognition, and YOLOv5 image recognition on the robotic arm. It also supports launching the AiKit_UI graphical software and handle control program. It also supports demonstrations of the myCobot adaptive gripper case, the myCobot five-finger dexterous hand case, and the myCobot camera flange stag code tracking case.
 
+**Document Jump Link**
+
+- [AI_Portable_Kit_EN Gitbook](https://docs.elephantrobotics.com/docs/AI_Portable_Kit_en/)
+
+- [AI_Portable_Kit_CN Gitbook](https://docs.elephantrobotics.com/docs/AI_Portable_Kit_cn/)
+
 ## 1 Supported Robot Arm Models
 
 - myCobot 280 M5

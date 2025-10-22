@@ -10,6 +10,12 @@
   - mechArm 270 for Pi
   - myPalletizer 260 for Pi
 
+- **文档跳转链接**
+
+  - [AI_Portable_Kit_EN Gitbook](https://docs.elephantrobotics.com/docs/AI_Portable_Kit_en/)
+
+  - [AI_Portable_Kit_CN Gitbook](https://docs.elephantrobotics.com/docs/AI_Portable_Kit_cn/)
+
 ## 1 运行环境
 
 Linux 树莓派系统、Windows 10 or Windows 11，末端执行器仅支持myCobot 垂直吸泵2.0
