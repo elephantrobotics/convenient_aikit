@@ -26,14 +26,14 @@ def run_script(script_path, use_sudo=False):
     global current_process, in_ui_mode, last_ui_exit_time
 
     if current_process is not None and current_process.poll() is None:
-        print("终止当前算法进程...")
+        print("终止当前算法进程... Terminating current algorithm process...")
         current_process.terminate()
         current_process.wait()
 
     if not script_path:
         return
 
-    print(f"启动脚本: {script_path}")
+    print(f"启动脚本: {script_path} Starting script: {script_path}")
     current_python = sys.executable
     if use_sudo:
         current_process = subprocess.Popen(['sudo', current_python, script_path])
@@ -72,7 +72,7 @@ def on_press(key):
                     current_process.wait()
                 in_ui_mode = False
                 last_ui_exit_time = time.time()  # Record UI exit time
-                print("UI 模式结束，恢复数字键切换功能")
+                print("UI 模式结束，恢复数字键切换功能 UI mode ended, numeric key switching re-enabled")
             elif key.char == '7':
                 handle_script = os.path.join(HANDLE_DIR, f"{DEVICE_KEY}_wireless_keyboard_mouse_handle_control_raspi_linux.py")
                 run_script(handle_script)
@@ -83,37 +83,37 @@ def on_press(key):
             elif key.char == '0':
                 run_script(os.path.join(BASE_DIR, 'camera_detect.py'))
             else:
-                print(f"无效按键：{key.char}，请按 0-9 或 Esc")
+                print(f"无效按键：{key.char}，请按 0-9 或 Esc Invalid key: {key.char}, please press 0-9 or Esc")
 
         elif key == keyboard.Key.esc:
-            print("退出监听")
+            print("退出监听 Exiting listener")
             if current_process is not None and current_process.poll() is None:
-                print("终止当前算法脚本...")
+                print("终止当前算法脚本... Terminating current algorithm script...")
                 current_process.terminate()
                 current_process.wait()
             return False
         else:
-            print(f"忽略特殊按键：{key}")
+            print(f"忽略特殊按键：{key} Ignoring special key: {key}")
 
     except Exception as e:
-        print(f"按键监听出错: {e}")
+        print(f"按键监听出错: {e} Key listener error: {e}")
         return False
 
 
 if __name__ == '__main__':
     menu = """
-    等待键盘输入 (按 Esc 退出):
+    等待键盘输入 (按 Esc 退出)       Waiting for keyboard input (Press Esc to exit):
 
-      1: 颜色识别
-      2: 形状识别
-      3: AR二维码识别
-      4: 特征点图像识别
-      5: YOLOv5 图像识别
-      6: 启动 AiKit_UI
-      7: 启动手柄控制
-      8: 自适应夹爪案例
-      9: 灵巧手案例
-      0: STAG 码跟踪案例
+      1: 颜色识别                      1: Color recognition
+      2: 形状识别                      2: Shape recognition
+      3: AR 二维码识别                 3: AR code recognition
+      4: 特征点图像识别                 4: Feature point image recognition
+      5: YOLOv5 图像识别               5: YOLOv5 image recognition
+      6: 启动 AiKit_UI                6: Launch AiKit_UI
+      7: 启动手柄控制                  7: Launch handle control
+      8: 自适应夹爪案例                 8: Adaptive gripper demo
+      9: 灵巧手案例                    9: Dexterous hand demo
+      0: STAG 码跟踪案例               0: STAG code tracking demo
     """
     print(menu)
     with keyboard.Listener(on_press=on_press) as listener:
