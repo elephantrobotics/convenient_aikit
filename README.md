@@ -24,7 +24,7 @@ Linux Raspberry Pi system + package components + USB integrated keyboard and mou
 ## 3 Code Installation
 
 ```bash
-cd ~
+cd /home/er/
 git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 

@@ -18,7 +18,7 @@ Linux 树莓派系统 + 套装组件 + USB一体化键盘鼠标手柄设备，�
 ## 3 代码安装
 
 ```bash
-cd ~
+cd /home/er/
 git clone https://github.com/elephantrobotics/convenient_aikit.git
 ```
 
