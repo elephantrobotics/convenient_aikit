@@ -335,7 +335,7 @@ class Object_detect():
                     if objCor==3:
                         objectType = ["Triangle","三角形"]
                         cv2.drawContours(img, [cnt], 0, (0, 0, 255), 3)
-                        self.color = 2
+                        self.color = 3
                     elif objCor==4:
                         box = cv2.boxPoints(rect)
                         box = np.int0(box)
@@ -349,7 +349,7 @@ class Object_detect():
                         else:
                             objectType = ["Rectangle","长方形"]
                             cv2.drawContours(img, [cnt], 0, (0, 0, 255), 3)
-                            self.color= 3
+                            self.color= 2
                     elif objCor>=5:
                         objectType = ["Circle", "圆形"]
                         self.color= 0
